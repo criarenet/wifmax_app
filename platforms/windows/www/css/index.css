@@ -1,0 +1,159 @@
+﻿.navbar
+{
+    height: 60px;
+}
+
+.app
+{
+    padding-bottom: 30px;
+}
+
+#deviceready
+{
+    margin-top: 75px;
+}
+
+#headerCompany.fixFilter
+{
+    padding-top: 53px;
+}
+
+#filterControl.collapsible-header.fixFilter
+{
+    width: 100%;
+    position:fixed;
+    top: 0;
+    z-index: 9999999;
+}
+
+#filterControl span.badge
+{
+    font-size: 13px;
+    padding-top: 1px;
+}
+
+#filterControl a b
+{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+#filterControl.collection a.collection-item:not(.active):hover
+{
+    background: transparent;
+}
+
+.wrapperBadge
+{
+    width: 100%;
+}
+
+#wrapperFiltersFields
+{
+    position: fixed;
+    bottom: 21px;
+    margin: 0;
+    width: 100%;
+    display: none;
+    z-index: 99999;
+}
+
+#filtersFields, #filtersFields .card-action
+{
+    border-radius: 0;
+    margin: 0;
+}
+
+#filtersFields .card-title
+{
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 10px 20px;
+}
+
+#wrapperFiltersFields.fadeInUp
+{
+    animation-duration: 0.2s;
+}
+
+footer.page-footer
+{
+    padding-top: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 10px;
+}
+
+footer.page-footer .footer-copyright
+{
+    min-height: 20px;
+    padding: 0;
+}
+
+h3.title
+{
+    margin-left: 15px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+h3.title.middle
+{
+    width: calc(50% - 5px);
+    margin: 0;
+    text-align: center;
+    display: inline-block;
+}
+
+#chartArea
+{
+    width: calc(100% - 10px);
+    max-height: 300px;
+    margin: 5px;
+    padding-right: 5px;
+}
+
+span.lineDivision
+{
+    width: 100%;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
+    display: block;
+    margin-bottom: 10px;
+    /*box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.1);*/
+}
+
+div.chartMiddle
+{
+    width: calc(50% - 10px);
+    height: 250px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#lineChartArea
+{
+    min-height: 200px;
+}
+
+select.cboOrigin
+{
+    height: 30px;
+    border: none;
+    width: calc(50% - 25px);
+    border-bottom: 1px solid #ccc;
+    opacity: 1;
+    background: transparent;
+    display: inline-block;
+    padding: 0 20px 0 0 !important;
+    margin: 5px 10px 0 10px !important;
+    outline: none;
+}
+
+select.cboOrigin option
+{
+    color: #212121;
+}

@@ -1,0 +1,11 @@
+﻿#wrapperLoader
+{
+    display: none;
+    text-align: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    padding-top: 50%;
+    background: rgba(255,255,255,0.7);
+}

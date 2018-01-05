@@ -1,0 +1,63 @@
+﻿<!--<div id="filterControl" class="collection" style="margin-top: 1px;">
+    <a href="#" class="collection-item">
+        <i class="material-icons">filter_list</i><b>Filtros</b>
+        <span class="new badge" data-badge-caption="04/02/2015"></span>
+        <span class="new badge" data-badge-caption="04/02/2016"></span>
+    </a>
+</div>-->
+
+<div id="filterControl" class="collapsible-header active">
+    <i class="material-icons" style="font-weight: 600;">filter_list</i><span style="margin-top: 2px;">Filtros</span>
+    <span class="wrapperBadge">
+        <span class="new badge" data-badge-caption="04/02/2015"></span>
+        <span class="new badge" data-badge-caption="04/02/2016"></span>
+    </span>
+</div>
+<div id="wrapperFiltersFields" class="row">
+    <div style="padding: 0;" class="">
+        <div id="filtersFields" class="card blue-grey darken-1">
+            <div style="padding: 20px 0 0 0;" class="card-content white-text">
+                <span class="card-title">Filtros</span>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input maxlength="10" placeholder="Data inicial" id="initialDate" type="tel" class="maskDate validate">
+                            </div>
+                            <div class="input-field col s6">
+                                <input maxlength="10" placeholder="Data final" id="finalDate" type="tel" class="maskDate validate">
+                            </div>
+                            
+                                <select class="cboOrigin">
+                                    <option value="">Hotspots</option>
+                                    <option value="4">Loja 01</option>
+                                    <option value="3">Loja 02</option>
+                                    <option value="2">Shopping 01</option>
+                                    <option value="1">Shopping 02</option>
+                                </select>
+                            
+                            
+                                <select class="cboOrigin">
+                                    <option value="">Routers</option>
+                                    <option value="4">Loja 01 - Entrada</option>
+                                    <option value="3">Loja 01 - Setor 2</option>
+                                    <option value="2">Shopping 01 - Pç Alimentação</option>
+                                    <option value="1">Shopping 01 - 2º Andar</option>
+                                    <option value="4">Loja 02 - Entrada</option>
+                                    <option value="3">Loja 02 - Setor 2</option>
+                                    <option value="2">Shopping 02 - Pç Alimentação</option>
+                                    <option value="1">Shopping 02 - 2º Andar</option>
+                                </select>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card-action">
+                <a id="btApplyFilters" href="#">APLICAR</a>
+                <a id="btCloseFilters" href="#">CANCELAR</a>
+            </div>
+        </div>
+    </div>
+</div>

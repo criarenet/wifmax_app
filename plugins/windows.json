@@ -1,0 +1,61 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-local-notifications-npm": {
+            "PACKAGE_NAME": "testepush"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-common-registerusernotificationsettings-npm": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "testepush"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "testepush"
+        }
+    }
+}

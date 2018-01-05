@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+
+<!--        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=yes" />
+        <meta name="msapplication-tap-highlight" content="no" />
+         WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+        <meta charset="UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+        
+        
+        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/materialize.css" />
+        
+        <link rel="stylesheet" type="text/css" href="css/animate.css" />
+                
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/dialogs.css" />
+        <link rel="icon" href="img/favicon-16.png" type="image/x-icon" />
+        <title>Wifi max</title>
+
+    </head>
+    <body>
+        <div class="app">
+            <nav class="blue-grey">
+                
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo left" style="font-size: 22px;">Empresa</a>
+                </div>
+            </nav>
+            <div data-initcomponents="filters" id="deviceContainer">
+                
+            </div>
+            <h3 id="headerCompany" class="title">Gráfico teste</h3>
+            <div id="lineChartArea"></div>
+            <span class="lineDivision"></span>
+            <h3 class="title middle">Browsers</h3>
+            <h3 class="title middle">Plataformas</h3>
+            <div id="pizzaBrowser" class="chartMiddle" style="border-right: 1px solid #eee; padding-right: 5px;"></div>
+            <div id="pizzaPlat" class="chartMiddle"></div>
+            <span class="lineDivision"></span>
+            
+            
+            
+        </div>
+        <footer class="page-footer blue-grey">
+        <div class="footer-copyright">
+            <div class="container">
+            © 2017 Copyright Wifi max
+            <a class="grey-text text-lighten-4 right" href="#!">criarenet.com.br</a>
+            </div>
+          </div>
+        </footer>
+        <div data-initcomponents="dialogs" id="dialogsContainer">
+
+        </div>
+        <script src="js/jquery/jquery-3.2.1.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>-->
+        <script src="js/highcharts/highcharts.js"></script>
+        <script src="js/common/app-lib.js"></script>
+        <script src="js/components.js"></script>
+        <script src="js/inject-includes.js"></script>
+        
+        <script src="js/charts/build-charts.js"></script>
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+        <script src="js/local-push.js"></script>
+    </body>
+</html>
