@@ -1,11 +1,44 @@
-﻿.navbar
+﻿@font-face {
+    font-family: RopaSans-Regular;
+    src: url(../fonts/RopaSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: RopaSans-Regular-italic;
+    src: url(../fonts/RopaSans-Italic.ttf);
+}
+
+@font-face {
+    font-family: roboto-light;
+    src: url(../fonts/roboto/Roboto-Light.ttf);
+}
+
+html
+{
+    height: 100%;
+    font-family: 'RopaSans-Regular' !important;
+}
+
+body
+{
+font-family: 'RopaSans-Regular' !important;
+height: 100%;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e8e8e8+0,e1e1e1+100 */
+background: #e8e8e8; /* Old browsers */
+background: -moz-linear-gradient(top, #e8e8e8 0%, #e1e1e1 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #e8e8e8 0%,#e1e1e1 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #e8e8e8 0%,#e1e1e1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', endColorstr='#e1e1e1',GradientType=0 ); /* IE6-9 */
+}
+
+.navbar
 {
     height: 60px;
 }
 
 .app
 {
-    padding-bottom: 30px;
+    height: 100%;
 }
 
 #deviceready
@@ -13,17 +46,67 @@
     margin-top: 75px;
 }
 
-#headerCompany.fixFilter
+#wrapperHeader
 {
-    padding-top: 53px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    background: #e8e8e8;
 }
 
-#filterControl.collapsible-header.fixFilter
+#headerCompany i 
 {
-    width: 100%;
-    position:fixed;
-    top: 0;
-    z-index: 9999999;
+    color: #8e8e8e;
+    font-size: 32px;
+}
+
+#headerCompany
+{
+    /*padding-top: 53px;*/
+    -webkit-transition: max-height .3s; 
+    -moz-transition: max-height .3s; 
+    -ms-transition: max-height .3s; 
+    -o-transition: max-height .3s; 
+    transition: max-height .3s;
+    overflow: hidden;
+    height: 55px;
+    max-height: 100px;
+    background: transparent;
+    box-shadow: none;
+}
+
+#headerCompany h3
+{
+    font-size: 22px;
+    text-align: center;
+    color: #787ee8;
+    padding-right: 10px;
+}
+
+#wrapperHeader.fixFilter
+{
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,.2);
+}
+
+a.headermenu:hover
+{
+    text-decoration: none;
+}
+
+#filterControl
+{
+    background: transparent;
+}
+
+.mainLogo
+{
+    text-align: right;    
+}
+
+.mainLogo img
+{
+    width: 48px;
 }
 
 #filterControl span.badge
@@ -52,7 +135,7 @@
 #wrapperFiltersFields
 {
     position: fixed;
-    bottom: 21px;
+    bottom: 0;
     margin: 0;
     width: 100%;
     display: none;
@@ -94,8 +177,7 @@ footer.page-footer .footer-copyright
 
 h3.title
 {
-    margin-left: 15px;
-    margin-bottom: 30px;
+    margin: 125px 0 30px 15px;
     font-size: 20px;
     font-weight: 600;
 }
@@ -156,4 +238,122 @@ select.cboOrigin
 select.cboOrigin option
 {
     color: #212121;
+}
+
+#bodyApp{
+    height: 100%;
+    padding-top: 55px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.btnApp
+{
+    box-shadow: none;
+    background-color: rgba(0,0,0,.5);
+    border-radius: 0;
+    text-transform: none;
+}
+
+.txtBtn
+{
+    position: relative;
+    position: relative;
+    top: -3px;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.btn.btnApp:hover, .btn.btnApp:focus
+{
+    box-shadow: none;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+}
+
+.miniBox{
+    margin: -10px 10px 10px 10px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 3px;
+    
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.1);
+    
+    background: #fff;
+    min-height: 65px;
+    padding:10px 0 0 0;
+}
+
+.miniBox i
+{
+    font-size: 48px;
+}
+
+.labelColor{
+    font-family: 'roboto-light' !important;
+    font-size: 22px;
+}
+
+.labelText
+{
+    margin-top: -4px;
+    font-size: 14px;
+}
+
+#userOnlineChart
+{
+    background: url(../img/loaderchart-app.gif) center center no-repeat;
+    min-height: 250px;
+}
+
+#menuBottom
+{
+    background: #fff;
+    width: 100%;
+    height: 45px;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0 0px 3px 1px rgba(0,0,0,.2);
+}
+
+#menuBottom ul
+{
+    width: 100%;
+    height: 100%;
+}
+
+#menuBottom ul li
+{
+    text-align: center;
+    margin-top: 10px;
+}
+
+#menuBottom ul li.selected
+{
+    margin-top: 0;
+}
+
+#menuBottom ul li.selected:after
+{
+    height: 25px;
+    width: 50px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    background: #fff;
+    content: '';
+    top: -10px;
+    left: 6px;
+    z-index: 1;
+    position: absolute;
+    box-shadow: 0px -1px 1px 0px rgba(0,0,0,.1);
+    
+}
+
+#menuBottom ul li.selected i
+{
+    font-size: 32px;
+    color: #787ee8;
+    z-index: 2;
+    position: relative;
 }

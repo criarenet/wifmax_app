@@ -1,3 +1,5 @@
+var wifimaxApp = {};
+var loginHash = btoa('ricardo@criarenet.com:123456');
 var request = function (obj, callback) {
     //$('.page-loader-wrapper').css('opacity', 0.9).fadeIn(100);
     if(obj.noLoader){
@@ -7,7 +9,10 @@ var request = function (obj, callback) {
     }
     setTimeout(function () {
         $.ajax({
-            contentType: obj.contentType,
+            headers:{
+                'Authorization': 'Basic ' + loginHash
+            },
+            contentType: obj.contentType ? obj.contentType : 'application/json; charset=utf-8',
             type: obj.type ? obj.type : 'POST',
             url: obj.url,
             data: obj.query ? obj.query : '',

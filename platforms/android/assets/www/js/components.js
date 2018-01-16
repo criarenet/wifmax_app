@@ -1,48 +1,41 @@
 var startComponents = function(){
     $('#filterControl').on('click', showHideFilters);
     $('#btCloseFilters').on('click', showHideFilters);
-    
-    $(window).on('scrolldelta', function (e) {
-        var top = e.scrollTop;
-        if(top >= 51){
-            $('#headerCompany').addClass('fixFilter');
-            $('#filterControl').addClass('fixFilter');
-        }else /*if(top < 45)*/{
-            $('#headerCompany').removeClass('fixFilter');
-            $('#filterControl').removeClass('fixFilter');
-        }
-    });
+
     $('#btApplyFilters').on('click', function(){
         showHideFilters();
-        initCharts();
-        //getDataLineCharts($('#lineChartArea'), 'https://api.myjson.com/bins/kwn6p');
-        //buildMessage();
+        getDashboarData(function(){countUpDashboardNumbers();});
     });
-    initCharts();
-    
+        
     $('.maskDate').on('keyup', function () {
         var field = this;
         mascaraData(field);
     });
-    
-};
+    lastScrollTop = 0;
+    $('#bodyApp').on('scrolldelta', function (e) {
+        var top = e.scrollTop;
 
-var initCharts = function(){
-    var line = $('#lineChartArea');
-    var brw = $('#pizzaBrowser');
-    var plt = $('#pizzaPlat');
+        if (top >= 1) {
+            $('#wrapperHeader').addClass('fixFilter');
+        } else {
+            $('#wrapperHeader').removeClass('fixFilter');
+        }
+        $('#menuBottom').removeClass('fadeOutDown animated');
+        if (top > lastScrollTop) {
+            //$('#menuBottom').fadeOut();
+            $('#menuBottom').addClass('fadeOutDown animated');
+        }else{
+            //$('#menuBottom').fadeIn();
+            $('#menuBottom').addClass('fadeInUp animated');
+        }
+        lastScrollTop = top;
+    });
     
-    line.html('');
-    brw.html('');
-    plt.html('');
-    
-    $('#wrapperLoader').fadeIn();
-    getDataLineCharts(line, 'https://api.myjson.com/bins/kwn6p', function(){
-        getDataPizzaBrowser(brw, 'https://api.myjson.com/bins/u0ntt',function(){
-            getDataPizzaPlatform(plt, 'https://api.myjson.com/bins/zqgut', function(){
-                $('#wrapperLoader').hide();
-            });
-        });
+    $('#menuBottom ul li').on('click', function(){
+        $('#menuBottom ul li').removeClass('selected');
+        $('#menuBottom ul li i').removeClass('rubberBand animated');
+        $(this).addClass('selected');
+        $(this).children('i').addClass('rubberBand animated');
     });
 };
 
@@ -57,102 +50,12 @@ var showHideFilters = function () {
             filters.hide();
             filters.attr('class', 'row');
         },300);
-        //filters.hide();
     }else{
         filters.show();
         filters.addClass(classOpen);
     }
 };
 
-var getDataLineCharts = function (container, url, callback) {
-    var query = '';
-    var obj = {
-        url: url,
-        type: "GET",
-        noLoader:true,
-        query: query
-    };
-    request(obj, function (json) {
-        if (json.result) {
-            //alert(json.result);
-            var data = json.result;
-            var series = [
-                {
-                    name: 'Total',
-                    data: data.total
-                },
-                {
-                    name: 'Passantes',
-                    data: data.passing
-
-                }, {
-                    name: 'Visitas',
-                    data: data.visit
-                },
-                {
-                    name: 'Visitantes',
-                    data: data.incoming
-                }
-
-            ];
-            var obj = {
-                type:'line'
-            };
-            buildLineChart(container, series, obj, callback);
-        }
-    });
-};
-
-var getDataPizzaBrowser = function (container, url, callback) {
-    var query = '';
-    var objRequest = {
-        url: url,
-        type: "GET",
-        noLoader:true,
-        query: query
-    };
-    request(objRequest, function (json) {
-        if (json.result) {
-            //alert(json.result);
-            //var data = json.result;
-            var series = [{
-            name: 'Brands',
-            colorByPoint: true,
-            data: json.result
-        }];
-            
-            var obj = {
-                type:'pie'
-            };
-            buildPieChart(container, series, obj, callback);
-        }
-    });
-};
-var getDataPizzaPlatform = function (container, url, callback) {
-    var query = '';
-    var objRequest = {
-        url: url,
-        type: "GET",
-        noLoader:true,
-        query: query
-    };
-    request(objRequest, function (json) {
-        if (json.result) {
-            //alert(json.result);
-            //var data = json.result;
-            var series = [{
-            name: 'Brands',
-            colorByPoint: true,
-            data: json.result
-        }];
-            
-            var obj = {
-                type:'pie'
-            };
-            buildPieChart(container, series, obj, callback);
-        }
-    });
-};
 var intervalsTypes = {
     'realTime':['00', '01', '02', '03', '04', '05', '06',
         '07', '08', '09', '10', '11', '12', '13',
