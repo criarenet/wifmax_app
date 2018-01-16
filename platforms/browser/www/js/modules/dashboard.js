@@ -8,43 +8,45 @@ $(document).ready(function () {
             0: {
                 items: 1
             }
-
         }
     });
-    getDashboarData(countUpDashboardNumbers);
+    getUserOnlineChart();
+    setTimeout(function(){getSimultUserChart();},1);
+    setTimeout(function(){countUpDashboardNumbers();},3);
 });
 
-var getDashboarData = function (callback) {
+var getUserOnlineChart = function (callback) {
     var url = wifimaxApp.url.DASHBOARD_ONLINE_USERS;
+    //var url = 'https://api.myjson.com/bins/1he11h';
     var query = '';
     var obj = {
         url: url,
-        type: "POST",
+        type: "GET",
         noLoader: true,
         query: query
     };
     
     var formaters = {
         name: 'Usuários',
-        timeLine: intervalsTypes.realTime,
-        callback: callback
+        timeLine: intervalsTypes.realTime
     };
     $('.labelColor').text('0');
     $('#userOnlineChart').html('');
+    
     request(obj, function (json) {
         if (json.result && json.result.data) {
-            chartLoad($('#userOnlineChart'), json.result.data, formaters);
+            loadChartUser($('#userOnlineChart'), json.result.data, formaters);
         }
     });
 };
 
 var countUpDashboardNumbers = function () {
-    
     var url = wifimaxApp.url.DASHBOARD_CONNECTION_DATA;
+    //var url = 'https://api.myjson.com/bins/dqrv9';
     var query = '';
     var obj = {
         url: url,
-        type: "POST",
+        type: "GET",
         noLoader: true,
         query: query
     };
@@ -73,18 +75,108 @@ var countUpDashboardNumbers = function () {
     });
 };
 
-var chartLoad = function (containner, data, formaters) {
+var getSimultUserChart = function (callback) {
+    var url = wifimaxApp.url.DASHBOARD_SIMULT_USERS_CHART;
+    //var url = 'https://api.myjson.com/bins/1he11h';
+    var query = 'idCompany=126';
+    var obj = {
+        url: url,
+        type: "GET",
+        noLoader: true,
+        query: query
+    };
 
+    var formaters = {
+        name: 'Usuários',
+        timeLine: intervalsTypes.realTime
+    };
+
+    $('.labelColor').text('0');
+    $('#userOnlineChart').html('');
+
+    request(obj, function (json) {
+        loadChartSimultUser($('#simultUserChart'), json.result, formaters);
+    });
+};
+
+var loadChartSimultUser = function (containner, data, formaters) {
     $(containner).highcharts({
         chart: {
             height: '250px',
-            events: {
-                load: function () {
-                    setTimeout(function(){
-                        formaters.callback();
-                    },1000);
+            marginBottom: 120,
+            reflow: false,
+            marginLeft: 50,
+            marginRight: 20,
+            style: {
+                position: 'absolute'
+            }
+        },
+        credits:{
+            enabled: false,
+            text:''
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis:{
+            categories: formaters.realTime
+        },
+        yAxis: {
+            title: {
+                enabled: false
+            }
+        },
+        tooltip: {
+//            formatter: function () {
+//                var point = this.points[0];
+//                return '<b>' + point.series.name + '</b><br/>' + Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>' +
+//                        '1 USD = ' + Highcharts.numberFormat(point.y, 2) + ' EUR';
+//            },
+//            shared: true
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            radius: 3
+                        }
+                    }
                 }
             }
+        },
+        series: [{
+                name: 'USD to EUR',
+                pointStart: 0,
+                pointInterval: 24 * 3600 * 1000,
+                data: data.data
+            }],
+        exporting: {
+            enabled: false
+        }
+    });
+    
+}
+var loadChartUser = function (containner, data, formaters) {
+
+    $(containner).highcharts({
+        chart: {
+            height: '250px'
+//            events: {
+//                load: function () {
+//                    setTimeout(function(){
+//                        formaters.callback();
+//                    },1000);
+//                }
+//            }
         },
         credits:{
             enabled: false,

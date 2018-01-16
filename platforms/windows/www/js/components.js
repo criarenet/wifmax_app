@@ -3,8 +3,13 @@
     $('#btCloseFilters').on('click', showHideFilters);
 
     $('#btApplyFilters').on('click', function(){
+        
+//        jQuery.getJSON('https://viacep.com.br/ws/' + 01544010 + '/json/', function (address) {
+//            console.log(address);
+//        });
+        
         showHideFilters();
-        getDashboarData(function(){countUpDashboardNumbers();});
+        //getDashboarData(function(){countUpDashboardNumbers();});
     });
         
     $('.maskDate').on('keyup', function () {
