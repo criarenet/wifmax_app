@@ -3,13 +3,8 @@
     $('#btCloseFilters').on('click', showHideFilters);
 
     $('#btApplyFilters').on('click', function(){
-        
-//        jQuery.getJSON('https://viacep.com.br/ws/' + 01544010 + '/json/', function (address) {
-//            console.log(address);
-//        });
-        
         showHideFilters();
-        //getDashboarData(function(){countUpDashboardNumbers();});
+        buildDashBoard();
     });
         
     $('.maskDate').on('keyup', function () {
@@ -42,14 +37,29 @@
         $(this).addClass('selected');
         $(this).children('i').addClass('rubberBand animated');
     });
+    initSliders();
+};
+
+var initSliders = function () {
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        loop: false,
+        margin: 10,
+        navRewind: false,
+        responsive: {
+            0: {
+                items: 1
+            }
+        }
+    });
 };
 
 var showHideFilters = function () {
     var filters = $('#wrapperFiltersFields');
-    var classOpen = 'fadeInUp animated';
-    var classClose = 'fadeOutDown animated';
+    var classOpen = 'slideInRight animated';
+    var classClose = 'slideOutRight animated';
 
-    if (filters.hasClass('fadeInUp')) {
+    if (filters.hasClass('slideInRight')) {
         filters.addClass(classClose);
         setTimeout(function(){
             filters.hide();

@@ -3,50 +3,31 @@
 </div>-->
 
 <div id="wrapperFiltersFields" class="row">
-    <div style="padding: 0;" class="">
-        <div id="filtersFields" class="card blue-grey darken-1">
-            <div style="padding: 20px 0 0 0;" class="card-content white-text">
-                <span class="card-title">Filtros</span>
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input maxlength="10" placeholder="Data inicial" id="initialDate" type="tel" class="maskDate validate">
-                            </div>
-                            <div class="input-field col s6">
-                                <input maxlength="10" placeholder="Data final" id="finalDate" type="tel" class="maskDate validate">
-                            </div>
-                            
-                                <select class="cboOrigin">
-                                    <option value="">Hotspots</option>
-                                    <option value="4">Loja 01</option>
-                                    <option value="3">Loja 02</option>
-                                    <option value="2">Shopping 01</option>
-                                    <option value="1">Shopping 02</option>
-                                </select>
-                            
-                            
-                                <select class="cboOrigin">
-                                    <option value="">Routers</option>
-                                    <option value="4">Loja 01 - Entrada</option>
-                                    <option value="3">Loja 01 - Setor 2</option>
-                                    <option value="2">Shopping 01 - Pç Alimentação</option>
-                                    <option value="1">Shopping 01 - 2º Andar</option>
-                                    <option value="4">Loja 02 - Entrada</option>
-                                    <option value="3">Loja 02 - Setor 2</option>
-                                    <option value="2">Shopping 02 - Pç Alimentação</option>
-                                    <option value="1">Shopping 02 - 2º Andar</option>
-                                </select>
-                            
-                        </div>
-                    </form>
-                </div>
+
+<nav id="headerFilter" style="background: #fff;">
+    <div class="nav-wrapper">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <a id="btCloseFilters" class="headermenu" href="#">
+                <i style="color: #777;" class="material-icons">keyboard_backspace</i>
+            </a>
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <h3 style="margin: 15px 0 0 0; text-align: right; color: #777;">Filtros</h3>
+        </div>
+    </div>
+</nav>
+    <div id="filtersFields" class="card">
+        <div id="carouselFilter" class="owl-carousel owl-theme">
+            <div class="item">
+                <h4><i class="material-icons">person</i>Roteadores</h4>
             </div>
-            
-            <div class="card-action">
-                <a id="btApplyFilters" href="#">APLICAR</a>
-                <a id="btCloseFilters" href="#">CANCELAR</a>
+            <div class="item">
+                <h4><i class="material-icons">person</i>Data / período</h4>
             </div>
+        </div>
+
+        <div class="card-action bg-success" style="text-align: center;">
+            <a style="margin: 0;" id="btApplyFilters" href="#">APLICAR</a>
         </div>
     </div>
 </div>

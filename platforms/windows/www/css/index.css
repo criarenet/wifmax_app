@@ -135,29 +135,38 @@ a.headermenu:hover
 #wrapperFiltersFields
 {
     position: fixed;
-    bottom: 0;
+    top: 0;
     margin: 0;
     width: 100%;
+    height: 100%;
     display: none;
     z-index: 99999;
+    background: rgba(0,0,0,0.5);
+    padding-left: 25px;
 }
 
-#filtersFields, #filtersFields .card-action
+#wrapperFiltersFields.slideInRight
 {
-    border-radius: 0;
+    animation-duration: 0.2s;
+}
+
+#filtersFields
+{
+    height: 100%;
+    width: 100%;
+    background: #fff;
     margin: 0;
 }
 
-#filtersFields .card-title
+#filtersFields .item
 {
-    font-size: 20px;
-    font-weight: 400;
-    margin: 0 0 10px 20px;
+    height: 100%;
+    width: 100%;
 }
 
-#wrapperFiltersFields.fadeInUp
+#carouselFilter
 {
-    animation-duration: 0.2s;
+    height: calc(100% - 100px);
 }
 
 footer.page-footer
@@ -295,13 +304,19 @@ select.cboOrigin option
     font-size: 22px;
 }
 
+.labelColor.loading
+{
+    background: url(../img/loaderchart-app.gif) 15px 10px no-repeat;
+    text-indent: -99999px;
+}
+
 .labelText
 {
     margin-top: -4px;
     font-size: 14px;
 }
 
-#userOnlineChart
+#userOnlineChart, #simultUserChart
 {
     background: url(../img/loaderchart-app.gif) center center no-repeat;
     min-height: 250px;
