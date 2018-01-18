@@ -4,30 +4,54 @@
 
 <div id="wrapperFiltersFields" class="row">
 
-<nav id="headerFilter" style="background: #fff;">
-    <div class="nav-wrapper">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <a id="btCloseFilters" class="headermenu" href="#">
-                <i style="color: #777;" class="material-icons">keyboard_backspace</i>
-            </a>
+    <nav id="headerFilter" style="background: #fff; border-bottom: 1px solid #ddd;">
+        <div class="nav-wrapper">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <a id="btCloseFilters" class="headermenu" href="#">
+                    <i style="color: #777;" class="material-icons">keyboard_backspace</i>
+                </a>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <h3 style="margin: 15px 0 0 0; text-align: right; color: #777; font-size: 21px;">Filtros</h3>
+            </div>
         </div>
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-            <h3 style="margin: 15px 0 0 0; text-align: right; color: #777;">Filtros</h3>
-        </div>
+    </nav>
+    
+    <div id="chosenFilters" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h6 style="margin-top: 2px;"><span>Empresa 01 - </span> <span>Roteador 01 - </span> <span>Hotspot 01</span></h6>
     </div>
-</nav>
-    <div id="filtersFields" class="card">
+
+    <div id="filtersFields"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+
         <div id="carouselFilter" class="owl-carousel owl-theme">
             <div class="item">
-                <h4><i class="material-icons">person</i>Roteadores</h4>
+                <h4 style="margin-left: 15px; margin-bottom: 15px; color: #555;">
+                    <i class="material-icons">location_city</i>
+                    <span style="position: absolute;top: 15px;margin-left: 5px;">Empresas</span>
+                </h4>
+                <div class="body">
+                    <ul class="list-group" id="companiesList">
+                        <li class="list-group-item waves-light-blue">Cras justo odio<span>></span></li>
+                        <li class="list-group-item waves-light-blue">Dapibus ac facilisis in<span>></span></li>
+                        <li class="list-group-item waves-light-blue">Morbi leo risus<span>></span></li>
+                        <li class="list-group-item waves-light-blue">Porta ac consectetur ac<span>></span></li>
+                        <li class="list-group-item waves-light-blue">Vestibulum at eros<span>></span></li>
+                    </ul>
+                </div>
+                
             </div>
             <div class="item">
-                <h4><i class="material-icons">person</i>Data / período</h4>
+                <h4 style="margin-left: 15px; margin-bottom: 15px; color: #555;">
+                    <i class="material-icons">event</i>
+                    <span style="position: absolute;top: 15px;margin-left: 5px;">Data</span>
+                </h4>
             </div>
         </div>
 
-        <div class="card-action bg-success" style="text-align: center;">
-            <a style="margin: 0;" id="btApplyFilters" href="#">APLICAR</a>
+        <div class="waves-effect btn-success col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center; height: 100%; padding: 10px;">
+            <a class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="btApplyFilters" href="#">Aplicar</a>
         </div>
     </div>
 </div>

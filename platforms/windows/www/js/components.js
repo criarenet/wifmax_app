@@ -45,7 +45,7 @@ var initSliders = function () {
     owl.owlCarousel({
         loop: false,
         margin: 10,
-        navRewind: false,
+        //navRewind: false,
         responsive: {
             0: {
                 items: 1
@@ -66,8 +66,12 @@ var showHideFilters = function () {
             filters.attr('class', 'row');
         },300);
     }else{
+        $('#filtersFields').show();
         filters.show();
         filters.addClass(classOpen);
+//        setTimeout(function(){
+//            $('#filtersFields').fadeIn();
+//        },400);
     }
 };
 
