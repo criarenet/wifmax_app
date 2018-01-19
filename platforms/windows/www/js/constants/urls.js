@@ -8,3 +8,5 @@ wifimaxApp.url.DASHBOARD_SIMULT_USERS_CHART = "https://manager.wifimax.com.br/ad
 
 wifimaxApp.url.GET_COMPANIES = "https://manager.wifimax.com.br/admin/company.do?action=getCompaniesCombo";
 
+wifimaxApp.url.GET_ROUTERS_BY_COMPANIES = "https://manager.wifimax.com.br/admin/router.do?action=getAllRoutersCombo";
+

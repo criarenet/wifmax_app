@@ -97,7 +97,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
 
 #chosenFilters
 {
-    text-align: center;
+    /*text-align: center;*/
     background: #fff;
 }
 
@@ -107,24 +107,55 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
     display: inline-block;
 }
 
-#companiesList .list-group-item
+#routersList, #hotspotList
+{
+    overflow: scroll;
+    height: 380px;
+    position: absolute;
+    width: 100%;
+    transition:all .1s linear;
+}
+
+#routersList{
+    z-index: 1;
+}
+
+#routersList.hideFiltetr
+{
+    left: -100%;
+}
+
+#hotspotList
+{
+    left: -100%;
+    z-index: 99;
+    background: #eee;
+}
+
+#hotspotList.showFilter
+{
+    left: 0;
+}
+
+#routersList .list-group-item,  #hotspotList .list-group-item
 {
     padding: 15px;
 }
 
-#companiesList .list-group-item span
+#routersList .list-group-item span,  #hotspotList .list-group-item span
 {
     font-size: 20px;
     float: right;
     margin-top: -3px;
 }
 
-#companiesList .list-group-item:first-child {
+#routersList .list-group-item:first-child,  #hotspotList .list-group-item:first-child {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    border-top: none;
 }
 
-#companiesList .list-group-item:last-child {
+#routersList .list-group-item:last-child,  #hotspotList .list-group-item:last-child {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -181,7 +212,7 @@ a.headermenu:hover
     height: 100%;
     display: none;
     z-index: 99999;
-    background: #fff;
+    /*background: url(../img/loaderchart-app.gif) center center no-repeat #ffffff;*/
 }
 
 #wrapperFiltersFields.slideInRight
@@ -196,13 +227,23 @@ a.headermenu:hover
     background: #fff;
     margin: 0;
     padding: 0;
-    display: none;
+    /*display: none;*/
 }
 
 #filtersFields .item
 {
     height: 100%;
     width: 100%;
+}
+
+#filtersFields .item h4
+{
+    padding-left: 15px;
+    padding-bottom: 15px;
+    color: #555;
+    /*box-shadow: 0px 2px 1px 0px rgba(0,0,0,.2);*/
+    margin-bottom: 1px;
+    border-bottom: 1px solid #ddd;
 }
 
 #carouselFilter
@@ -430,4 +471,9 @@ select.cboOrigin option
     color: #fff;
     /*text-transform: capitalize;*/
     font-size: 18px;
+}
+
+#hotspotList
+{
+    position: absolute;
 }

@@ -66,12 +66,8 @@ var showHideFilters = function () {
             filters.attr('class', 'row');
         },300);
     }else{
-        $('#filtersFields').show();
         filters.show();
         filters.addClass(classOpen);
-//        setTimeout(function(){
-//            $('#filtersFields').fadeIn();
-//        },400);
     }
 };
 
