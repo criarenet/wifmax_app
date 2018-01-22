@@ -1,13 +1,16 @@
+var gIdCompany = '11';
 var startComponents = function(){
-    $('#filterControl').on('click', showHideFilters);
-    $('#btCloseFilters').on('click', showHideFilters);
+    $('#filterControl').on('click', function(){showHideFilters('');});
+    $('#btCloseFilters').on('click', function(){showHideFilters('');});
 
-    $('#btApplyFilters').on('click', function(){
-        showHideFilters();
-        buildDashBoard();
+    $('#btApplyFilters').on('click', function () {
+        showHideFilters(function () {
+            var query = buildQuery();
+            buildDashBoard(query);
+        });
     });
         
-    $('.maskDate').on('keyup', function () {
+    $('.maskKeyDate').on('keyup', function () {
         var field = this;
         mascaraData(field);
     });
@@ -40,6 +43,18 @@ var startComponents = function(){
     initSliders();
 };
 
+var buildQuery = function(){
+    var query;
+    var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
+    var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
+    
+    query = 'idCompany=' + gIdCompany;
+    query += '&idRouter=' + idRouter;
+    query += '&idHotspot=' + idHotspot;
+    
+    return query;
+};
+
 var initSliders = function () {
     var owl = $('.owl-carousel');
     owl.owlCarousel({
@@ -54,7 +69,7 @@ var initSliders = function () {
     });
 };
 
-var showHideFilters = function () {
+var showHideFilters = function (callback) {
     var filters = $('#wrapperFiltersFields');
     var classOpen = 'slideInRight animated';
     var classClose = 'slideOutRight animated';
@@ -62,12 +77,23 @@ var showHideFilters = function () {
     if (filters.hasClass('slideInRight')) {
         filters.addClass(classClose);
         setTimeout(function(){
+            
+            $('#carouselFilter').css('opacity', '0');
+            
             filters.hide();
             filters.attr('class', 'row');
         },300);
     }else{
         filters.show();
         filters.addClass(classOpen);
+        setTimeout(function(){
+            $('#carouselFilter').css('opacity', '1');
+        },300);
+    }
+    if(callback){
+        setTimeout(function(){
+            callback();
+        },100);
     }
 };
 

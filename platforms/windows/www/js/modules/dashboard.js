@@ -1,18 +1,19 @@
-﻿$(document).ready(function () {
-    
-    buildDashBoard();
+﻿var gQuery = 'idCompany=11&idRouter=28&idHotspot=54';
+
+$(document).ready(function () {
+    buildDashBoard(gQuery);
 });
 
-var buildDashBoard = function(){
-    getUserOnlineChart();
-    setTimeout(function(){getSimultUserChart();},1);
-    setTimeout(function(){countUpDashboardNumbers();},3);
+var buildDashBoard = function(query){
+    getUserOnlineChart(query);
+    setTimeout(function(){getSimultUserChart(query);},1);
+    setTimeout(function(){countUpDashboardNumbers(query);},3);
 };
 
-var getUserOnlineChart = function (callback) {
+var getUserOnlineChart = function (query, callback) {
     var url = wifimaxApp.url.DASHBOARD_ONLINE_USERS;
     //var url = 'https://api.myjson.com/bins/1he11h';
-    var query = '';
+    var query = query ? query : gQuery;
     var obj = {
         url: url,
         type: "GET",
@@ -34,10 +35,10 @@ var getUserOnlineChart = function (callback) {
     });
 };
 
-var countUpDashboardNumbers = function () {
+var countUpDashboardNumbers = function (query, callback) {
     var url = wifimaxApp.url.DASHBOARD_CONNECTION_DATA;
     //var url = 'https://api.myjson.com/bins/dqrv9';
-    var query = '';
+    var query = query ? query : gQuery;
     var obj = {
         url: url,
         type: "GET",
@@ -72,10 +73,10 @@ var countUpDashboardNumbers = function () {
     });
 };
 
-var getSimultUserChart = function (callback) {
+var getSimultUserChart = function (query, callback) {
     var url = wifimaxApp.url.DASHBOARD_SIMULT_USERS_CHART;
     //var url = 'https://api.myjson.com/bins/1he11h';
-    var query = 'idCompany=126';
+    var query = query ? query : gQuery;
     var obj = {
         url: url,
         type: "GET",

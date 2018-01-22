@@ -1,7 +1,32 @@
 $(document).ready(function () {
-    //getCompaniesList();
-    getRoutersByCompany();
+    getRoutersByCompany(getListSize);
+    
+    $('#changeDatePeriod').on('change', function(){
+        $('.panelTab').removeClass('selected');
+        var date = $('.panelTab')[0];
+        var period = $('.panelTab')[1];
+        if($('#changeDatePeriod:checked').length){
+            $(period).addClass('selected');
+        }else{
+            $(date).addClass('selected');
+        }
+    });
+    
 });
+
+var getListSize = function () {
+    var allHeight = $(window).height();
+    var top = 55;
+    
+    var bottom = 45;
+    var listSize = (allHeight - top) - bottom;
+    $('#carouselFilter').height(listSize);
+    $('#routersList, #hotspotList, #filterDate').height(listSize);
+    $('.btBackRouters').on('click', function(){
+        $('#hotspotList').removeClass('showFilter');
+    });
+};
+
 var getRoutersByCompany = function (callback) {
     var url = wifimaxApp.url.GET_ROUTERS_BY_COMPANIES;
     //var url = 'https://api.myjson.com/bins/1he11h';
@@ -15,7 +40,7 @@ var getRoutersByCompany = function (callback) {
     
     request(obj, function (json) {
         window.actualRoutersList = json.result;
-        buildRoutersList('#routersList', json.result);
+        buildRoutersList('#routersList ul', json.result, callback);
     });
 };
 
@@ -37,37 +62,42 @@ var buildRoutersList = function (id, data, callback) {
     }
 };
 
+var setItemFilterSelected = function(conatiner, wrapp){
+    $('#'+wrapp+' ul li span').html('>');
+    $(conatiner).children('span').html('<div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></div>');
+};
+
 var showHotspots = function (router) {
-    var container = $('#hotspotList');
+    var container = $('#hotspotList ul');
     var idRouter = $(router).attr('data-idRouter');
+    var selected = $(router).children('span').html().indexOf('check_box');
+    if (selected > 0) {
+        $('#hotspotList').addClass('showFilter');
+        return;
+    }
 
     var hotspots = getHotspotsByRouter(idRouter);
-
     $(container).html('');
-
-    var selectAll = '<li data-idrouter="' + idRouter + '" data-type="allRouters" onclick="backToRouters()" class="list-group-item\n\
+    var selectAll = '<li data-idrouter="' + idRouter + '" data-type="allRouters" onclick="backToRouters(this)" class="list-group-item\n\
                      waves-light-blue">Selecionar todos<span>\n\
                      <div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></li>';
     $(container).append(selectAll);
     $.each(hotspots.groupRows, function (i, v) {
-        var hotspot = '<li data-idhotspot="' + v.idHotspot + '" onclick="" class="list-group-item\n\
+        var hotspot = '<li data-idhotspot="' + v.idHotspot + '" onclick="backToRouters(this)" class="list-group-item\n\
                      waves-light-blue">' + v.ssid + '<span>></span></li>';
         $(container).append(hotspot);
     });
-    var titleHotspot = '<i class="material-icons" style="font-size: 30px;">signal_wifi_4_bar</i>\n\
-                        <span style="position: absolute;top: 15px;margin-left: 5px; font-size: 24px;">Hotspots</span>';
-    $(container).addClass('showFilter');
-    setTimeout(function(){$('#carouselFilter h4').html(titleHotspot);},300);
+    $('#hotspotList').addClass('showFilter');
+    setTimeout(function () {
+        setItemFilterSelected(router, 'routersList');
+    }, 100);
 };
 
-var backToRouters = function(){
-    
-    var titleHotspot = '<i class="material-icons" style="font-size: 30px;">router</i>\n\
-    <span style="position: absolute;top: 15px;margin-left: 5px; font-size: 24px;">Roteadores</span>';
-    
+var backToRouters = function (hotspot) {
     $('#hotspotList').removeClass('showFilter');
-    setTimeout(function(){$('#carouselFilter h4').html(titleHotspot);},300);
-    
+    setTimeout(function () {
+        setItemFilterSelected(hotspot, 'hotspotList');
+    }, 100);
 };
 
 var getHotspotsByRouter = function (id) {

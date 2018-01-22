@@ -4,7 +4,7 @@
         <div class="nav-wrapper">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <a id="btCloseFilters" class="headermenu" href="#">
-                    <i style="color: #777;" class="material-icons">keyboard_backspace</i>
+                    <i style="color: #777;" class="material-icons">close</i>
                 </a>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -12,41 +12,110 @@
             </div>
         </div>
     </nav>
-    
-    <div id="chosenFilters" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h6 style="margin-top: 2px;"><span>Empresa 01 - </span> <span>Roteador 01 - </span> <span>Hotspot 01</span></h6>
-    </div>
-
     <div id="filtersFields"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 
 
         <div id="carouselFilter" class="owl-carousel owl-theme">
             <div class="item">
-                <h4>
-                    <i class="material-icons" style="font-size: 30px;">router</i>
-                    <span style="position: absolute;top: 15px;margin-left: 5px; font-size: 24px;">Roteadores</span>
-                </h4>
-                <div class="body" style="position: relative;">
-                    <ul class="list-group" id="routersList">
 
-                    </ul>
-                    <ul id="hotspotList">
-                        
-                    </ul>
+                <div class="body" style="position: relative;">
+                    <div id="routersList">
+                        <h4>
+                            <i class="material-icons" style="font-size: 30px;">router</i>
+                            <span style="position: absolute;top: 21px;margin-left: 5px; font-size: 24px;">Roteadores</span>
+                        </h4>
+                        <ul class="list-group">
+
+                        </ul>
+                    </div>
+                    <div id="hotspotList">
+                        <h4>
+                            <i class="material-icons btBackRouters" style="font-size: 30px; margin: 3px 5px 0 0;">keyboard_backspace</i>
+                            <span style="position: absolute;top: 21px;margin-left: 5px; font-size: 24px;">
+                                Hotspots <i class="material-icons" style="font-size: 18px; margin: 3px 0 0 5px;">signal_wifi_4_bar</i>
+                            </span>
+
+                        </h4>
+                        <ul>
+
+                        </ul>
+                    </div>
                 </div>
-                
+
             </div>
             <div class="item">
-                <h4 style="margin-left: 15px; margin-bottom: 15px; color: #555;">
-                    <i class="material-icons">event</i>
-                    <span style="position: absolute;top: 15px;margin-left: 5px;">Data</span>
-                </h4>
+                <div id="filterDate">
+                    <h4>
+                        <i class="material-icons" style="font-size: 30px;">event</i>
+                        <span style="position: absolute;top: 21px;margin-left: 5px; font-size: 24px;">Data / Período</span>
+                    </h4>
+                    
+
+                    <div class="bodyTab" style="margin-top: 60px;">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 wrappIptOnOff">
+                            <div style="padding-left: 0;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="switch" style="margin-left: 0; margin-top: 1px;">
+                                    <label><input id="changeDatePeriod" type="checkbox"><span class="lever switch-col-orange"></span></label>
+                                </div>
+                            </div>
+                            <h3 style="margin-top: 0;padding-left: 0; margin-left: -15px;" class="col-xs-9 col-sm-9 col-md-9 col-lg-9">Período</h3>
+                        </div>
+                        <!-- Tab panes -->
+                        <div class="areaTab">
+                            <div class="panelTab selected">
+                                <div class="row clearfix">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="tel" class="form-control maskKeyDate" maxlength="10" placeholder="Digite a data desejada">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panelTab">
+                                <div class="row clearfix">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="tel" maxlength="10" class="form-control maskKeyDate" placeholder="Data inicial">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="tel" maxlength="10" class="form-control maskKeyDate" placeholder="Data final">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         </div>
 
-        <div class="waves-effect btn-success col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center; height: 100%; padding: 10px;">
+        <div class="waves-effect btn-success col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center; padding: 10px;">
             <a class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="btApplyFilters" href="#">Aplicar</a>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#changeDatePeriod').on('change', function(){
+            $('.panelTab').removeClass('selected');
+            var date = $('.panelTab')[0];
+            var period = $('.panelTab')[1];
+            if($('#changeDatePeriod:checked').length){
+                $(period).addClass('selected');
+            }else{
+                $(date).addClass('selected');
+            }
+        });
+    });
+</script>

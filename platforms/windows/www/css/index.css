@@ -82,6 +82,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
     text-align: center;
     color: #787ee8;
     padding-right: 10px;
+    /*margin-top: 15px;*/
 }
 
 #wrapperHeader.fixFilter
@@ -97,8 +98,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
 
 #chosenFilters
 {
-    /*text-align: center;*/
-    background: #fff;
+    background: transparent;
+    margin-top: -32px
 }
 
 #chosenFilters h6
@@ -110,7 +111,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
 #routersList, #hotspotList
 {
     overflow: scroll;
-    height: 380px;
+/*    height: 380px;*/
     position: absolute;
     width: 100%;
     transition:all .1s linear;
@@ -158,6 +159,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
 #routersList .list-group-item:last-child,  #hotspotList .list-group-item:last-child {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+#routersList ul, #hotspotList ul
+{
+    margin-top: 60px;
 }
 
 a.headermenu:hover
@@ -238,27 +244,37 @@ a.headermenu:hover
 
 #filtersFields .item h4
 {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: -5px;
+    
     padding-left: 15px;
     padding-bottom: 15px;
     color: #555;
-    /*box-shadow: 0px 2px 1px 0px rgba(0,0,0,.2);*/
+    /* box-shadow: 0px 2px 1px 0px rgba(0,0,0,.2); */
     margin-bottom: 1px;
     border-bottom: 1px solid #ddd;
+    background: #fff;
+    margin-top: 0;
+    padding-top: 15px;
 }
 
 #carouselFilter
 {
-    height: calc(100% - 125px);
+    /*height: calc(100% - 125px);*/
+    transition:all .1s linear;
+    opacity: 0;
 }
 
 #carouselFilter .owl-stage
 {
-    height: 100%;
+    /*height: calc(100% - 25px);*/
 }
 
 #carouselFilter .owl-stage-outer
 {
-    height: calc(100% - 40px);
+    height: calc(100% - 35px);
 }
 
 footer.page-footer
@@ -476,4 +492,16 @@ select.cboOrigin option
 #hotspotList
 {
     position: absolute;
+}
+
+.wrappIptOnOff
+{
+    padding: 10px 0 0 0;
+    background: #efefef;
+    margin-bottom: 35px;
+}
+
+.areaTab .form-line input
+{
+    font-size: 26px;
 }
