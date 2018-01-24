@@ -13,16 +13,22 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/materialize.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/wave-efects.css" />
 
         <link rel="stylesheet" type="text/css" href="css/animate.css" />
+        <link rel="stylesheet" type="text/css" href="css/menu-list.css" />
 
         <link rel="stylesheet" type="text/css" href="css/carousel/owl.carousel.css" />
         <link rel="stylesheet" type="text/css" href="css/carousel/style-carousel.css" />
         
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+        <link rel="stylesheet" type="text/css" href="css/statistics.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="css/dialogs.css" />
         <link rel="stylesheet" type="text/css" href="css/tabs/tabs.css" />
-        
+        <link rel="stylesheet" type="text/css" href="css/date-picker/date-picker.css" />
         <link rel="icon" href="img/favicon-16.png" type="image/x-icon" />
         <title>Wifi max</title>
 
@@ -33,7 +39,7 @@
                 <nav id="headerCompany">
                     <div class="nav-wrapper">
                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <a class="headermenu" href="#">
+                            <a id="buttonMenuList" class="headermenu" href="#">
                                 <i class="material-icons">menu</i>
                             </a>
                         </div>
@@ -51,16 +57,17 @@
                     </div>
                 </nav>
                 <div data-initcomponents="filters" id="deviceContainer"></div>
+                <div data-initcomponents="menu-list" id="menuList"></div>
             </div>
 
             <div id="bodyApp">
-                <div  data-initcomponents="dashboard"></div>
+                <div id="dashBoardContainer" class="pag" data-initcomponents="dashboard"></div>
+                <div id="statisticsContainer" class="pag" data-initcomponents="statistics"></div>
             </div>
 
         </div>
         <div data-initcomponents="dialogs" id="dialogsContainer">
         </div>
-        
         <div id="menuBottom">
             <ul>
                 <li class="mainLogo col-xs-2 col-sm-2 col-md-2 col-lg-2"></li>
@@ -99,7 +106,8 @@
         <script type="text/javascript" src="js/index.js"></script>
         
         <script type="text/javascript" src="js/carousel/owl.carousel.js"></script>
-        <script src="js/modules/filters.js"></script>
+        
+        <script src="js/common/wave-efects.js"></script>
                 
         <script type="text/javascript">
             app.initialize();

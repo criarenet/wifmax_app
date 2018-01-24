@@ -1,7 +1,7 @@
 .panelTab
 {
     display: none;
-    padding: 5px 20px;
+    padding: 0;
 }
 
 .panelTab.selected
@@ -56,4 +56,14 @@
 {
     border-radius: 0 25px 25px 0;
     border: 1px solid #ccc;
+}
+
+.bodyTab
+{
+    background: transparent;
+}
+
+.panelTab .row.clearfix
+{
+    margin: 0;
 }

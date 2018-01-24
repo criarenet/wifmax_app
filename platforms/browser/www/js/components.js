@@ -1,7 +1,11 @@
 var gIdCompany = '11';
+var typeFilterDate;
+
 var startComponents = function(){
     $('#filterControl').on('click', function(){showHideFilters('');});
     $('#btCloseFilters').on('click', function(){showHideFilters('');});
+    
+    $('#btCloseMenuLeft').on('click', function(){showHideMenuLeft('');});
 
     $('#btApplyFilters').on('click', function () {
         showHideFilters(function () {
@@ -9,6 +13,8 @@ var startComponents = function(){
             buildDashBoard(query);
         });
     });
+    
+    $('#buttonMenuList').on('click', showHideMenuLeft);
         
     $('.maskKeyDate').on('keyup', function () {
         var field = this;
@@ -39,15 +45,38 @@ var startComponents = function(){
         $('#menuBottom ul li i').removeClass('rubberBand animated');
         $(this).addClass('selected');
         $(this).children('i').addClass('rubberBand animated');
+//        if($(this).attr('id') === 'buttonMenuList'){
+//            setTimeout(function(){
+//                showHideMenuLeft();
+//                showListMenu();
+//            },100);
+//        }
     });
+    Waves.init();
     initSliders();
 };
+
+var showListMenu = function () {
+    $('#menuList').addClass('showing')
+     $('#menuList').addClass('slideInDown animated');
+    setTimeout(function () {
+        $('#menuList').removeClass('slideInDown animated');
+    }, 300);
+}
 
 var buildQuery = function(){
     var query;
     var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
     var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
     
+    if(typeFilterDate === 'useData'){
+        
+    }
+    
+    if(typeFilterDate === 'usePeriod'){
+        
+    }
+        
     query = 'idCompany=' + gIdCompany;
     query += '&idRouter=' + idRouter;
     query += '&idHotspot=' + idHotspot;
@@ -96,6 +125,36 @@ var showHideFilters = function (callback) {
         },100);
     }
 };
+
+
+var showHideMenuLeft = function (callback) {
+    var filters = $('#wrapperFiltersMenuLeft');
+    var classOpen = 'slideInLeft animated';
+    var classClose = 'slideOutLeft animated';
+
+    if (filters.hasClass('slideInLeft')) {
+        filters.addClass(classClose);
+        setTimeout(function(){
+            
+            //$('#carouselFilter').css('opacity', '0');
+            
+            filters.hide();
+            filters.attr('class', 'row');
+        },300);
+    }else{
+        filters.show();
+        filters.addClass(classOpen);
+        setTimeout(function(){
+            //$('#carouselFilter').css('opacity', '1');
+        },300);
+    }
+//    if(callback){
+//        setTimeout(function(){
+//            callback();
+//        },100);
+//    }
+};
+
 
 var intervalsTypes = {
     'realTime':['00', '01', '02', '03', '04', '05', '06',

@@ -10,3 +10,5 @@ wifimaxApp.url.GET_COMPANIES = "https://manager.wifimax.com.br/admin/company.do?
 
 wifimaxApp.url.GET_ROUTERS_BY_COMPANIES = "https://manager.wifimax.com.br/admin/router.do?action=getAllRoutersCombo";
 
+/*statistics*/
+wifimaxApp.url.GET_USER_DATA_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getUserConnectionDatasStatistic";

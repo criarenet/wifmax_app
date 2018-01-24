@@ -1,4 +1,4 @@
-var gQuery = 'idCompany=11&idRouter=28&idHotspot=54';
+var gQuery = 'idCompany=11&idRouter=28&idHotspot=54&referenceDate=13/01/2018&userSearchPeriod=Daily';
 
 $(document).ready(function () {
     buildDashBoard(gQuery);
@@ -46,11 +46,11 @@ var countUpDashboardNumbers = function (query, callback) {
         query: query
     };
     
-    $('.labelColor').text('0');
-    $('.labelColor').addClass('loading');
+    $('#dashBoardContainer .labelColor').text('0');
+    $('#dashBoardContainer .labelColor').addClass('loading');
     request(obj, function (json) {
-        $('.labelColor').removeClass('loading');
-        $('.labelColor').each(function () {
+        $('#dashBoardContainer .labelColor').removeClass('loading');
+        $('#dashBoardContainer .labelColor').each(function () {
             var $this = $(this);
             //$this.text('0');
             var name = $this.attr('data-count');
