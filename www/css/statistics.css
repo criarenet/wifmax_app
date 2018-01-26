@@ -2,3 +2,19 @@
 {
     display: none;
 }
+
+#landscapeChartArea{
+    height: 100%;
+    background: #fff;
+}
+
+#headerLandscapeCharts .nav-wrapper
+{
+    transition:all .1s linear;
+    opacity: 0;
+}
+
+.viewing
+{
+    opacity: 1 !important;
+}

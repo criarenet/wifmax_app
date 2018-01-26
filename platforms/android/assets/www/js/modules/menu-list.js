@@ -1,14 +1,33 @@
 $(document).ready(function () {
-    $('#menuLeftStatistics').on('click', function(){
-        openPage('#statisticsContainer');
-        typeFilterDate = 'useData';
-    });
+    initMenuLeft();
 });
 
-var openPage = function(pag){
+var initMenuLeft = function(){
+    $('#menuLeftStatistics').on('click', function(){
+        $('#pagSelectedTitle').text('Estatísticas').css('color', '#22bd9a');
+        openPage('#statisticsContainer', countUpStatisticNumbers);
+        typeFilterDate = 'useData';
+    });
+    
+    $('#menuLeftDashboard').on('click', function(){
+        $('#pagSelectedTitle').text('Dashboard').css('color', '#787ee8');
+        
+        openPage('#dashBoardContainer', function(){
+            //buildDashBoard(gQuery);
+        });
+        typeFilterDate = 'noDate';
+    });
+};
+
+var openPage = function (pag, callback) {
     $('.pag').hide();
     $(pag).show();
-    setTimeout(function(){
+    setTimeout(function () {
         showHideMenuLeft();
-    },100);
+        if (callback) {
+            setTimeout(function () {
+                callback();
+            }, 200);
+        }
+    }, 30);
 };

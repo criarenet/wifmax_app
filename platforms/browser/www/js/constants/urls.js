@@ -12,3 +12,7 @@ wifimaxApp.url.GET_ROUTERS_BY_COMPANIES = "https://manager.wifimax.com.br/admin/
 
 /*statistics*/
 wifimaxApp.url.GET_USER_DATA_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getUserConnectionDatasStatistic";
+
+wifimaxApp.url.GET_USERS_ONLINE_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getOnlineUsersStatistics&userSearchPeriod=Daily";
+
+wifimaxApp.url.GET_NEW_REGISTERS_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getRegisteredUsers&userSearchPeriod=Daily";
