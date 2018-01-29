@@ -1,6 +1,6 @@
 $(document).ready(function () {
     initButtons();
-    //setScreenOrientation('portrait');
+    setScreenOrientation('portrait');
 });
 
 var setScreenOrientation = function (position, callback) {
