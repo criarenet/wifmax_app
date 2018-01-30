@@ -1,5 +1,5 @@
 ﻿var gQuery = 'idCompany=11&idRouter=28&idHotspot=54&referenceDate=13/01/2018&userSearchPeriod=Daily';
-
+var gCompanyNameSeleceted = 'Benchimol';
 $(document).ready(function () {
     buildDashBoard(gQuery);
 });

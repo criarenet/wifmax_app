@@ -1,5 +1,5 @@
 ﻿var gIdCompany = '11';
-var typeFilterDate;
+var typeFilterDate, reporstSelecteds = 'dashboard';
 
 var startComponents = function(){
     $('#filterControl').on('click', function(){showHideFilters('');});
@@ -10,7 +10,16 @@ var startComponents = function(){
     $('#btApplyFilters').on('click', function () {
         showHideFilters(function () {
             var query = buildQuery();
-            buildDashBoard(query);
+            
+            switch (reporstSelecteds) {
+                case 'dashboard':
+                    buildDashBoard(query);
+                    break;
+                case 'statistics':
+                    getDataStatistics(query);
+                    break;
+            };
+            
         });
     });
     
@@ -68,19 +77,25 @@ var buildQuery = function(){
     var query;
     var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
     var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
+    if(!idRouter){
+        idHotspot = '';
+    }
+    query = 'idCompany=' + gIdCompany;
+    query += (idRouter ? '&idRouter=' + idRouter : '');
+    query += (idHotspot ? '&idHotspot=' + idHotspot : '');
     
     if(typeFilterDate === 'useData'){
-        
+        //alert('aqui')
+        query += '&referenceDate=' + ($('#referenceDate').val() ? $('#referenceDate').val() : getToday());
+        query += '&userSearchPeriod=Daily';
     }
     
     if(typeFilterDate === 'usePeriod'){
         
     }
         
-    query = 'idCompany=' + gIdCompany;
-    query += '&idRouter=' + idRouter;
-    query += '&idHotspot=' + idHotspot;
     
+    console.log(query);
     return query;
 };
 

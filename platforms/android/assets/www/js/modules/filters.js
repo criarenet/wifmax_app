@@ -47,7 +47,7 @@ var getRoutersByCompany = function (callback) {
 var buildRoutersList = function (id, data, callback) {
     $(id).html('');
     
-    var selectAll = '<li data-idrouter="'+gIdCompany+'" data-type="allRouters" onclick="showHotspots(this)" class="list-group-item\n\
+    var selectAll = '<li data-idrouterCompany="'+gIdCompany+'" data-type="allRouters" onclick="showHotspots(this)" class="list-group-item\n\
                      waves-light-blue">Selecionar todos<span>\n\
                      <div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></li>';
     $(id).append(selectAll);
@@ -65,11 +65,31 @@ var buildRoutersList = function (id, data, callback) {
 var setItemFilterSelected = function(conatiner, wrapp){
     $('#'+wrapp+' ul li span').html('>');
     $(conatiner).children('span').html('<div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></div>');
+    var listSeleceted;
+    if(wrapp === 'routersList'){
+        listSeleceted = 'Roteador - ';
+        if($(conatiner).text().replace(' check_box', '') === 'Selecionar todos'){
+            $('#chosenFilters h6').html('<span>Empresa - '+ gCompanyNameSeleceted +'</span>');
+            return;
+        }
+    }else{
+        listSeleceted = 'Hotspot - ';
+        if($(conatiner).text().replace(' check_box', '') === 'Selecionar todos'){
+            return;
+        }
+    }
+    $('#chosenFilters h6').html('<span>'+ listSeleceted + $(conatiner).text().replace(' check_box', '') +'</span>');
 };
 
 var showHotspots = function (router) {
     var container = $('#hotspotList ul');
     var idRouter = $(router).attr('data-idRouter');
+    
+    if(!idRouter){
+        setItemFilterSelected(router, 'routersList');
+        return;
+    }
+    
     var selected = $(router).children('span').html().indexOf('check_box');
     if (selected > 0) {
         $('#hotspotList').addClass('showFilter');

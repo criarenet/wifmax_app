@@ -16,3 +16,7 @@ wifimaxApp.url.GET_USER_DATA_STATISTIC = "https://manager.wifimax.com.br/admin/u
 wifimaxApp.url.GET_USERS_ONLINE_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getOnlineUsersStatistics&userSearchPeriod=Daily";
 
 wifimaxApp.url.GET_NEW_REGISTERS_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getRegisteredUsers&userSearchPeriod=Daily";
+
+wifimaxApp.url.GET_BROWSERS_STATISTICS = "https://manager.wifimax.com.br/admin/graphic.do?action=getBrowserPizzaGraphic";
+
+wifimaxApp.url.GET_OPERATIONAL_SYSTEM_STATISTICS = "https://manager.wifimax.com.br/admin/graphic.do?action=getOperationalSystemPizzaGraphic";
