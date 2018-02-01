@@ -118,6 +118,9 @@ var getDataStatistics = function (actualQuery) {
     var totalData;
     var url = wifimaxApp.url.GET_USER_DATA_STATISTIC;
     //var url = 'https://api.myjson.com/bins/dqrv9';
+    
+    var keySqlStatisticInd1 = 'GET_USER_DATA_STATISTIC';
+    
     var query = actualQuery ? actualQuery : gQuery;
     var obj = {
         url: url,
@@ -126,10 +129,14 @@ var getDataStatistics = function (actualQuery) {
         query: query
     };
     request(obj, function (json) {
-        setterListValues(json.result);
+        var dataInd1 = addUpdateDataRequest(keySqlStatisticInd1, json.result);
+        setterListValues(dataInd1);
     });
     var url = wifimaxApp.url.GET_USERS_ONLINE_STATISTIC;
     //var url = 'https://api.myjson.com/bins/1he11h';
+    
+    var keySqlStatisticInd2 = 'GET_USERS_ONLINE_STATISTIC';
+    
     var query = actualQuery ? actualQuery : gQuery;
     var objOnlineUsers = {
         url: url,
@@ -138,11 +145,15 @@ var getDataStatistics = function (actualQuery) {
         query: query
     };
     request(objOnlineUsers, function (json) {
-        setterListValues(json.result);
+        var dataInd2 = addUpdateDataRequest(keySqlStatisticInd2, json.result);
+        setterListValues(dataInd2);
     });
 
     var url = wifimaxApp.url.GET_NEW_REGISTERS_STATISTIC;
     //var url = 'https://api.myjson.com/bins/1he11h';
+    
+    var keySqlStatisticInd3 = 'GET_NEW_REGISTERS_STATISTIC';
+    
     var query = actualQuery ? actualQuery : gQuery;
     var objNewRegister = {
         url: url,
@@ -151,7 +162,8 @@ var getDataStatistics = function (actualQuery) {
         query: query
     };
     request(objNewRegister, function (json) {
-        setterListValues(json.result);
+        var dataInd3 = addUpdateDataRequest(keySqlStatisticInd3, json.result);
+        setterListValues(dataInd3);
     });
     getBrowsersStatistic(actualQuery);
     getOSStatistic(actualQuery);
@@ -160,6 +172,9 @@ var getDataStatistics = function (actualQuery) {
 var getNewRegistersStatistic = function (actualQuery, callback) {
     var url = wifimaxApp.url.GET_NEW_REGISTERS_STATISTIC;
     //var url = 'https://api.myjson.com/bins/1he11h';
+    
+    var keySql = 'GET_NEW_REGISTERS_STATISTIC_CHART';
+    
     var query = actualQuery ? actualQuery : gQuery;
     var obj = {
         url: url,
@@ -177,7 +192,8 @@ var getNewRegistersStatistic = function (actualQuery, callback) {
     
     request(obj, function (json) {
         if (json.result && json.result.data) {
-            loadChartNewRegistersStatistic($('#newRegistersStatisticChart'), json.result.data, formaters);
+            var data = addUpdateDataRequest(keySql, json.result.data);
+            loadChartNewRegistersStatistic($('#newRegistersStatisticChart'), data, formaters);
         }
     });
 };
@@ -185,6 +201,9 @@ var getNewRegistersStatistic = function (actualQuery, callback) {
 var getUserOnlineStatistic = function (actualQuery, callback) {
     var url = wifimaxApp.url.GET_USERS_ONLINE_STATISTIC;
     //var url = 'https://api.myjson.com/bins/1he11h';
+    
+    var keySql = 'GET_USERS_ONLINE_STATISTIC';
+    
     var query = actualQuery ? actualQuery : gQuery;
     var obj = {
         url: url,
@@ -202,6 +221,7 @@ var getUserOnlineStatistic = function (actualQuery, callback) {
     
     request(obj, function (json) {
         if (json.result && json.result.data) {
+            var data = addUpdateDataRequest(keySql, json.result.data);
             loadChartOnlineUserStatistic($('#userOnlineStatisticChart'), json.result.data, formaters);
         }
     });
@@ -345,7 +365,7 @@ var loadChartNewRegistersStatistic = function (containner, data, formaters) {
     },
     series: [{
         name: 'Year 1800',
-        data: [107, 31, 635, 203, 2]
+        data: data
     }]
         
     });

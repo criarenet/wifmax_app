@@ -1,8 +1,32 @@
 var gQuery = 'idCompany=11&idRouter=28&idHotspot=54&referenceDate=13/01/2018&userSearchPeriod=Daily';
 var gCompanyNameSeleceted = 'Benchimol';
 $(document).ready(function () {
-    buildDashBoard(gQuery);
+    startDashBoard();
 });
+
+var startDashBoard = function () {
+    getLastQuery(function (objQuery) {
+        var query;
+        if (objQuery.query) {
+            //setSelectionForm(objQuery.obj);
+            
+            query = objQuery.query;
+            buildDashBoard(query);
+        } else {
+            query = buildQuery();
+            buildDashBoard(query);
+        }
+    });
+};
+
+var setSelectionForm = function (obj) {
+    var router = $("li").data("data-idrouter", obj.idRouter)[0];
+    var hotspot = $("li").data("data-hotspot", obj.idHotspot)[0];
+
+    setItemFilterSelected(router, 'routersList');
+    setItemFilterSelected(hotspot, 'hotspotList');
+    $('#referenceDate').val(obj.referenceDate);
+};
 
 var buildDashBoard = function(query){
     getUserOnlineChart(query);
@@ -10,10 +34,13 @@ var buildDashBoard = function(query){
     setTimeout(function(){countUpDashboardNumbers(query);},3);
 };
 
-var getUserOnlineChart = function (query, callback) {
+var getUserOnlineChart = function (params, callback) {
     var url = wifimaxApp.url.DASHBOARD_ONLINE_USERS;
+    var keySql = 'DASHBOARD_ONLINE_USERS';
     //var url = 'https://api.myjson.com/bins/1he11h';
-    var query = query ? query : gQuery;
+
+    var query = params ? params : gQuery;
+    
     var obj = {
         url: url,
         type: "GET",
@@ -30,15 +57,19 @@ var getUserOnlineChart = function (query, callback) {
     
     request(obj, function (json) {
         if (json.result && json.result.data) {
-            loadChartOnlineUser($('#userOnlineChart'), json.result.data, formaters);
+            var data = addUpdateDataRequest(keySql, json.result.data);
+            //console.log(data);
+            loadChartOnlineUser($('#userOnlineChart'), data, formaters);
         }
     });
 };
 
-var countUpDashboardNumbers = function (query, callback) {
+var countUpDashboardNumbers = function (params, callback) {
     var url = wifimaxApp.url.DASHBOARD_CONNECTION_DATA;
     //var url = 'https://api.myjson.com/bins/dqrv9';
-    var query = query ? query : gQuery;
+    var keySql = 'DASHBOARD_CONNECTION_DATA';
+    
+    var query = params ? params : gQuery;
     var obj = {
         url: url,
         type: "GET",
@@ -49,12 +80,13 @@ var countUpDashboardNumbers = function (query, callback) {
     $('#dashBoardContainer .labelColor').text('0');
     $('#dashBoardContainer .labelColor').addClass('loading');
     request(obj, function (json) {
+        var data = addUpdateDataRequest(keySql, json.result);
         $('#dashBoardContainer .labelColor').removeClass('loading');
         $('#dashBoardContainer .labelColor').each(function () {
             var $this = $(this);
             //$this.text('0');
             var name = $this.attr('data-count');
-            countTo = json.result[name];
+            countTo = data[name];
             $({countNum: $this.text()}).animate({
                 countNum: countTo
             },
@@ -73,10 +105,11 @@ var countUpDashboardNumbers = function (query, callback) {
     });
 };
 
-var getSimultUserChart = function (query, callback) {
+var getSimultUserChart = function (params, callback) {
     var url = wifimaxApp.url.DASHBOARD_SIMULT_USERS_CHART;
     //var url = 'https://api.myjson.com/bins/1he11h';
-    var query = query ? query : gQuery;
+    var keySql = 'DASHBOARD_SIMULT_USERS_CHART';
+    var query = params ? params : gQuery;
     var obj = {
         url: url,
         type: "GET",
@@ -92,7 +125,8 @@ var getSimultUserChart = function (query, callback) {
     $('#userOnlineChart').html('');
 
     request(obj, function (json) {
-        loadChartSimultUser($('#simultUserChart'), json.result, formaters);
+        var data = addUpdateDataRequest(keySql, json.result);
+        loadChartSimultUser($('#simultUserChart'), data, formaters);
     });
 };
 

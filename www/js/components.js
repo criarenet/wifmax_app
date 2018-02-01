@@ -10,7 +10,7 @@ var startComponents = function(){
     $('#btApplyFilters').on('click', function () {
         showHideFilters(function () {
             var query = buildQuery();
-            
+            addUpdateDataFIlter(query);
             switch (reporstSelecteds) {
                 case 'dashboard':
                     buildDashBoard(query);
@@ -84,11 +84,11 @@ var buildQuery = function(){
     query += (idRouter ? '&idRouter=' + idRouter : '');
     query += (idHotspot ? '&idHotspot=' + idHotspot : '');
     
-    if(typeFilterDate === 'useData'){
+    //if(typeFilterDate === 'useData'){
         //alert('aqui')
         query += '&referenceDate=' + ($('#referenceDate').val() ? $('#referenceDate').val() : getToday());
         query += '&userSearchPeriod=Daily';
-    }
+    //}
     
     if(typeFilterDate === 'usePeriod'){
         

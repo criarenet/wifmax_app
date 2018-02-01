@@ -125,9 +125,10 @@
         
         $('.datepicker').bootstrapMaterialDatePicker({
             format : 'DD/MM/YYYY',
-            weekStart : 0,
+            weekStart : 2,
+            lang : 'pt',
             time: false
         });
-        
+        $('.datepicker').bootstrapMaterialDatePicker('setDate', moment().subtract(1, 'days').toDate());
     });
 </script>

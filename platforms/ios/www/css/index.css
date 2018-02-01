@@ -423,6 +423,11 @@ select.cboOrigin option
     padding:10px 0 0 0;
 }
 
+.miniBox div:first-child
+{
+    text-align: center;
+}
+
 .miniBox i
 {
     font-size: 48px;
@@ -606,4 +611,12 @@ i.btViewMore
     text-align: center;
     margin-top: 45px;
     color: #8e8e8e;
+}
+
+.alert-info
+{
+    background: #ccc !important;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,.2);
+    border-color: #000 !important;
+    border-radius: 0 !important;
 }

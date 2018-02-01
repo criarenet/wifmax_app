@@ -11,7 +11,7 @@ var initMenuLeft = function(){
             var query = buildQuery();
             getDataStatistics(query);
             setTimeout(function(){
-                $('#statisticCarosel').addClass('viewing');
+                $('#statisticsContainer').addClass('viewing');
             },200);
         });
         typeFilterDate = 'useData';
