@@ -2,7 +2,17 @@ var gQuery = 'idCompany=11&idRouter=28&idHotspot=54&referenceDate=13/01/2018&use
 var gCompanyNameSeleceted = 'Benchimol';
 $(document).ready(function () {
     startDashBoard();
+    setScreenOrientation('portrait');
 });
+
+var setScreenOrientation = function (position, callback) {
+    screen.orientation.lock(position);
+    if (callback) {
+        setTimeout(function () {
+            callback();
+        }, 400);
+    }
+};
 
 var startDashBoard = function () {
     getLastQuery(function (objQuery) {

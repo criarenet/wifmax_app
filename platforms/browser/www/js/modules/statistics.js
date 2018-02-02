@@ -1,8 +1,8 @@
 var emptyChartInfo = '<span class="infoChart"><i class="material-icons">info_outline</i><br>Não há informações disponíveis para os filtros atuais.';
 
 $(document).ready(function () {
-    initButtons();
-    setScreenOrientation('portrait');
+    initButtonsStatistics();
+    
     fixWidthCharts();
 });
 
@@ -11,16 +11,7 @@ var fixWidthCharts = function(){
     $('.wrapperCarouselCharts').css({'max-width': maxWidth+'px'});
 };
 
-var setScreenOrientation = function (position, callback) {
-    screen.orientation.lock(position);
-    if (callback) {
-        setTimeout(function () {
-            callback();
-        }, 400);
-    }
-};
-
-var initButtons = function(){
+var initButtonsStatistics = function(){
     $('#detailUsersChart').on('click', function(){
         openLandscapeCharts('', function(){
             setScreenOrientation('landscape');

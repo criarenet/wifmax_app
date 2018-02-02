@@ -25,6 +25,21 @@ var initMenuLeft = function(){
         });
         typeFilterDate = 'noDate';
     });
+    
+    $('#menuLeftAnalytics').on('click', function(){
+        $('#pagSelectedTitle').text('Analytics').css('color', '#fd2646');
+        reporstSelecteds = 'analytics';
+        openPage('#analyticsContainer', function(){
+            //buildDashBoard(gQuery);
+            setTimeout(function(){
+                $('#analyticsContainer').addClass('viewing');
+                setTimeout(function(){
+                    getDataAnalytics();
+                },120);
+            },200);
+        });
+        typeFilterDate = 'useData';
+    });
 };
 
 var openPage = function (pag, callback) {

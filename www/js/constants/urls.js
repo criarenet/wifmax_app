@@ -20,3 +20,6 @@ wifimaxApp.url.GET_NEW_REGISTERS_STATISTIC = "https://manager.wifimax.com.br/adm
 wifimaxApp.url.GET_BROWSERS_STATISTICS = "https://manager.wifimax.com.br/admin/graphic.do?action=getBrowserPizzaGraphic";
 
 wifimaxApp.url.GET_OPERATIONAL_SYSTEM_STATISTICS = "https://manager.wifimax.com.br/admin/graphic.do?action=getOperationalSystemPizzaGraphic";
+
+/*Analytics*/
+wifimaxApp.url.GET_ANALYTICS_DATA = "https://manager.wifimax.com.br/admin/user.do?action=searchUsersProfilesDatas";
