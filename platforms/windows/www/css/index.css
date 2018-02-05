@@ -224,7 +224,8 @@ a.headermenu:hover
     width: 100%;
 }
 
-#wrapperFiltersFields, #wrapperFiltersMenuLeft, #wrapperLandscapeCharts
+#wrapperFiltersFields, #wrapperFiltersMenuLeft, #wrapperLandscapeCharts,
+#wrapperPortraitCharts
 {
     position: fixed;
     top: 0;
@@ -236,7 +237,8 @@ a.headermenu:hover
     /*background: url(../img/loaderchart-app.gif) center center no-repeat #ffffff;*/
 }
 
-#wrapperFiltersFields.slideInRight, #wrapperLandscapeCharts.slideInRight
+#wrapperFiltersFields.slideInRight, #wrapperLandscapeCharts.slideInRight,
+#wrapperPortraitCharts.slideInRight
 {
     animation-duration: 0.2s;
 }
@@ -619,4 +621,9 @@ i.btViewMore
     box-shadow: 0px 1px 2px 0px rgba(0,0,0,.2);
     border-color: #000 !important;
     border-radius: 0 !important;
+}
+
+#dashBoardContainer{
+    transition:all .1s linear;
+    opacity: 0;
 }

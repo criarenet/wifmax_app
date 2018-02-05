@@ -24,18 +24,6 @@ var initButtonsStatistics = function(){
         });
     });
     
-    $('#btCloseLandscapeCharts').on('click', function () {
-        $('#userOnlineStatisticChart').html('');
-        $('#newRegistersStatisticChart').html('');
-        $('#headerLandscapeCharts .nav-wrapper').removeClass('viewing');
-        //$('.chartBoxLandscape h3').removeClass('viewing');
-        setTimeout(function () {
-            setScreenOrientation('portrait', function () {
-                openLandscapeCharts('');
-            });
-        }, 200);
-    });
-    
     $('#detailsNewRegistersChart').on('click', function(){
         openLandscapeCharts('', function(){
             setScreenOrientation('landscape');
@@ -47,31 +35,6 @@ var initButtonsStatistics = function(){
             },250);
         });
     });
-};
-
-var openLandscapeCharts = function (chart, callback) {
-    var filters = $('#wrapperLandscapeCharts');
-    var classOpen = 'slideInRight animated';
-    var classClose = 'slideOutRight animated';
-
-    if (filters.hasClass('slideInRight')) {
-        filters.addClass(classClose);
-        setTimeout(function(){
-              filters.hide();
-            filters.attr('class', 'row');
-        },300);
-    }else{
-        filters.show();
-        filters.addClass(classOpen);
-        setTimeout(function(){
-            //$('#carouselFilter').css('opacity', '1');
-        },300);
-    }
-    if(callback){
-        setTimeout(function(){
-            callback();
-        },400);
-    }
 };
 
 var setterListValues = function (data) {

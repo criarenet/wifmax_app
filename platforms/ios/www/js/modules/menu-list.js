@@ -3,7 +3,31 @@ $(document).ready(function () {
 });
 
 var initMenuLeft = function(){
+    
+    $('#btCloseLandscapeCharts').on('click', function () {
+        $('#userOnlineStatisticChart').html('');
+        $('#newRegistersStatisticChart').html('');
+        $('#genderAgeChart').html('');
+        $('#conversionChart').html('');
+        $('#headerLandscapeCharts .nav-wrapper').removeClass('viewing');
+        //$('.chartBoxLandscape h3').removeClass('viewing');
+        setTimeout(function () {
+            setScreenOrientation('portrait', function () {
+                openLandscapeCharts('');
+            });
+        }, 200);
+    });
+    $('#btClosePortraitCharts').on('click', function () {
+        $('#wrapperVouchersControl').hide();
+        $('#headerPortraitCharts .nav-wrapper').removeClass('viewing');
+        setTimeout(function () {
+            openPortratCharts('');
+        },200);
+        //$('.chartBoxLandscape h3').removeClass('viewing');
+    });
+    
     $('#menuLeftStatistics').on('click', function(){
+        $('.pag').removeClass('viewing');
         $('#pagSelectedTitle').text('Estatísticas').css('color', '#22bd9a');
         reporstSelecteds = 'statistics';
         //console.log(reporstSelecteds);
@@ -18,23 +42,28 @@ var initMenuLeft = function(){
     });
     
     $('#menuLeftDashboard').on('click', function(){
+        $('.pag').removeClass('viewing');
         $('#pagSelectedTitle').text('Dashboard').css('color', '#787ee8');
         reporstSelecteds = 'dashboard';
         openPage('#dashBoardContainer', function(){
+            setTimeout(function(){
+                $('#dashBoardContainer').addClass('viewing');
+            },200);
             //buildDashBoard(gQuery);
         });
         typeFilterDate = 'noDate';
     });
     
     $('#menuLeftAnalytics').on('click', function(){
+        $('.pag').removeClass('viewing');
         $('#pagSelectedTitle').text('Analytics').css('color', '#fd2646');
         reporstSelecteds = 'analytics';
         openPage('#analyticsContainer', function(){
-            //buildDashBoard(gQuery);
+            var query = buildQuery();
             setTimeout(function(){
                 $('#analyticsContainer').addClass('viewing');
                 setTimeout(function(){
-                    getDataAnalytics();
+                    loadDataAnalytics(query);
                 },120);
             },200);
         });

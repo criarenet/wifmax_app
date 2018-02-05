@@ -23,3 +23,11 @@ wifimaxApp.url.GET_OPERATIONAL_SYSTEM_STATISTICS = "https://manager.wifimax.com.
 
 /*Analytics*/
 wifimaxApp.url.GET_ANALYTICS_DATA = "https://manager.wifimax.com.br/admin/user.do?action=searchUsersProfilesDatas";
+
+wifimaxApp.url.GET_ANALYTICS_GENDER_AGE_CHART = "https://manager.wifimax.com.br/admin/user.do?action=searchAgeGroupGender";
+
+wifimaxApp.url.GET_CONVERSION_DATA = "https://manager.wifimax.com.br/admin/user.do?action=getLoginPageViewsAndAuthentication";
+
+wifimaxApp.url.GET_CONVERSION_CHART = "https://manager.wifimax.com.br/admin/user.do?action=getLoginPageViewsAndAuthentication";
+
+wifimaxApp.url.GET_VOUCHERCONTROL_USERS = "https://manager.wifimax.com.br/admin/vouchercontrol.do?action=getVoucherControlUsersVolume";
