@@ -18,8 +18,19 @@ var initMenuLeft = function(){
         }, 200);
     });
     $('#btClosePortraitCharts').on('click', function () {
-        $('#wrapperVouchersControl').hide();
+        //$('#wrapperVouchersControl').hide();
         $('#headerPortraitCharts .nav-wrapper').removeClass('viewing');
+        
+        $('#wrapperVouchersControl').removeClass('viewing');
+        setTimeout(function(){
+            $('#wrapperVouchersControl').hide();
+            $('#detailsVouchers ul').html('');
+            $('#voucherChart').html('');
+            
+            $('#wrapperRedirectControl').hide();
+            $('#detailsRedirects ul').html('');
+            $('#redirectChart').html('');
+        },100);
         setTimeout(function () {
             openPortratCharts('');
         },200);

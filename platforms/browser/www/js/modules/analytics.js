@@ -1,3 +1,4 @@
+var gVouchers;
 $(document).ready(function () {
     initButtonsAnalytics();
 });
@@ -35,13 +36,74 @@ var initButtonsAnalytics = function(){
                 //wifimaxApp.url.GET_VOUCHERCONTROL_USERS
                 //alert('aqui')
                 $('#titlePortaitChart h3').text('Vouchers utilizados');
-                //getChartConversion();
+                buildDetailsVouchers();
             }, 250);
         });
     });
     
 };
 
+var buildDetailsVouchers = function () {
+    
+    var pieColors = (function () {
+        var colors = [],
+                base = Highcharts.getOptions().colors[0],
+                i;
+
+        for (i = 0; i < 10; i += 1) {
+            // Start out with a darkened base color (negative brighten), and end
+            // up with a much brighter color
+            colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+        }
+        return colors;
+    }());
+    var formaters = {};
+    formaters.colors = pieColors;
+    var data = [];
+    var others = {};
+    $.each(gVouchers, function (i, v) {
+        
+        var pctg = parseFloat(((v.usersVolume * 100) / sumAllVouchers).toFixed(2));
+        
+        if (v.usersVolume < 5) {
+            others.y = (others.y ? (others.y + pctg) : others.y);
+        } else {
+            data.push({
+                name: v.description,
+                y: pctg
+            });
+        }
+    });
+    if (others.y) {
+        others.name = 'Outros';
+        data.push(others);
+    }
+    $('#wrapperVouchersControl').height(($(window).height() - 45));
+    buildVouchersList('#detailsVouchers ul', gVouchers, pieColors, function(){
+        $('#wrapperVouchersControl').show();
+        $('#wrapperVouchersControl').addClass('viewing');
+        setTimeout(function(){
+            loadPieChartAnalytics($('#voucherChart'), data, formaters);
+        },150);
+    });
+//    console.log(data)
+};
+
+var buildVouchersList = function (id, data, arrColor, callback) {
+    $(id).html('');
+    
+    
+    
+    $.each(data, function (i, v) {
+        //console.log(v);
+        var item = '<li class="list-group-item waves-light-blue">\n\
+        <p class="bullet" style="background-color: '+arrColor[i]+';"></p>'+v.description+'<span> '+v.usersVolume+'</span></li>';
+        $(id).append(item);
+    });
+    if (callback) {
+        callback();
+    }
+};
 
 var setterListAnalytics = function (data, spanClass) {
     $('#analyticsContainer .labelColor.'+spanClass).each(function () {
@@ -79,6 +141,7 @@ var loadDataAnalytics = function(query){
     setTimeout(function () {
         getConversionData(query, '');
         getVouchersControl(query);
+        setTimeout(function(){loadChartGender($('#pieChartGender'));},100);
     }, 10);
 };
 
@@ -103,7 +166,8 @@ var getVouchersControl = function (actualQuery, callback) {
                 volume = volume + v.usersVolume;
             });
             tot.userVolume = volume;
-            window.gVouchers = json.result;
+            gVouchers = json.result;
+            window.sumAllVouchers = volume;
             setterListAnalytics(tot, 'vouchersLabel');
         }
     });
@@ -379,5 +443,71 @@ var loadChartConversion = function (containner, data, formaters) {
     },
     series: data
 
+    });
+};
+
+var loadPieChartAnalytics = function (containner, data, formaters) {
+
+    $(containner).highcharts({
+        chart: {
+            height: '260px',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            enabled: false,
+            text: ''
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            //categories: formaters.realTime
+        },
+        yAxis: {
+            title: {
+                enabled: false
+            }
+        },
+        plotOptions: {
+            pie: {
+                showInLegend: true,
+                allowPointSelect: true,
+                cursor: 'pointer',
+                colors: formaters.colors,
+                //colors: ['#B3E5FC', '#81D4FA', '#4FC3F7', '#29B6F6', '#03A9F4', '#039BE5', '#0288D1', '#0277BD', '#01579B'],
+                //colors:["#8ed083", "#82cecd", "#82a7ce", "#8682ce", "#ad82cf", "#d183bc", "#dc8a90", "#e0a78c", "#e0cc8c", "#cad988"],
+                dataLabels: {
+                    enabled: false
+                }
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                //console.log(this);
+                var txt = '<b>Vouchers</b><br>';
+                txt += this.key + ' - ' + this.y + '%';
+                if (this.point.fullCategory)
+                    txt += this.point.fullCategory;
+                return txt;
+            }
+        },
+        legend: {
+            enabled: false,
+            layout: 'horizontal',
+            margin:3
+        },
+        series: [{
+                name: 'Brands',
+                data: data
+            }]
     });
 };

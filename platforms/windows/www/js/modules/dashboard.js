@@ -2,17 +2,17 @@
 var gCompanyNameSeleceted = 'Benchimol';
 $(document).ready(function () {
     startDashBoard();
-    setScreenOrientation('portrait');
+//    setScreenOrientation('portrait');
 });
 
-var setScreenOrientation = function (position, callback) {
-    screen.orientation.lock(position);
-    if (callback) {
-        setTimeout(function () {
-            callback();
-        }, 400);
-    }
-};
+//var setScreenOrientation = function (position, callback) {
+//    screen.orientation.lock(position);
+//    if (callback) {
+//        setTimeout(function () {
+//            callback();
+//        }, 400);
+//    }
+//};
 
 var startDashBoard = function () {
     getLastQuery(function (objQuery) {

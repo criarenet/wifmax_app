@@ -21,6 +21,8 @@ wifimaxApp.url.GET_BROWSERS_STATISTICS = "https://manager.wifimax.com.br/admin/g
 
 wifimaxApp.url.GET_OPERATIONAL_SYSTEM_STATISTICS = "https://manager.wifimax.com.br/admin/graphic.do?action=getOperationalSystemPizzaGraphic";
 
+wifimaxApp.url.GET_LANDING_PAGES_STATISTCS = "https://manager.wifimax.com.br/admin/graphic.do?action=getLandingPageStatistics";
+
 /*Analytics*/
 wifimaxApp.url.GET_ANALYTICS_DATA = "https://manager.wifimax.com.br/admin/user.do?action=searchUsersProfilesDatas";
 

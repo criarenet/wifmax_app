@@ -234,7 +234,7 @@ a.headermenu:hover
     height: 100%;
     display: none;
     z-index: 99999;
-    /*background: url(../img/loaderchart-app.gif) center center no-repeat #ffffff;*/
+    
 }
 
 #wrapperFiltersFields.slideInRight, #wrapperLandscapeCharts.slideInRight,

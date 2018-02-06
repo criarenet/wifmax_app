@@ -1,4 +1,5 @@
-﻿var emptyChartInfo = '<span class="infoChart"><i class="material-icons">info_outline</i><br>Não há informações disponíveis para os filtros atuais.';
+﻿var gRedirects;
+var emptyChartInfo = '<span class="infoChart"><i class="material-icons">info_outline</i><br>Não há informações disponíveis para os filtros atuais.';
 
 $(document).ready(function () {
     initButtonsStatistics();
@@ -35,10 +36,22 @@ var initButtonsStatistics = function(){
             },250);
         });
     });
+    
+    $('#detailRedirectChart').on('click', function () {
+        openPortratCharts('', function () {
+            setTimeout(function () {
+                $('#headerPortraitCharts .nav-wrapper').addClass('viewing');
+
+                $('#titlePortaitChart h3').text('Redirecionamentos');
+                buildDetailsRedirects();
+                //["#8ed083", "#82cecd", "#82a7ce", "#8682ce", "#ad82cf", "#d183bc", "#dc8a90", "#e0a78c", "#e0cc8c", "#cad988"];
+            }, 250);
+        });
+    });
 };
 
-var setterListValues = function (data) {
-    $('#statisticsContainer .labelColor').each(function () {
+var setterListValues = function (data, spanClass) {
+    $('#statisticsContainer .labelColor.'+spanClass).each(function () {
         var $this = $(this);
         $this.removeClass('loading');
         //$this.text('0');
@@ -84,7 +97,7 @@ var getDataStatistics = function (actualQuery) {
     };
     request(obj, function (json) {
         var dataInd1 = addUpdateDataRequest(keySqlStatisticInd1, json.result);
-        setterListValues(dataInd1);
+        setterListValues(dataInd1, 'ind1');
     });
     var url = wifimaxApp.url.GET_USERS_ONLINE_STATISTIC;
     //var url = 'https://api.myjson.com/bins/1he11h';
@@ -100,7 +113,7 @@ var getDataStatistics = function (actualQuery) {
     };
     request(objOnlineUsers, function (json) {
         var dataInd2 = addUpdateDataRequest(keySqlStatisticInd2, json.result);
-        setterListValues(dataInd2);
+        setterListValues(dataInd2, 'ind2');
     });
 
     var url = wifimaxApp.url.GET_NEW_REGISTERS_STATISTIC;
@@ -117,10 +130,11 @@ var getDataStatistics = function (actualQuery) {
     };
     request(objNewRegister, function (json) {
         var dataInd3 = addUpdateDataRequest(keySqlStatisticInd3, json.result);
-        setterListValues(dataInd3);
+        setterListValues(dataInd3, 'ind3');
     });
     getBrowsersStatistic(actualQuery);
     getOSStatistic(actualQuery);
+    getLandingPagesControl(actualQuery);
 };
 
 var getNewRegistersStatistic = function (actualQuery, callback) {
@@ -527,7 +541,7 @@ var loadPieChartStatistics = function (containner, data, formaters) {
             }
         },
         legend: {
-            enabled: true,
+            enabled: (formaters.legend ? false : true),
             layout: 'horizontal',
             margin:3
         },
@@ -536,4 +550,81 @@ var loadPieChartStatistics = function (containner, data, formaters) {
                 data: data
             }]
     });
+};
+
+var getLandingPagesControl = function (actualQuery, callback) {
+    var url = wifimaxApp.url.GET_LANDING_PAGES_STATISTCS;
+    //var url = 'https://api.myjson.com/bins/1he11h';
+    
+    var keySql = 'GET_LANDING_PAGES_STATISTCS';
+    
+    var query = actualQuery ? actualQuery : gQuery;
+    var obj = {
+        url: url,
+        type: "GET",
+        noLoader: true,
+        query: query
+    };
+    request(obj, function (json) {
+        if (json.result) {
+            var tot = {};
+            var allAccess = 0;
+            $.each(json.result, function(i, v){
+                allAccess = allAccess + v.access;
+            });
+            tot.redirectPages = allAccess;
+            gRedirects = json.result;
+            //window.sumAllVouchers = volume;
+            setterListValues(tot, 'landPg');
+        }
+    });
+};
+
+var buildDetailsRedirects = function () {
+    var data = [];
+    var others = {};
+    var formaters = {}
+    formaters.colors = ["#8ed083", "#82cecd", "#82a7ce", "#8682ce", "#ad82cf", "#d183bc", "#dc8a90", "#e0a78c", "#e0cc8c", "#cad988"];
+    formaters.legend = 'hide';
+    formaters.title = 'URL';
+    $.each(gRedirects, function (i, v) {
+
+        //var pctg = parseFloat(((v.usersVolume * 100) / sumAllVouchers).toFixed(2));
+
+        if (v.percent < 100) {
+            others.y = (others.y ? (others.y + v.percent) : others.y);
+        } else {
+            data.push({
+                name: v.url,
+                y: (v.percent/100)
+            });
+        }
+    });
+    if (others.y) {
+        others.name = 'Outros';
+        data.push(others);
+    }
+    $('#wrapperRedirectControl').height(($(window).height() - 45));
+    buildRedirectList('#detailsRedirects ul', gRedirects, function () {
+        $('#wrapperRedirectControl').show();
+        $('#wrapperRedirectControl').addClass('viewing');
+        setTimeout(function () {
+            loadPieChartStatistics($('#redirectChart'), data, formaters);
+        }, 150);
+    });
+//    console.log(data)
+};
+
+var buildRedirectList = function (id, data, callback) {
+    $(id).html('');
+    var colors = ["#8ed083", "#82cecd", "#82a7ce", "#8682ce", "#ad82cf", "#d183bc", "#dc8a90", "#e0a78c", "#e0cc8c", "#cad988",
+    "#8ed083", "#82cecd", "#82a7ce", "#8682ce", "#ad82cf", "#d183bc", "#dc8a90", "#e0a78c", "#e0cc8c", "#cad988"];
+    $.each(data, function (i, v) {
+        //console.log(v);
+        var item = '<li class="list-group-item"><p class="bullet" style="background-color: '+colors[i]+';"></p>'+v.url+'<span> '+v.access+'</span></li>';
+        $(id).append(item);
+    });
+    if (callback) {
+        callback();
+    }
 };
