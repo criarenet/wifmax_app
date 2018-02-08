@@ -1,4 +1,4 @@
-﻿var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
+var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
 db.transaction(populateDB, errorCB, successCB);
 
 function populateDB(tx) {

@@ -1,4 +1,4 @@
-﻿var gVouchers;
+var gVouchers;
 $(document).ready(function () {
     initButtonsAnalytics();
 });

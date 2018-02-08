@@ -1,4 +1,4 @@
-﻿var openLandscapeCharts = function (chart, callback) {
+var openLandscapeCharts = function (chart, callback) {
     var filters = $('#wrapperLandscapeCharts');
     var classOpen = 'slideInRight animated';
     var classClose = 'slideOutRight animated';

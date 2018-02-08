@@ -1,4 +1,4 @@
-﻿var getDataGender = function (actualQuery) {
+var getDataGender = function (actualQuery) {
     var url = wifimaxApp.url.GET_GENDER_CHART;
     //var url = 'https://api.myjson.com/bins/1he11h';
 

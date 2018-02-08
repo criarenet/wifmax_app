@@ -1,4 +1,4 @@
-﻿var wifimaxApp = {};
+var wifimaxApp = {};
 var gIdCompany = '11';
 
 var request = function (obj, callback) {

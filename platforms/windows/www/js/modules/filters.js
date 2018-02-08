@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     //getRoutersByCompany(getListSize);
     
     $('#changeDatePeriod').on('change', function(){

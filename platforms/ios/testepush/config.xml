@@ -82,12 +82,12 @@
     <feature name="Toast">
         <param name="ios-package" value="Toast" />
     </feature>
-    <name>testepush</name>
+    <name>Wifimax</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        application for wifimax data analysis
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="suporte@wifimax.com.br" href="http://wifimax.com">
+        Wifimax Team
     </author>
     <content src="index.html" />
     <access origin="*" />

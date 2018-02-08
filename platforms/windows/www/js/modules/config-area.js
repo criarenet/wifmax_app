@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     //initButtonsAnalytics();
     $('#btConfigArea').on('click', function(){
         $('#btConfigArea').addClass('rubberBand animated');

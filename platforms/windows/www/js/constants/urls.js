@@ -1,4 +1,4 @@
-﻿if (!wifimaxApp.url) wifimaxApp.url = {};
+if (!wifimaxApp.url) wifimaxApp.url = {};
 
 wifimaxApp.url.DASHBOARD_ONLINE_USERS = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getOnlineUsersDashBoard&userSearchPeriod=Daily";
 
