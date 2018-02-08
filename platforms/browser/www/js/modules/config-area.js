@@ -1,11 +1,14 @@
 $(document).ready(function () {
     //initButtonsAnalytics();
     $('#btConfigArea').on('click', function(){
+        $('#btConfigArea').addClass('rubberBand animated');
         setTimeout(function(){
             showHideConfigArea();
-        },50);
+        },200);
     });
     $('#btCloseConfigArea').on('click', function(){
+            $('#btConfigArea').removeClass('selected rubberBand animated');
+            
             showHideConfigArea();
     });
 });

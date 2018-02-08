@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.com.teste" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>testepush</name>
+    <name>Wifimax</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        application for wifimax data analysis
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="suporte@wifimax.com.br" href="http://wifimax.com">
+        Wifimax Team
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
