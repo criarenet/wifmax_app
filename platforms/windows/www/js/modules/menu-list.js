@@ -71,6 +71,7 @@ var initMenuLeft = function(){
         reporstSelecteds = 'analytics';
         openPage('#analyticsContainer', function(){
             var query = buildQuery();
+            $('#pieChartGender').html('');
             setTimeout(function(){
                 $('#analyticsContainer').addClass('viewing');
                 setTimeout(function(){

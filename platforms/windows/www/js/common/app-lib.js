@@ -1,5 +1,4 @@
 ﻿var wifimaxApp = {};
-var loginHash = btoa('ricardo@criarenet.com:123456');
 var gIdCompany = '11';
 
 var request = function (obj, callback) {

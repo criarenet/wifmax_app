@@ -41,6 +41,18 @@ var addUser = function (name, hash) {
     }, errorCB, successCB);
 };
 
+var getUser = function (success) {
+    
+    db.transaction(function (tx) {
+        tx.executeSql('SELECT hash64 FROM USERS', [], function (tx, res) {
+            var res = res
+            if (success) {
+                success(res.rows);
+            }
+        });
+    }, errorCB, successCB);
+};
+
 var addUpdateDataRequest = function (key, data) {
 
     var strData = JSON.stringify(data);

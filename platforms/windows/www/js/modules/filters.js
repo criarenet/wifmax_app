@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    getRoutersByCompany(getListSize);
+    //getRoutersByCompany(getListSize);
     
     $('#changeDatePeriod').on('change', function(){
         $('.panelTab').removeClass('selected');

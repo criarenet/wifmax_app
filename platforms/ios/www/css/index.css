@@ -41,6 +41,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
     height: 60px;
 }
 
+
+#wrappLogin
+{
+    background: #fff;
+    height: 100%;
+    position: fixed;
+    z-index: 99;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .app
 {
     height: 100%;
@@ -56,7 +69,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 999;
+    z-index: 9;
     background: #e8e8e8;
 }
 
@@ -225,7 +238,7 @@ a.headermenu:hover
 }
 
 #wrapperFiltersFields, #wrapperFiltersMenuLeft, #wrapperLandscapeCharts,
-#wrapperPortraitCharts
+#wrapperPortraitCharts, #wrapperConfigArea
 {
     position: fixed;
     top: 0;
@@ -246,6 +259,11 @@ a.headermenu:hover
 #wrapperFiltersMenuLeft.slideInLeft
 {
     animation-duration: 0.2s;
+}
+
+#wrapperConfigArea.bounceInUp
+{
+    animation-duration: 0.6s;
 }
 
 #filtersFields
@@ -452,7 +470,7 @@ select.cboOrigin option
     font-size: 14px;
 }
 
-#userOnlineChart, #simultUserChart
+#userOnlineChart, #simultUserChart, #pieChartBrowsers, #pieChartOSs, #pieChartGender
 {
     background: url(../img/loaderchart-app.gif) center center no-repeat;
     min-height: 250px;
@@ -466,7 +484,7 @@ select.cboOrigin option
     position: fixed;
     bottom: 0;
     box-shadow: 0 0px 3px 1px rgba(0,0,0,.2);
-    z-index: 99;
+    z-index: 8;
 }
 
 #menuBottom ul
@@ -613,17 +631,101 @@ i.btViewMore
     text-align: center;
     margin-top: 45px;
     color: #8e8e8e;
+    padding: 25px 0 25px 0;
+    background: #fff;
 }
 
 .alert-info
 {
-    background: #ccc !important;
+    background: #f5f5f5 !important;
     box-shadow: 0px 1px 2px 0px rgba(0,0,0,.2);
-    border-color: #000 !important;
+    border-color: #777 !important;
     border-radius: 0 !important;
+    color: #E57373 !important;
 }
 
 #dashBoardContainer{
     transition:all .1s linear;
     opacity: 0;
+}
+
+
+.loaderLine {
+  height: 2px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #ddd;
+}
+.loaderLine:before{
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 2px;
+  background-color: #2980b9;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+    from {left: -200px; width: 30%;}
+    50% {width: 30%;}
+    70% {width: 70%;}
+    80% { left: 50%;}
+    95% {left: 120%;}
+    to {left: 100%;}
+}
+
+#logoLoginArea
+{
+
+    -webkit-transition: max-height .3s; 
+    -moz-transition: max-height .3s; 
+    -ms-transition: max-height .3s; 
+    -o-transition: max-height .3s; 
+    transition: max-height .3s;  
+    background: #e5feff;
+    overflow: hidden;
+    max-height: 0;
+    max-height: 100%;
+    text-align: center;
+    padding: 120px 0 120px 0;
+    /* background: #1a3a59; */
+    background: url(../img/logo-wifimax-bco.svg) no-repeat center 50% #152a47;
+    background-size: 90px;
+    height: 100%;
+}
+
+#logoLoginArea.loaded
+{
+    max-height: 30%;
+}
+
+#btLogin
+{
+    background: #1a3a59;
+    padding-bottom: 33px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,.5);
+}
+
+#btLogin.btn:hover
+{
+    color: #fff;
+}
+
+#frmLogin
+{
+    padding-top: 50px;
+}
+
+#frmLogin.loading
+{
+    /*display: none;*/
+}
+
+#frmLogin input
+{
+    font-size: 20px;
 }

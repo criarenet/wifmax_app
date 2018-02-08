@@ -18,6 +18,9 @@ var startComponents = function(){
                 case 'statistics':
                     getDataStatistics(query);
                     break;
+                case 'analytics':
+                    loadDataAnalytics(query);
+                    break;
             };
             
         });

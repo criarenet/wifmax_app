@@ -1,4 +1,38 @@
-﻿/**
+﻿var getDataGender = function (actualQuery) {
+    var url = wifimaxApp.url.GET_GENDER_CHART;
+    //var url = 'https://api.myjson.com/bins/1he11h';
+
+    var keySql = 'GET_GENDER_CHART';
+    $('#pieChartGender').html('');
+    var query = actualQuery ? actualQuery : gQuery;
+    var obj = {
+        url: url,
+        type: "GET",
+        noLoader: true,
+        query: query
+    };
+    request(obj, function (json) {
+        if (json.result) {
+            
+            var data = addUpdateDataRequest(keySql, json.result);
+            var genderData = {};
+            
+            genderData.percentageFemale = data.percentageFemale;
+            genderData.percentageMale = data.percentageMale;
+            genderData.percentageNoGender = data.percentageNoGender;
+            
+            if(!genderData.percentageFemale && !genderData.percentageMale){
+                $('#pieChartGender').html(emptyChartInfo);
+            }else{
+                loadChartGender($('#pieChartGender'), genderData);
+            }
+        }
+    });
+};
+
+
+
+/**
  * In the chart render event, add icons on top of the circular shapes
  */
 function renderIcons() {
@@ -7,7 +41,7 @@ function renderIcons() {
     if (!this.series[0].icon) {
         this.series[0].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
                 .attr({
-                    'stroke': '#303030',
+                    'stroke': '#ffffff',
                     'stroke-linecap': 'round',
                     'stroke-linejoin': 'round',
                     'stroke-width': 2,
@@ -46,7 +80,7 @@ function renderIcons() {
     if (!this.series[2].icon) {
         this.series[2].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
                 .attr({
-                    'stroke': '#303030',
+                    'stroke': '#ffffff',
                     'stroke-linecap': 'round',
                     'stroke-linejoin': 'round',
                     'stroke-width': 2,
@@ -106,21 +140,21 @@ var loadChartGender = function (containner, data, formaters) {
             background: [{// Track for Move
                     outerRadius: '112%',
                     innerRadius: '88%',
-                    backgroundColor: Highcharts.Color('rgb(204, 159, 241)')
+                    backgroundColor: Highcharts.Color('#E91E63')
                             .setOpacity(0.3)
                             .get(),
                     borderWidth: 0
                 }, {// Track for Exercise
                     outerRadius: '87%',
                     innerRadius: '63%',
-                    backgroundColor: Highcharts.Color('rgb(140, 210, 238)')
+                    backgroundColor: Highcharts.Color('#3F51B5')
                             .setOpacity(0.3)
                             .get(),
                     borderWidth: 0
                 }, {// Track for Stand
                     outerRadius: '62%',
                     innerRadius: '38%',
-                    backgroundColor: Highcharts.Color('rgb(89, 192, 166)')
+                    backgroundColor: Highcharts.Color('#009688')
                             .setOpacity(0.3)
                             .get(),
                     borderWidth: 0
@@ -145,26 +179,26 @@ var loadChartGender = function (containner, data, formaters) {
         series: [{
                 name: 'Mulheres',
                 data: [{
-                        color: 'rgb(204, 159, 241)',
+                        color: '#E91E63',
                         radius: '112%',
                         innerRadius: '88%',
-                        y: 80
+                        y: (data.percentageFemale ? data.percentageFemale : 0)
                     }]
             }, {
                 name: 'Homens',
                 data: [{
-                        color: 'rgb(140, 210, 238)',
+                        color: '#3F51B5',
                         radius: '87%',
                         innerRadius: '63%',
-                        y: 65
+                        y: (data.percentageMale ? data.percentageMale : 0)
                     }]
             }, {
                 name: 'Indefinido',
                 data: [{
-                        color: 'rgb(89, 192, 166)',
+                        color: '#009688',
                         radius: '62%',
                         innerRadius: '38%',
-                        y: 50
+                        y: (data.percentageNoGender ? data.percentageNoGender : 0)
                     }]
             }]
     });

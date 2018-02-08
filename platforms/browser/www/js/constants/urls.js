@@ -33,3 +33,5 @@ wifimaxApp.url.GET_CONVERSION_DATA = "https://manager.wifimax.com.br/admin/user.
 wifimaxApp.url.GET_CONVERSION_CHART = "https://manager.wifimax.com.br/admin/user.do?action=getLoginPageViewsAndAuthentication";
 
 wifimaxApp.url.GET_VOUCHERCONTROL_USERS = "https://manager.wifimax.com.br/admin/vouchercontrol.do?action=getVoucherControlUsersVolume";
+
+wifimaxApp.url.GET_GENDER_CHART = "https://manager.wifimax.com.br/admin/user.do?action=searchUsersProfilesDatas";

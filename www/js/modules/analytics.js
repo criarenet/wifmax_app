@@ -136,12 +136,15 @@ var setterListAnalytics = function (data, spanClass) {
     });
 };
 
-var loadDataAnalytics = function(query){
+var loadDataAnalytics = function (query) {
     getDataAnalytics(query, '');
+    
     setTimeout(function () {
         getConversionData(query, '');
         getVouchersControl(query);
-        setTimeout(function(){loadChartGender($('#pieChartGender'));},100);
+        setTimeout(function () {
+            getDataGender(query);
+        }, 100);
     }, 10);
 };
 
@@ -160,13 +163,14 @@ var getVouchersControl = function (actualQuery, callback) {
     };
     request(obj, function (json) {
         if (json.result) {
+            var data = addUpdateDataRequest(keySql, json.result);
             var tot = {};
             var volume = 0
-            $.each(json.result, function(i, v){
+            $.each(data, function(i, v){
                 volume = volume + v.usersVolume;
             });
             tot.userVolume = volume;
-            gVouchers = json.result;
+            gVouchers = data;
             window.sumAllVouchers = volume;
             setterListAnalytics(tot, 'vouchersLabel');
         }
@@ -188,9 +192,11 @@ var getDataAnalytics = function (actualQuery, callback) {
     };
     $('#analyticsContainer .labelColor').text('0');
     $('#analyticsContainer .labelColor').addClass('loading');
+    
     request(obj, function (json) {
         if (json.result) {
-            setterListAnalytics(json.result, 'analyticsLabel');
+            var data = addUpdateDataRequest(keySql, json.result);
+            setterListAnalytics(data, 'analyticsLabel');
         }
     });
 };
@@ -213,7 +219,8 @@ var getConversionData = function (actualQuery, callback) {
     //$(_this).addClass('loading');
     request(obj, function (json) {
         if (json.result) {
-            setterListAnalytics(json.result, 'conversionLabel');
+            var data = addUpdateDataRequest(keySql, json.result);
+            setterListAnalytics(data, 'conversionLabel');
         }
     });
 };
@@ -368,7 +375,7 @@ var getChartConversion = function (actualQuery, callback) {
                 }
             }
 
-            $.each(json.result, function(i, v){
+            $.each(data, function(i, v){
                 if(i === 'authentications' || i === 'loginPageViews'){
                     
                     var obj = {
