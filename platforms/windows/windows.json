@@ -43,52 +43,52 @@
     },
     "installed_plugins": {
         "cordova-common-registerusernotificationsettings-npm": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-battery-status": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-device-motion": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-device-orientation": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         },
         "cordova-plugin-local-notifications-npm": {
-            "PACKAGE_NAME": "testepush"
+            "PACKAGE_NAME": "Wifimax"
         }
     },
     "dependent_plugins": {},

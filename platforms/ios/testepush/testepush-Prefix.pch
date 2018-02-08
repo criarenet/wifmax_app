@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'testepush' target in the 'testepush' project
+// Prefix header for all source files of the 'Wifimax' target in the 'Wifimax' project
 //
 
 #ifdef __OBJC__
