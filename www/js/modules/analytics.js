@@ -354,8 +354,11 @@ var getChartConversion = function (actualQuery, callback) {
     $('#conversionChart').html('');
     request(obj, function (json) {
         if (json.result) {
-            var data = addUpdateDataRequest(keySql, json.result);
+//            var data = addUpdateDataRequest(keySql, json.result);
             //formaters.categories = data.categories;
+            
+            var data = json.result;
+            
             var dataComplet = [];
             
             var colorsDef = {

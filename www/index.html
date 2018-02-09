@@ -220,6 +220,8 @@
                 var hashLogin; 
                 var login, password;
                 
+                
+
                 login = $('input[name=userName]').val();
                 password = $('input[name=password]').val();
                 
@@ -235,15 +237,34 @@
                     return;
                 }
                 
-                hashLogin = btoa(login + ':' + password);
-                addUser(login, hashLogin);
-                loginHash = hashLogin;
-                gIdCompany = '11';
+                $('#logoLoginArea').removeClass('loaded');
+                setTimeout(function(){$('.loaderLine').fadeIn()},150);
                 
-                $('#wrappLogin').fadeOut(100, function(){
-                    getRoutersByCompany(getListSize);
-                    startDashBoard();
+                var query = 'username='+login+'&password='+password;
+                var obj = {
+                    url: wifimaxApp.url.LOGIN_USER,
+                    type: "POST",
+                    noLoader: true,
+                    query: query
+                };
+                
+                request(obj, function (json) {
+                    hashLogin = btoa(login + ':' + password);
+                    addUser(login, hashLogin);
+                    loginHash = hashLogin;
+                    gIdCompany = '78' //json.idCompany 78 1 11;
+                    
+                    $('#wrappLogin').fadeOut(100, function(){
+                        getRoutersByCompany(function(){
+                         getListSize();
+                         startDashBoard();
+                        });
+//                        startDashBoard();
+                    });
+                    
                 });
+                
+                
                       
             };
         </script>
