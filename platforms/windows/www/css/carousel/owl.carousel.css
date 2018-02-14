@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Owl Carousel v2.3.0
  * Copyright 2013-2017 David Deutsch
  * Licensed under  ()

@@ -154,7 +154,7 @@ var getVouchersControl = function (actualQuery, callback) {
     
     var keySql = 'GET_VOUCHERCONTROL_USERS';
     
-    var query = actualQuery ? actualQuery : gQuery;
+    var query = buildQuery();
     var obj = {
         url: url,
         type: "GET",
@@ -183,7 +183,7 @@ var getDataAnalytics = function (actualQuery, callback) {
     
     var keySql = 'GET_ANALYTICS_DATA';
     
-    var query = actualQuery ? actualQuery : gQuery;
+    var query = buildQuery();
     var obj = {
         url: url,
         type: "GET",
@@ -208,7 +208,7 @@ var getConversionData = function (actualQuery, callback) {
     
     var keySql = 'GET_CONVERSION_DATA';
     
-    var query = actualQuery ? actualQuery : gQuery;
+    var query = buildQuery();
     var obj = {
         url: url,
         type: "GET",
@@ -233,7 +233,7 @@ var getChartGenderAge = function (actualQuery, callback) {
     
     var keySql = 'GET_ANALYTICS_GENDER_AGE_CHART';
     
-    var query = actualQuery ? actualQuery : gQuery;
+    var query = buildQuery();
     var obj = {
         url: url,
         type: "GET",
@@ -342,7 +342,7 @@ var getChartConversion = function (actualQuery, callback) {
     
     var keySql = 'GET_CONVERSION_CHART';
     
-    var query = actualQuery ? actualQuery : gQuery;
+    var query = buildQuery();
     var obj = {
         url: url,
         type: "GET",
@@ -354,8 +354,11 @@ var getChartConversion = function (actualQuery, callback) {
     $('#conversionChart').html('');
     request(obj, function (json) {
         if (json.result) {
-            var data = addUpdateDataRequest(keySql, json.result);
+//            var data = addUpdateDataRequest(keySql, json.result);
             //formaters.categories = data.categories;
+            
+            var data = json.result;
+            
             var dataComplet = [];
             
             var colorsDef = {

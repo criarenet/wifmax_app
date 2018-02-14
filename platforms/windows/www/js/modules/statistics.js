@@ -1,4 +1,4 @@
-var gRedirects;
+﻿var gRedirects;
 var emptyChartInfo = '<span class="infoChart"><i class="material-icons">info_outline</i><br>Não há informações disponíveis para os filtros atuais.';
 
 $(document).ready(function () {

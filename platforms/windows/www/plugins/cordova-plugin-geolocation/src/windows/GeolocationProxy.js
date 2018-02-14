@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-geolocation.GeolocationProxy", function(require, exports, module) {
+﻿cordova.define("cordova-plugin-geolocation.GeolocationProxy", function(require, exports, module) {
 /*
  * Copyright 2013 Research In Motion Limited.
  *

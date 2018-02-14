@@ -1,0 +1,44 @@
+#menuList
+{
+/*    position: absolute;
+    top: 0;
+    z-index: 9999;
+    background: #e8e8e8;
+    display: none;*/
+height: 100%;
+width: 100%;
+}
+
+#reportList, #configAreaBody
+{
+    height: 100%;
+    background: #fff;
+}
+
+/*#menuList.showing
+{
+    display: block;
+}*/
+
+.spanMenuList
+{
+    font-family: 'roboto-light' !important;
+    font-size: 24px;
+    vertical-align: top;
+    margin-left: 8px;
+}
+
+#buttonMenuList
+{
+    display: block;
+}
+
+#reportList li
+{
+    min-height: 60px;
+}
+
+.labelColorMenuLeft
+{
+    font-size: 20px;
+}

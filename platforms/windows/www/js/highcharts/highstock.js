@@ -1,4 +1,4 @@
-/*
+﻿/*
  Highstock JS v6.0.4 (2017-12-15)
 
  (c) 2009-2016 Torstein Honsi

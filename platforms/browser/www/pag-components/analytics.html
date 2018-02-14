@@ -1,0 +1,91 @@
+<div class="row wrapperCarouselCharts" id="pieChartsAnalitics">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="owl-carousel owl-theme">
+            <div class="item chartBox">
+                <h4 style="color: #E91E63;"><i class="material-icons">wc</i> Gênero</h4>
+                <div id="pieChartGender"></div>
+            </div>
+<!--            <div class="item chartBox">
+                <h4 style="color: #673AB7;"><i class="material-icons" style="font-size: 32px; margin-left: 3px; color: #673AB7; margin-right: 5px;">important_devices</i> Sistemas operacionais</h4>
+                <div id="pieChartOSs"></div>
+            </div>-->
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 25px;">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="miniBox">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <i class="material-icons" style="color: #22bd9a;">cake</i>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <span data-count="prevalentAge" data-complement="Anos" style="color: #22bd9a;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 analyticsLabel">
+                    0
+                </span>
+                <span class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    Idade predominante
+                </span>
+                <i id="detailAgeChart" data-details="totUser" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="miniBox">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <i class="material-icons" style="color: #ffa000; font-size: 44px;">timer</i>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <span data-count="averageLoginTime" data-complement="min." style="color: #ffa000;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 analyticsLabel">
+                    0
+                </span>
+                <span class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    Média dos tempos dos logins
+                </span>
+<!--                <i id="" data-details="totUser" class="material-icons btViewMore waves-effect waves-grey">loupe</i>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="miniBox">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <i class="material-icons" style="color: #11487f; font-size: 44px;">vertical_align_center</i>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <span data-count="conversionRatePercent" data-complement="%" style="color: #11487f;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 conversionLabel">
+                    0
+                </span>
+                <span class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    Conversão de visualizações em logins
+                </span>
+                <i id="detailConversion" data-details="totUser" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="miniBox">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <i class="material-icons" style="color: #34bfe0; font-size: 44px;">confirmation_number</i>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <span data-count="userVolume" data-complement="" style="color: #34bfe0;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 vouchersLabel">
+                    0
+                </span>
+                <span class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    Total de vouchers utilizados
+                </span>
+                <i id="detailVouchersControl" data-details="totUser" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/modules/analytics-gender.js"></script>
+<script src="js/modules/analytics.js"></script>

@@ -1,5 +1,9 @@
 if (!wifimaxApp.url) wifimaxApp.url = {};
 
+/*login*/
+wifimaxApp.url.LOGIN_USER = "https://api.wifimax.com.br/v2/j/app/login";
+
+/*Dashboard*/
 wifimaxApp.url.DASHBOARD_ONLINE_USERS = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getOnlineUsersDashBoard&userSearchPeriod=Daily";
 
 wifimaxApp.url.DASHBOARD_CONNECTION_DATA = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getUserConnectionDatasDashBoard&userSearchPeriod=Daily";
@@ -35,3 +39,6 @@ wifimaxApp.url.GET_CONVERSION_CHART = "https://manager.wifimax.com.br/admin/user
 wifimaxApp.url.GET_VOUCHERCONTROL_USERS = "https://manager.wifimax.com.br/admin/vouchercontrol.do?action=getVoucherControlUsersVolume";
 
 wifimaxApp.url.GET_GENDER_CHART = "https://manager.wifimax.com.br/admin/user.do?action=searchUsersProfilesDatas";
+
+/*config*/
+wifimaxApp.url.GET_COMPANIES = "https://manager.wifimax.com.br/admin/company.do?action=getCompaniesCombo";

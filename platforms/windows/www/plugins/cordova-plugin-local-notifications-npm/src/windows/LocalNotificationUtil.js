@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-local-notifications-npm.LocalNotification.Proxy.Util", function(require, exports, module) {
+﻿cordova.define("cordova-plugin-local-notifications-npm.LocalNotification.Proxy.Util", function(require, exports, module) {
 /*
     Copyright 2013-2015 appPlant UG
 

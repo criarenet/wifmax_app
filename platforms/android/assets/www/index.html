@@ -26,6 +26,8 @@
         <link rel="stylesheet" type="text/css" href="css/statistics.css" />
         <link rel="stylesheet" type="text/css" href="css/analytics.css" />
         
+        <link rel="stylesheet" type="text/css" href="css/config-area.css" />
+        
         <link rel="stylesheet" type="text/css" href="css/dialogs.css" />
         <link rel="stylesheet" type="text/css" href="css/tabs/tabs.css" />
         <link rel="stylesheet" type="text/css" href="css/date-picker/date-picker.css" />
@@ -175,79 +177,6 @@
         </script>
         <script src="js/sql/wifimax-db.js"></script>
         <script src="js/local-push.js"></script>
-        <script>
-            var loginHash;
-            function onLoad() {
-                setTimeout(function(){verifyPrintLogin()},2000);
-                document.addEventListener("deviceready", onDeviceReady, false);
-            }
-            function onDeviceReady() {
-                //document.addEventListener("pause", onPause, false);
-                //document.addEventListener("resume", onResume, false);
-                //document.addEventListener("menubutton", onMenuKeyDown, false);
-                setScreenOrientation('portrait');
-                verifyPrintLogin();
-            }
-            var setScreenOrientation = function (position, callback) {
-                screen.orientation.lock(position);
-                if (callback) {
-                    setTimeout(function () {
-                        callback();
-                    }, 400);
-                }
-            };
-            
-            var verifyPrintLogin = function(){
-                
-                var userTrue = function(data){
-                    if(!data.length){
-                            $('.loaderLine').fadeOut(10, function(){
-                            setTimeout(function(){$('#logoLoginArea').addClass('loaded')},50);
-                        });
-                    }else{
-                        $('#wrappLogin').fadeOut(100, function(){
-                            gIdCompany = '11';
-                            loginHash = data[0].hash64;
-                            getRoutersByCompany(getListSize);
-                            setTimeout(function(){startDashBoard();},100);
-                        });
-                    }
-                };
-                setTimeout(function(){getUser(userTrue)},2000);
-            };
-            
-            var doLogin = function(){
-                var hashLogin; 
-                var login, password;
-                
-                login = $('input[name=userName]').val();
-                password = $('input[name=password]').val();
-                
-                if(!login || !password){
-                    $.notify('<strong>Falha</strong><br>' + 'Os campos Login e senha são obrigatórios', {
-                        allow_dismiss: true,
-                        timer: 4000,
-                        animate: {
-                            enter: 'animated bounceInUp',
-                            exit: 'animated bounceOutDown'
-                        }
-                    });
-                    return;
-                }
-                
-                hashLogin = btoa(login + ':' + password);
-                addUser(login, hashLogin);
-                loginHash = hashLogin;
-                gIdCompany = '11';
-                
-                $('#wrappLogin').fadeOut(100, function(){
-                    getRoutersByCompany(getListSize);
-                    startDashBoard();
-                });
-                      
-            };
-        </script>
-        
-        
+        <script src="js/modules/init-login.js"></script>
     </body>
 </html>

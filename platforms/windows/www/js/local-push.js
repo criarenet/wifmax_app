@@ -1,4 +1,4 @@
-//document.addEventListener('deviceready', function () {
+﻿//document.addEventListener('deviceready', function () {
 //    var jaja = new Date().getTime() + 30000;
 //    
 //    // Schedule notification for tomorrow to remember about the meeting

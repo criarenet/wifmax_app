@@ -1,10 +1,35 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Feb 8, 2018, 3:28:05 PM
-    Author     : ricardo
-*/
+﻿#wrapperConfigArea
+{
+    background: #fff;
+}
 
+#btCloseConfigArea
+{
+    display: block;
+}
+
+#companies
+{
+    max-height: 220px;
+    overflow-y: scroll;
+}
+
+#configAreaBody h3
+{
+    padding: 15px 0 15px 15px;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+#configAreaBody li
+{
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#btLogout
+{
+    color: #fff;
+}

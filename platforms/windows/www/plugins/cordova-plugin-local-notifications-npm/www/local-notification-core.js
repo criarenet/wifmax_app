@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-local-notifications-npm.LocalNotification.Core", function(require, exports, module) {
+﻿cordova.define("cordova-plugin-local-notifications-npm.LocalNotification.Core", function(require, exports, module) {
 /*
  * Copyright (c) 2013-2015 by appPlant UG. All rights reserved.
  *

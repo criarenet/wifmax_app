@@ -13,6 +13,7 @@ var request = function (obj, callback) {
             headers:{
                 'Authorization': 'Basic ' + loginHash
             },
+
             contentType: obj.contentType ? obj.contentType : 'application/json; charset=utf-8',
             type: obj.type ? obj.type : 'POST',
             url: obj.url,
@@ -36,9 +37,36 @@ var request = function (obj, callback) {
                     showMessages(obj, function () {
                         window.location.href = contextPath + "/logoff"
                     });
-                } else {
+                }else if (e.status === 0) {
+                    $.notify('<strong>Falha</strong><br>' + 'Você não tem permissão para acesar  sistema.', {
+                        allow_dismiss: true,
+                        timer: 4000,
+                        animate: {
+                            enter: 'animated bounceInUp',
+                            exit: 'animated bounceOutDown'
+                        }
+                    });
+                    
+                    $('.loaderLine').fadeOut(10, function(){
+                        setTimeout(function(){$('#logoLoginArea').addClass('loaded')},250);
+                    });
+                }
+                
+                else {
                     var txt = e.responseJSON.message;
-                    alert(txt);
+                    
+                    $.notify('<strong>Falha</strong><br>' + txt, {
+                        allow_dismiss: true,
+                        timer: 4000,
+                        animate: {
+                            enter: 'animated bounceInUp',
+                            exit: 'animated bounceOutDown'
+                        }
+                    });
+                    
+                    $('.loaderLine').fadeOut(10, function(){
+                        setTimeout(function(){$('#logoLoginArea').addClass('loaded')},250);
+                    });
                     if (obj && obj.errorType === 'login') {
                         //showNotification('bg-deep-orange', txt, 'top', 'center');
                     }else{

@@ -1,4 +1,4 @@
-var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
+﻿var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
 db.transaction(populateDB, errorCB, successCB);
 
 function populateDB(tx) {
@@ -6,7 +6,7 @@ function populateDB(tx) {
 //    tx.executeSql('DROP TABLE IF EXISTS LASTREQUESTS');
 //    tx.executeSql('DROP TABLE IF EXISTS LASTFILTER');
     
-    tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (name, hash64)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (name, hash64, idCompany)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS LASTREQUESTS (request, data)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS LASTFILTER (query)');
 }
@@ -35,16 +35,26 @@ function successCB(tx) {
     //alert("success!");
 }
 
-var addUser = function (name, hash) {
+var addUser = function (name, hash, idCompany) {
     db.transaction(function (tx) {
-        tx.executeSql('INSERT INTO USERS (name, hash64) VALUES ("' + name + '", "' + hash + '")');
+        tx.executeSql('INSERT INTO USERS (name, hash64, idCompany) VALUES ("' + name + '", "' + hash + '", "' + idCompany + '")');
     }, errorCB, successCB);
 };
+
+var upDateCompany = function(idCompany){
+    db.transaction(function (tx) {
+        tx.executeSql('SELECT idCompany FROM USERS', [], function (tx, res) {
+            if (res.rows.length) {
+                tx.executeSql('UPDATE USERS SET idCompany = ?', [idCompany]);
+            } 
+        });
+    }, errorCB);
+}
 
 var getUser = function (success) {
     
     db.transaction(function (tx) {
-        tx.executeSql('SELECT hash64 FROM USERS', [], function (tx, res) {
+        tx.executeSql('SELECT * FROM USERS', [], function (tx, res) {
             var res = res
             if (success) {
                 success(res.rows);

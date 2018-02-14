@@ -1,4 +1,4 @@
-@font-face {
+﻿@font-face {
     font-family: RopaSans-Regular;
     src: url(../fonts/RopaSans-Regular.ttf);
 }
@@ -163,12 +163,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
     left: 0;
 }
 
-#routersList .list-group-item,  #hotspotList .list-group-item
+#routersList .list-group-item,  #hotspotList .list-group-item,
+#companies .list-group-item
 {
     padding: 15px;
 }
 
-#routersList .list-group-item span,  #hotspotList .list-group-item span
+#routersList .list-group-item span,  #hotspotList .list-group-item span,
+#companies .list-group-item span
 {
     font-size: 20px;
     float: right;

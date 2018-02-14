@@ -1,0 +1,58 @@
+#analyticsContainer
+{
+    display: none;
+    transition:all .1s linear;
+    opacity: 0;
+}
+
+#detailsVouchers
+{
+    margin: 10px;
+    box-shadow: 0px 2px 1px 1px rgba(0,0,0,.2);
+}
+
+#detailsVouchers li
+{
+    border-radius: 0 !important;
+    font-size: 18px;
+    border-left: none;
+    border-right: none;
+    color: #777;
+}
+
+#detailsVouchers li p.bullet
+{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    padding: 0;
+    margin:0 10px 0 0;
+    display: inline-block; 
+}
+
+#voucherChart
+{
+    min-height: 260px;
+}
+
+#detailsVouchers li:last-child
+{
+    border-bottom: none;
+}
+
+#detailsVouchers li span
+{
+    float: right;
+    font-family: 'RopaSans-Regular' !important;
+    font-weight: 600;
+    color: #777;
+}
+
+#wrapperVouchersControl
+{
+    display: none;
+    overflow-y: scroll;
+    width: 100%;
+    transition:all .1s linear;
+    opacity: 0;
+}
