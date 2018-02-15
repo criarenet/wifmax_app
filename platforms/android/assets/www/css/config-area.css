@@ -14,7 +14,7 @@
     overflow-y: scroll;
 }
 
-#configAreaBody h3
+#configAreaBody h3, #contactsBody h3
 {
     padding: 15px 0 15px 15px;
     margin: 0;
@@ -22,7 +22,7 @@
     border-bottom: 1px solid #ccc;
 }
 
-#configAreaBody li
+#configAreaBody li, #contactsBody li
 {
     border-left: none;
     border-right: none;

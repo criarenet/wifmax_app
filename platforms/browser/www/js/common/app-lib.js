@@ -1,5 +1,4 @@
 var wifimaxApp = {};
-var gIdCompany = '11';
 
 var request = function (obj, callback) {
     //$('.page-loader-wrapper').css('opacity', 0.9).fadeIn(100);
@@ -53,8 +52,8 @@ var request = function (obj, callback) {
                 }
                 
                 else {
-                    var txt = e.responseJSON.message;
-                    
+                    var txt = 'Cod.' + e.responseJSON.errorCode + ' - ' + e.responseJSON.error;
+                    $('.loaderLine').hide();
                     $.notify('<strong>Falha</strong><br>' + txt, {
                         allow_dismiss: true,
                         timer: 4000,
@@ -80,6 +79,7 @@ var request = function (obj, callback) {
 //                        });
                     }
                 }
+                
                 //$('.page-loader-wrapper').fadeOut();
             }
         });

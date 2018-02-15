@@ -1,0 +1,46 @@
+﻿#contactsContainer
+{
+    height: calc(100% - 65px);
+    margin: 10px;
+    display: none;
+}
+
+#contactsListHeader
+{
+    margin: 10px 5px 0 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 2px solid #ccc;
+}
+
+#contactsListHeader li
+{
+    display: inline-block;
+    width: 25%;
+    height: 15px;
+    font-weight: 300;
+}
+
+#contactsList
+{
+    margin: 0 5px 0 5px
+}
+
+#contactsList li span
+{
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'roboto-light' !important;
+    font-size: 12px;
+}
+
+#contactsList li span i
+{
+    font-size: 30px;
+}
+
+#contactsList li i.btViewMore
+{
+    top: 0;
+}

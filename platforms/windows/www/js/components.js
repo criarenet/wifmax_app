@@ -1,5 +1,4 @@
-﻿var gIdCompany = '11';
-var typeFilterDate, reporstSelecteds = 'dashboard';
+﻿var typeFilterDate, reporstSelecteds = 'dashboard';
 
 var startComponents = function(){
     $('#filterControl').on('click', function(){showHideFilters('');});

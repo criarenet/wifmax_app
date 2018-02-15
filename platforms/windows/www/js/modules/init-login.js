@@ -1,7 +1,7 @@
 ﻿var loginHash;
 function onLoad() {
     setTimeout(function () {
-        verifyPrintLogin()
+        verifyPrintLogin();
     }, 2000);
     document.addEventListener("deviceready", onDeviceReady, false);
 }
@@ -9,6 +9,20 @@ function onDeviceReady() {
     //document.addEventListener("pause", onPause, false);
     //document.addEventListener("resume", onResume, false);
     //document.addEventListener("menubutton", onMenuKeyDown, false);
+    
+    $('#frmLogin input').on("keydown", function (e) {
+        if (e.keyCode === 13) {
+            doLogin();
+        }
+    });
+    
+    $('#frmLogin input').focusout(function(){
+        $('#logoLoginArea').removeClass('floating');
+    });
+    $('#frmLogin input').focus(function(){
+        $('#logoLoginArea').addClass('floating');
+    });
+    
     setScreenOrientation('portrait');
     verifyPrintLogin();
 }
@@ -69,10 +83,9 @@ var doLogin = function () {
         return;
     }
 
-    $('#logoLoginArea').removeClass('loaded');
-    setTimeout(function () {
-        $('.loaderLine').fadeIn()
-    }, 150);
+    $('#logoLoginArea').removeClass('loaded floating');
+    $('#frmLogin input').blur();
+    $('.loaderLine').show();
 
     var query = 'username=' + login + '&password=' + password;
     var obj = {

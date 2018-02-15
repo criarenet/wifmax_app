@@ -42,3 +42,7 @@ wifimaxApp.url.GET_GENDER_CHART = "https://manager.wifimax.com.br/admin/user.do?
 
 /*config*/
 wifimaxApp.url.GET_COMPANIES = "https://manager.wifimax.com.br/admin/company.do?action=getCompaniesCombo";
+
+
+/*users*/
+wifimaxApp.url.GET_CONTACTS = "https://manager.wifimax.com.br/admin/user.do?action=getContacts";

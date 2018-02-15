@@ -731,3 +731,9 @@ i.btViewMore
 {
     font-size: 20px;
 }
+
+#logoLoginArea.floating
+{
+    max-height: 0;
+    padding: 0;
+}

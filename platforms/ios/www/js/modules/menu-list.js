@@ -81,6 +81,20 @@ var initMenuLeft = function(){
         });
         typeFilterDate = 'useData';
     });
+    
+    $('#menuLeftContacts').on('click', function(){
+        $('.pag').removeClass('viewing');
+        $('#pagSelectedTitle').text('Lista de contatos').css('color', '#34bfe0');
+        reporstSelecteds = 'contacts';
+        openPage('#contactsContainer', function(){
+            setTimeout(function(){
+                $('#contactsContainer').addClass('viewing');
+            },200);
+            //buildDashBoard(gQuery);
+        });
+        typeFilterDate = 'noDate';
+    });
+    
 };
 
 var openPage = function (pag, callback) {
