@@ -23,7 +23,13 @@
 
 #contactsList
 {
-    margin: 0 5px 0 5px
+    margin: 0 5px 0 5px;
+    overflow-y: scroll;
+}
+
+#contactsList li:nth-child(2n+3), #contactsList li:first-child
+{
+    /*background: #f7f7f7;*/
 }
 
 #contactsList li span
@@ -38,9 +44,68 @@
 #contactsList li span i
 {
     font-size: 30px;
+    color: #ccc;
+}
+
+#contactsList li span i.MALE
+{
+    color: #67b9d9;
+}
+
+#contactsList li span i.FEMALE
+{
+    color: #c69be8;
 }
 
 #contactsList li i.btViewMore
 {
     top: 0;
+}
+
+#contactVisitsTime
+{
+    /*height: 45px;*/
+    padding: 15px 15px 10px 15px;
+    border-bottom: 1px solid #ccc;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#contactVisitsTime select
+{
+    display: block;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+button#btSearchContacts
+{
+    height: 30px;
+    width: 30px;
+    background: #34bfe0;
+    outline: none;
+}
+
+button#btSearchContacts i
+{
+    position: absolute;
+    top: -2px;
+    left: 5px;
+    font-size: 18px;
+}
+
+#contactsBody .loaderLine
+{
+    display: none;
+}
+
+#contactsBody .owl-carousel.owl-loaded
+{
+    height: 100%;
+}
+
+#contactsBody .owl-stage-outer
+{
+    height: calc(100% - 35px);
 }

@@ -1,37 +1,23 @@
 <div class="list-group" id="contactsBody">
-    <h3>Contatos</h3>
-    <ul id="contactsListHeader">
-        <li style="width: 15%"></li>
-        <li style="width: 65%;">Usuário</li>
-        <li style="width: 15%;">Idade</li>
-    </ul>
-    <ul class="list-group" id="contactsList">
-        <li class="list-group-item">
-            <i data-details="detailContact" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
-            <span style="width: 15%;"><i class="material-icons">account_circle</i></span>
-            <span style="width: 65%;">Ricardo Lemes<br><a>ricardo@criarenet.com</a></span>
-            <span style="width: 15%;">32</span>
-        </li>
-        <li class="list-group-item">
-            <i data-details="detailContact" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
-            <span style="width: 15%;"><i class="material-icons">account_circle</i></span>
-            <span style="width: 65%;">Ricardo Lemes<br><a>ricardo@criarenet.com</a></span>
-            <span style="width: 15%;">32</span>
-        </li>
-        <li class="list-group-item">
-            <i data-details="detailContact" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
-            <span style="width: 15%;"><i class="material-icons">account_circle</i></span>
-            <span style="width: 65%;">Ricardo Lemes<br><a>ricardo@criarenet.com</a></span>
-            <span style="width: 15%;">32</span>
-        </li>
-        <li class="list-group-item">
-            <i data-details="detailContact" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
-            <span style="width: 15%;"><i class="material-icons">account_circle</i></span>
-            <span style="width: 65%;">Ricardo Lemes<br><a>ricardo@criarenet.com</a></span>
-            <span style="width: 15%;">32</span>
-        </li>
+    <div class="owl-carousel owl-theme">
+        <div class="item">
+            <span style="color: #787ee8;">Usuários online</span>
+            <div style="width: calc(100% - 10px); margin-left: 5px;" class="loaderLine"></div>
+            <ul class="list-group" id="contactsList">
+                <!--        <li class="list-group-item">
+                            <i data-details="detailContact" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
+                            <span style="width: 15%;"><i class="material-icons masc">account_circle</i></span>
+                            <span style="width: 65%;">Ricardo Lemes<br><a>ricardo@criarenet.com</a></span>
+                            <span style="width: 15%;">32</span>
+                        </li>-->
 
-    </ul>
+            </ul>
+        </div>
+        <div class="item">
+            <span style="color: #34bfe0;">Usuários simultâneos</span>
+            <div id="simultUserChart"></div>
+        </div>
+    </div>
 </div>
 
 <script src="js/modules/contacts.js"></script>
