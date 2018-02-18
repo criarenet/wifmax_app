@@ -2,7 +2,27 @@
 {
     height: calc(100% - 65px);
     margin: 10px;
+    transition:all .1s linear;
+    opacity: 0;
     display: none;
+}
+
+#contactsBody
+{
+    border-radius: 3px;
+
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.1);    
+}
+
+#contactsBody li
+{
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    min-height: 70px;
+    padding: 10px 0 0 0; 
 }
 
 #contactsListHeader
@@ -21,10 +41,12 @@
     font-weight: 300;
 }
 
-#contactsList
+#contactsList, #onlineContactsList
 {
     margin: 0 5px 0 5px;
     overflow-y: scroll;
+    border-bottom: 1px solid #ccc;
+    border-top: 2px solid #ccc;
 }
 
 #contactsList li:nth-child(2n+3), #contactsList li:first-child
@@ -32,19 +54,20 @@
     /*background: #f7f7f7;*/
 }
 
-#contactsList li span
+#contactsList li span, #onlineContactsList li span
 {
-    margin: 0;
-    display: inline-block;
+    margin: 0 0 2px 0;
+    display: block;
     vertical-align: middle;
     font-family: 'roboto-light' !important;
     font-size: 12px;
 }
 
-#contactsList li span i
+#contactsList li span i, #onlineContactsList li span i
 {
-    font-size: 30px;
+    font-size: 40px;
     color: #ccc;
+    margin-top: 3px;
 }
 
 #contactsList li span i.MALE
@@ -57,10 +80,10 @@
     color: #c69be8;
 }
 
-#contactsList li i.btViewMore
+/*#contactsList li i.btViewMore
 {
     top: 0;
-}
+}*/
 
 #contactVisitsTime
 {
@@ -109,3 +132,87 @@ button#btSearchContacts i
 {
     height: calc(100% - 35px);
 }
+
+.onlineCircle, .offlineCircle
+{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    margin: 15px 5px 0 15px;
+
+    background: #40ff00;
+    background: -moz-linear-gradient(top, #40ff00 0%, #80ed8a 100%);
+    background: -webkit-linear-gradient(top, #40ff00 0%,#80ed8a 100%);
+    background: linear-gradient(to bottom, #40ff00 0%,#80ed8a 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#40ff00', endColorstr='#80ed8a',GradientType=0 );
+
+    border: 1px solid #888;
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,.5);
+}
+
+.offlineCircle
+{
+    background: #ccc;
+}
+
+#contactsList .btViewMore
+{
+    color: #888;
+    top: 20px;
+    right: 5px;
+    z-index: 9;
+}
+
+#lastVisitLoader.loaderLine, #onlineLoader.loaderLine
+{
+    height: 4px;
+}
+
+#lastVisitLoader.loaderLine:before, #onlineLoader.loaderLine:before
+{
+    height: 4px;
+}
+
+#wrapperContactDetail
+{
+    display: none;
+    overflow-y: scroll;
+    width: 100%;
+    transition:all .1s linear;
+    opacity: 0;
+}
+
+#mainInfo
+{
+    display: block;
+    height: 75px;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,.2);
+    margin-bottom: 15px;
+}
+
+#mainInfo h3
+{
+    margin: 15px 0 5px 10px;
+    font-size: 22px;
+    padding: 0;
+}
+
+#mainInfo i
+{
+    font-size: 50px;
+    margin-top: 10px;
+}
+
+#detailsList
+{
+    margin: 0 10px;
+}
+
+#detailsList ul li
+{
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+}
+

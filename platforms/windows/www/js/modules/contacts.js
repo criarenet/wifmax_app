@@ -1,40 +1,78 @@
-﻿$(document).ready(function () {
+﻿var emptyListInfo = '<li class="infoChart"><i class="material-icons">info_outline</i><br>Não há informações disponíveis para os filtros atuais.</li>';
+$(document).ready(function () {
     getContactListSize();
     $('#btSearchContacts').on('click', loadContactsList);
+        
 });
 
-var loadContactsList = function () {
-    
-    var url = wifimaxApp.url.GET_CONTACTS;
-    var query; //buildQuery();
-    
+
+function chk_scroll(e)
+{
+    var elem = $(e.currentTarget);
+    if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight())
+    {
+        //alert("bottom");
+        paginationContacts();
+    }
+
+}
+
+
+
+var startContacsLists = function () {
     var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
     var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
     var idCompany = gIdCompany;
     
+    $('#onlineContactsList').html('');
+    $('#onlineContactsList').html(emptyListInfo);
+
+    $('#contactsList').html('');
+    $('#contactsList').html(emptyListInfo);
+
     if (!idCompany || !idRouter || !idHotspot) {
         var txt = 'É necessário selecionar um hotspot para listar os contatos.';
         var title = 'Aviso';
         showNotifyContacts(title, txt);
         return;
     }
-    
-    if (!$('#cboLastVisit').val()) {
-        var txt = 'É necessário selecionar o período da última visita.';
+    loadContactsList();
+    loadOnlineContacts();
+}
+
+var loadContactsList = function () {
+
+    var url = wifimaxApp.url.GET_CONTACTS;
+    var query; //buildQuery();
+
+    var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
+    var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
+    var idCompany = gIdCompany;
+
+    if (!idCompany || !idRouter || !idHotspot) {
+        var txt = 'É necessário selecionar um hotspot para listar os contatos.';
         var title = 'Aviso';
         showNotifyContacts(title, txt);
         return;
     }
-    
-    var period = getLastVisit('1');
-    query = 'idCompany='+idCompany+'&idRouter='+idRouter+'&idHotspot='+idHotspot+'&initialDate='+period[1]+'&finalDate='+period[0];
-    query += '&page=1&pageSize=50';
 
+//    if (!$('#cboLastVisit').val()) {
+//        var txt = 'É necessário selecionar o período da última visita.';
+//        var title = 'Aviso';
+//        showNotifyContacts(title, txt);
+//        return;
+//    }
+
+    var period = getLastVisit('1');
+    pagQuery = 'idCompany=' + idCompany + '&idRouter=' + idRouter + '&idHotspot=' + idHotspot + '&initialDate=' + period[1] + '&finalDate=' + period[0];
+    pagQueryInd = 1;
+    query = pagQuery + '&page=1&pageSize=50';
+    
     //console.log(query)
-    
+
     //return;
-    
-    $('#contactsBody .loaderLine').show();
+
+    $('#lastVisitLoader.loaderLine').show();
     var obj = {
         url: url,
         type: "GET",
@@ -42,16 +80,32 @@ var loadContactsList = function () {
         query: query
     };
     request(obj, function (json) {
-        $('#contactsBody .loaderLine').hide();
-        if (json.result) {
+        $('#lastVisitLoader.loaderLine').hide();
+        if (json.result.data.length) {
             listUser('#contactsList', json.result.data, true, '');
+            if(json.result.data.length < 50){
+                pagLimit = true;
+            }else{
+                pagLimit = false;
+            }
+        }else{
+            $('#contactsList').html('');
+            $('#contactsList').html(emptyListInfo);
         }
     });
 };
 
 
-paginationContacts = function(){
-    $('#contactsBody .loaderLine').show();
+var paginationContacts = function () {
+    if(pagLimit){
+        return;
+    }
+    var url = wifimaxApp.url.GET_CONTACTS;
+    $('#lastVisitLoader.loaderLine').show();
+    
+    pagQueryInd = pagQueryInd + 1;
+    var query = pagQuery + '&page='+pagQueryInd+'&pageSize=50';
+    
     var obj = {
         url: url,
         type: "GET",
@@ -59,9 +113,15 @@ paginationContacts = function(){
         query: query
     };
     request(obj, function (json) {
-        $('#contactsBody .loaderLine').hide();
-        if (json.result) {
+        $('#lastVisitLoader.loaderLine').hide();
+        if (json.result.data.length) {
+            if(json.result.data.length < 50){
+                pagLimit = true;
+            }else{
+                pagLimit = false;
+            }
             listUser('#contactsList', json.result.data, false, '');
+            
         }
     });
 }
@@ -73,15 +133,49 @@ var listUser = function (id, data, reset, callback) {
     }
     $.each(data, function (i, v) {
         //console.log(v);
+        var contactdata = $.param(v);//JSON.stringify(v);
         var item = '<li class="list-group-item">\n\
-                    <span style="width: 15%;"><i class="material-icons '+v.gender+'">account_circle</i></span>\n\
-                    <span style="width: 65%;">' + v.userName + '<br><a>' + v.email + '</a></span>\n\
-                    <span style="width: 15%; text-align: center;">' + v.visits + '</span></li>';
+                    <i data-contactdata="'+contactdata+'" onclick="detailContac(this)" class="material-icons btViewMore">trending_flat</i>\n\
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><span><i class="material-icons ' + v.gender + '">account_circle</i></span></div>\n\
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"><span><b>' + v.userName + '</b><br><a>' + v.email + '</a></span>\n\
+                    <span>Última conexão - ' + v.lastConnection + '</span></div></li>';
         $(id).append(item);
     });
 };
 
+var loadOnlineContacts = function () {
 
+    var url = wifimaxApp.url.GET_ONLINE_CONTACTS;
+    var query = buildQuery();
+
+    $('#onlineLoader.loaderLine').show();
+    var obj = {
+        url: url,
+        type: "GET",
+        noLoader: true,
+        query: query
+    };
+    request(obj, function (json) {
+        $('#onlineLoader.loaderLine').hide();
+        if (json.result.length) {
+            listOnlineUser('#onlineContactsList', json.result, false, '');
+        } else {
+            $('#onlineContactsList').html('');
+            $('#onlineContactsList').html(emptyListInfo);
+        }
+    });
+}
+var listOnlineUser = function (id, data, callback) {
+
+    $(id).html('');
+    $.each(data, function (i, v) {
+        var item = '<li class="list-group-item">\n\
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><span><i class="material-icons">account_circle</i></span></div>\n\
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"><span><b>' + v.userName + '</b><br><a>' + v.email + '</a></span>\n\
+                    <span>Tempo de conexão - ' + v.connectTime + '</span></div></li>';
+        $(id).append(item);
+    });
+};
 
 
 var getLastVisit = function (period) {
@@ -105,13 +199,15 @@ var getLastVisit = function (period) {
 
 var getContactListSize = function () {
     var wrapp = $('#contactsContainer').height();
-    var top = 160;
+    var top = 129;
     var listSize = (wrapp - top);
     $('#contactsList').height(listSize);
+    $('#onlineContactsList').height(listSize);
+    setTimeout(function(){$("#contactsList").bind('scroll',chk_scroll);},100)
 };
 
 var showNotifyContacts = function (title, txt) {
-    $.notify('<strong>'+title+'</strong><br>' + txt, {
+    $.notify('<strong>' + title + '</strong><br>' + txt, {
         allow_dismiss: true,
         timer: 4000,
         animate: {
@@ -119,4 +215,29 @@ var showNotifyContacts = function (title, txt) {
             exit: 'animated bounceOutDown'
         }
     });
+}
+
+var detailContac = function (bt) {
+    
+    var queryString = $(bt).attr('data-contactdata');
+    var objDetails = QueryStringToJSON(queryString);
+    
+    openPortratCharts('', function () {
+        setTimeout(function () {
+            $('#headerPortraitCharts .nav-wrapper').addClass('viewing');
+            $('#titlePortaitChart h3').text('Detalhes do contato');
+            $('#wrapperContactDetail').show().addClass('viewing');
+        }, 250);
+    });
+}
+
+function QueryStringToJSON(qstr) {            
+    var pairs = qstr.split('&');
+    
+    var result = {};
+    pairs.forEach(function(pair) {
+        pair = pair.split('=');
+        result[pair[0]] = decodeURIComponent(pair[1] || '');
+    });
+    return JSON.parse(JSON.stringify(result));
 }

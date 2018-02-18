@@ -255,7 +255,7 @@ a.headermenu:hover
 #wrapperFiltersFields.slideInRight, #wrapperLandscapeCharts.slideInRight,
 #wrapperPortraitCharts.slideInRight
 {
-    animation-duration: 0.2s;
+    animation-duration: 0.4s;
 }
 
 #wrapperFiltersMenuLeft.slideInLeft

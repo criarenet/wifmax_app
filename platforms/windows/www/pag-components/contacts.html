@@ -1,9 +1,10 @@
 ﻿<div class="list-group" id="contactsBody">
     <div class="owl-carousel owl-theme">
         <div class="item">
-            <span style="color: #787ee8;">Usuários online</span>
-            <div style="width: calc(100% - 10px); margin-left: 5px;" class="loaderLine"></div>
-            <ul class="list-group" id="contactsList">
+            <span class="onlineCircle"></span>
+            <span style="color: #888888;">Contatos online</span>
+            
+            <ul class="list-group" id="onlineContactsList">
                 <!--        <li class="list-group-item">
                             <i data-details="detailContact" class="material-icons btViewMore waves-effect waves-grey">loupe</i>
                             <span style="width: 15%;"><i class="material-icons masc">account_circle</i></span>
@@ -12,10 +13,14 @@
                         </li>-->
 
             </ul>
+            <div id="onlineLoader" style="width: calc(100% - 10px); margin-left: 5px;" class="loaderLine"></div>
         </div>
         <div class="item">
-            <span style="color: #34bfe0;">Usuários simultâneos</span>
-            <div id="simultUserChart"></div>
+            <span class="offlineCircle"></span>
+            <span style="color: #888888;">Visitas de ontem</span>
+            
+            <ul class="list-group" id="contactsList"></ul>
+            <div id="lastVisitLoader" style="width: calc(100% - 10px); margin-left: 5px;" class="loaderLine"></div>
         </div>
     </div>
 </div>

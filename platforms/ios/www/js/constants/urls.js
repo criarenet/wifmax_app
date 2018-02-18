@@ -46,3 +46,5 @@ wifimaxApp.url.GET_COMPANIES = "https://manager.wifimax.com.br/admin/company.do?
 
 /*users*/
 wifimaxApp.url.GET_CONTACTS = "https://manager.wifimax.com.br/admin/user.do?action=getContacts";
+
+wifimaxApp.url.GET_ONLINE_CONTACTS = "https://manager.wifimax.com.br/report/logeedusers.do";

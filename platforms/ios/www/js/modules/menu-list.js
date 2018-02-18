@@ -89,6 +89,7 @@ var initMenuLeft = function(){
         openPage('#contactsContainer', function(){
             setTimeout(function(){
                 $('#contactsContainer').addClass('viewing');
+                startContacsLists();
             },200);
             //buildDashBoard(gQuery);
         });

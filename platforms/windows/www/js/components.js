@@ -20,6 +20,9 @@ var startComponents = function(){
                 case 'analytics':
                     loadDataAnalytics(query);
                     break;
+                case 'contacts':
+                    startContacsLists();
+                    break;
             };
             
         });
