@@ -87,7 +87,7 @@ var doLogin = function () {
     $('#frmLogin input').blur();
     $('.loaderLine').show();
 
-    var query = 'username=' + login + '&password=' + password;
+    var query = 'username=' + login + '&password=' + encodeURIComponent(password);
     var obj = {
         url: wifimaxApp.url.LOGIN_USER,
         type: "POST",

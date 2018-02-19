@@ -47,9 +47,11 @@ var initMenuLeft = function(){
         //console.log(reporstSelecteds);
         openPage('#statisticsContainer', function(){
             var query = buildQuery();
-            getDataStatistics(query);
             setTimeout(function(){
                 $('#statisticsContainer').addClass('viewing');
+                setTimeout(function(){
+                    getDataStatistics(query);
+                },120);
             },200);
         });
         typeFilterDate = 'useData';
@@ -60,10 +62,15 @@ var initMenuLeft = function(){
         $('#pagSelectedTitle').text('Dashboard').css('color', '#787ee8');
         reporstSelecteds = 'dashboard';
         openPage('#dashBoardContainer', function(){
+            var query = buildQuery();
             setTimeout(function(){
                 $('#dashBoardContainer').addClass('viewing');
+                setTimeout(function(){
+                    buildDashBoard(query);    
+                },120)
             },200);
-            //buildDashBoard(gQuery);
+            
+            
         });
         typeFilterDate = 'noDate';
     });
