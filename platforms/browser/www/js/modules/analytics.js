@@ -316,8 +316,9 @@ var loadChartGenderAge = function (containner, data, formaters) {
     tooltip: {
             formatter: function() {
                 //console.log(this);
-                var txt = '<b>Novos registros</b><br><br>';
-                txt += 'às ' + this.key + 'hs - ' + this.y + ' registro(s)';
+                //var txt = '<b>Novos registros</b><br><br>';
+                //txt += 'às ' + this.key + 'hs - ' + this.y + ' registro(s)';
+                var txt = this.key + ' anos - ' + this.y 
                 if (this.point.fullCategory)
                     txt += this.point.fullCategory;
                 return txt;

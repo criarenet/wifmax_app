@@ -1,8 +1,8 @@
 var loginHash;
 function onLoad() {
-    setTimeout(function () {
-        verifyPrintLogin();
-    }, 2000);
+//    setTimeout(function () {
+//        verifyPrintLogin();
+//    }, 2000);
     document.addEventListener("deviceready", onDeviceReady, false);
 }
 function onDeviceReady() {

@@ -188,14 +188,16 @@ button#btSearchContacts i
     display: block;
     height: 75px;
     box-shadow: 0px 0px 2px 1px rgba(0,0,0,.2);
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 #mainInfo h3
 {
-    margin: 15px 0 5px 10px;
-    font-size: 22px;
+    margin: 14px 0 5px 10px;
+    font-size: 20px;
     padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #mainInfo i
@@ -214,5 +216,30 @@ button#btSearchContacts i
     border-radius: 0;
     border-left: none;
     border-right: none;
+    padding: 15px 5px 10px 10px;
+    color: #555;
 }
 
+#detailsList ul li:first-child
+{
+    border-top: none;
+}
+
+#detailsList ul li b
+{
+    font-size: 18px;
+    font-weight: normal;
+    margin-left: 10px;
+    vertical-align: text-bottom;
+    color: #999;
+}
+
+#img i.MALE
+{
+    color: #67b9d9;
+}
+
+#img i.FEMALE
+{
+    color: #c69be8;
+}

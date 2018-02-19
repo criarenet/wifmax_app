@@ -223,10 +223,28 @@ var detailContac = function (bt) {
     var objDetails = QueryStringToJSON(queryString);
     
     openPortratCharts('', function () {
+        
+        $('#img i').removeClass('FEMALE MALE');
+        $('#img i').addClass(objDetails.gender);
+        $('#mainInfo h3').html(objDetails.userName);
+        $('#mainInfo h5').html('<a>'+objDetails.email+'</a>');
+        
+        $('#detailsList ul li b')[0].innerHTML = objDetails.cellPhone;
+        $('#detailsList ul li b')[1].innerHTML = objDetails.birthDate;
+        $('#detailsList ul li b')[2].innerHTML = 'CPF - '+objDetails.cpf;
+        $('#detailsList ul li b')[3].innerHTML = 'Tipo de login - '+objDetails.loginType;
+        $('#detailsList ul li b')[4].innerHTML = 'Primeira conexão - '+objDetails.firstConnection;
+        $('#detailsList ul li b')[5].innerHTML = 'Última conexão - '+objDetails.lastConnection;
+        $('#detailsList ul li b')[6].innerHTML = 'Qtd. de visitas - '+objDetails.visits;
+        
         setTimeout(function () {
             $('#headerPortraitCharts .nav-wrapper').addClass('viewing');
             $('#titlePortaitChart h3').text('Detalhes do contato');
+            
+            
             $('#wrapperContactDetail').show().addClass('viewing');
+            
+            
         }, 250);
     });
 }
@@ -241,3 +259,9 @@ function QueryStringToJSON(qstr) {
     });
     return JSON.parse(JSON.stringify(result));
 }
+
+var clearContactDetail = function(){
+    $('#mainInfo h3').html('');
+    $('#mainInfo h5').html('');
+    $('#detailsList b').html('');
+};

@@ -30,6 +30,9 @@ var initMenuLeft = function(){
             $('#wrapperRedirectControl').hide();
             $('#detailsRedirects ul').html('');
             $('#redirectChart').html('');
+            
+            $('#wrapperContactDetail').hide();
+            clearContactDetail();
         },100);
         setTimeout(function () {
             openPortratCharts('');
