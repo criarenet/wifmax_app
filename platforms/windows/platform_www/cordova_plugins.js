@@ -548,6 +548,20 @@ module.exports = [
         "merges": [
             ""
         ]
+    },
+    {
+        "id": "cordova-plugin-statusbar.statusbar",
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "pluginId": "cordova-plugin-statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
+    },
+    {
+        "id": "cordova-plugin-statusbar.StatusBarProxy",
+        "file": "plugins/cordova-plugin-statusbar/src/windows/StatusBarProxy.js",
+        "pluginId": "cordova-plugin-statusbar",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -568,7 +582,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.1.0",
     "cordova-plugin-globalization": "1.0.7",
     "cordova-plugin-inappbrowser": "1.3.0",
-    "cordova-plugin-local-notifications-npm": "1.0.3"
+    "cordova-plugin-local-notifications-npm": "1.0.3",
+    "cordova-plugin-statusbar": "2.1.3"
 };
 // BOTTOM OF METADATA
 });
