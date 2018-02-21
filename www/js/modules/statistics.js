@@ -3,7 +3,6 @@ var emptyChartInfo = '<span class="infoChart"><i class="material-icons">info_out
 
 $(document).ready(function () {
     initButtonsStatistics();
-    
     fixWidthCharts();
 });
 
@@ -153,7 +152,7 @@ var getNewRegistersStatistic = function (actualQuery, callback) {
     
     var formaters = {
         name: 'Usuários',
-        timeLine: intervalsTypes.realTime
+        timeLine: intervalsTypes[periodQuery]
     };
     //$('.labelColor').text('0');
     $('#userOnlineStatisticChart').html('');
@@ -172,7 +171,7 @@ var getUserOnlineStatistic = function (actualQuery, callback) {
     
     var keySql = 'GET_USERS_ONLINE_STATISTIC';
     
-    var query = actualQuery ? actualQuery : gQuery;
+    var query = buildQuery();
     var obj = {
         url: url,
         type: "GET",
@@ -182,8 +181,11 @@ var getUserOnlineStatistic = function (actualQuery, callback) {
     
     var formaters = {
         name: 'Usuários',
-        timeLine: intervalsTypes.realTime
+        timeLine: intervalsTypes[periodQuery]
     };
+    
+    
+    //alert(intervalsTypes[periodQuery])
     //$('.labelColor').text('0');
     $('#userOnlineStatisticChart').html('');
     
@@ -215,7 +217,7 @@ var loadChartOnlineUserStatistic = function (containner, data, formaters) {
             text: ''
         },
         xAxis:{
-            categories: formaters.realTime
+            categories: formaters.timeLine
         },
         yAxis: {
             title: {
@@ -299,7 +301,7 @@ var loadChartNewRegistersStatistic = function (containner, data, formaters) {
             text: ''
         },
         xAxis:{
-            categories: formaters.realTime
+            categories: formaters.timeLine
         },
         plotOptions: {
             series: {

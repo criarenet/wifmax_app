@@ -78,8 +78,9 @@ var showListMenu = function () {
     }, 300);
 }
 
-var buildQuery = function(){
+var buildQuery = function(dashboard){
     var query;
+    var date;
     var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
     var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
     if(!idRouter){
@@ -89,18 +90,28 @@ var buildQuery = function(){
     query += (idRouter ? '&idRouter=' + idRouter : '');
     query += (idHotspot ? '&idHotspot=' + idHotspot : '');
     
-    //if(typeFilterDate === 'useData'){
-        //alert('aqui')
-        query += '&referenceDate=' + ($('#referenceDate').val() ? $('#referenceDate').val() : getToday());
-        query += '&userSearchPeriod=Daily';
-    //}
-    
-    if(typeFilterDate === 'usePeriod'){
+    switch (periodQuery) {
+        case 'Daily':
+            date = $('#referenceDate').val();
+            break;
         
+        case 'Weekly':
+            date = $('#weekDate').val();
+            break;
+        
+        case 'Monthly':
+            date = $('#monthlyDate').val();
+            break;
     }
-        
     
-    console.log(query);
+    if(dashboard !== 'dashbord'){
+        query += '&referenceDate=' + date;
+        query += '&userSearchPeriod=' + periodQuery;
+    }else{
+        //query += '&referenceDate=' + date;
+        query += '&userSearchPeriod=' + 'Daily';
+    }
+    
     return query;
 };
 
@@ -137,7 +148,7 @@ var showHideFilters = function (callback) {
         filters.addClass(classOpen);
         setTimeout(function(){
             $('#carouselFilter').css('opacity', '1');
-        },300);
+        },500);
     }
     if(callback){
         setTimeout(function(){
@@ -177,17 +188,18 @@ var showHideMenuLeft = function (callback) {
 
 
 var intervalsTypes = {
-    'realTime':['00', '01', '02', '03', '04', '05', '06',
-        '07', '08', '09', '10', '11', '12', '13',
-        '14', '15', '16', '17', '18', '19', '20',
-        '21', '22', '23'],
+    'realTime':['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00',
+        '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00',
+        '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00',
+        '21:00', '22:00', '23:00'],
     'Daily': [
-        '00', '01', '02', '03', '04', '05', '06',
-        '07', '08', '09', '10', '11', '12', '13',
-        '14', '15', '16', '17', '18', '19', '20',
-        '21', '22', '23'
+        '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00',
+        '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00',
+        '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00',
+        '21:00', '22:00', '23:00'
     ],
-    'Weekly': function() {
+    'Weekly': ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
+    /*function() {
         
         var selectDay = $('#datepicker input[name=start]').val().split('/');
 
@@ -206,8 +218,9 @@ var intervalsTypes = {
                 resp.push(weekBase[weekDay]);
             }
         }
-        return resp;
-    },
+        //return resp;
+        return weekBase;
+    }*/,
     'Monthly': function(start, len) {
         var res = [];
         var d = new Date();

@@ -1,16 +1,26 @@
 $(document).ready(function () {
+    
+    $('#dateTabBts li').on('click', function(){
+
+        $('#dateTabBts li').removeClass('selected');
+        $('.tab-pane').removeClass('animated flipInX active');
+        $(this).addClass('selected');
+        var containner = $(this).attr('data-tabselected');
+        $(containner).addClass('animated flipInX active');
+    });
+    
     //getRoutersByCompany(getListSize);
     
-    $('#changeDatePeriod').on('change', function(){
-        $('.panelTab').removeClass('selected');
-        var date = $('.panelTab')[0];
-        var period = $('.panelTab')[1];
-        if($('#changeDatePeriod:checked').length){
-            $(period).addClass('selected');
-        }else{
-            $(date).addClass('selected');
-        }
-    });
+//    $('#changeDatePeriod').on('change', function(){
+//        $('.panelTab').removeClass('selected');
+//        var date = $('.panelTab')[0];
+//        var period = $('.panelTab')[1];
+//        if($('#changeDatePeriod:checked').length){
+//            $(period).addClass('selected');
+//        }else{
+//            $(date).addClass('selected');
+//        }
+//    });
     
 });
 

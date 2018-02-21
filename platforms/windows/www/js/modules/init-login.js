@@ -1,9 +1,9 @@
 ﻿var loginHash;
 function onLoad() {
-    setTimeout(function () {
-        verifyPrintLogin();
-        //StatusBar.hide();
-    }, 2000);
+//    setTimeout(function () {
+//        verifyPrintLogin();
+//        //StatusBar.hide();
+//    }, 2000);
     document.addEventListener("deviceready", onDeviceReady, false);
 }
 function onDeviceReady() {
@@ -23,9 +23,9 @@ function onDeviceReady() {
     $('#frmLogin input').focus(function(){
         $('#logoLoginArea').addClass('floating');
     });
-    //StatusBar.hide();
-    //setScreenOrientation('portrait');
-    //verifyPrintLogin();
+    StatusBar.hide();
+    setScreenOrientation('portrait');
+    verifyPrintLogin();
 }
 var setScreenOrientation = function (position, callback) {
     screen.orientation.lock(position);

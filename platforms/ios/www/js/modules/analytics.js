@@ -351,6 +351,7 @@ var getChartConversion = function (actualQuery, callback) {
         query: query
     };
     var formaters = {
+        timeLine: intervalsTypes[periodQuery]
     };
     $('#conversionChart').html('');
     request(obj, function (json) {
@@ -423,7 +424,7 @@ var loadChartConversion = function (containner, data, formaters) {
             text: ''
         },
         xAxis:{
-            //categories: []
+            categories: formaters.timeLine
         },
         plotOptions: {
             series: {

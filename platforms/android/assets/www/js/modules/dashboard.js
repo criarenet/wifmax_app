@@ -1,32 +1,25 @@
 //var gQuery = 'idCompany=11&idRouter=28&idHotspot=54&referenceDate=13/01/2018&userSearchPeriod=Daily';
 var gCompanyNameSeleceted;
 $(document).ready(function () {
-    //startDashBoard();
-//    setScreenOrientation('portrait');
 });
 
-//var setScreenOrientation = function (position, callback) {
-//    screen.orientation.lock(position);
-//    if (callback) {
-//        setTimeout(function () {
-//            callback();
-//        }, 400);
-//    }
-//};
+
+Array.prototype.getInterval = function (start, len) {
+    var l = this.length;
+    var arr = [];
+
+    start = start || 0;
+    len = len || l;
+
+    for (var i = start, c = 0; c < len; c++, i++) {
+        arr.push(this[(i % l)]);
+    }
+    return arr;
+
+};
 
 var startDashBoard = function () {
-    getLastQuery(function (objQuery) {
-        var query;
-        if (objQuery.query) {
-            //setSelectionForm(objQuery.obj);
-            
-            query = objQuery.query;
-            buildDashBoard(query);
-        } else {
-            query = buildQuery();
-            buildDashBoard(query);
-        }
-    });
+    buildDashBoard();
 };
 
 var setSelectionForm = function (obj) {
@@ -49,7 +42,7 @@ var getUserOnlineChart = function (params, callback) {
     var keySql = 'DASHBOARD_ONLINE_USERS';
     //var url = 'https://api.myjson.com/bins/1he11h';
 
-    var query = params ? params : gQuery;
+    var query = buildQuery('dashbord');
     
     var obj = {
         url: url,
@@ -62,13 +55,17 @@ var getUserOnlineChart = function (params, callback) {
         name: 'Usuários',
         timeLine: intervalsTypes.realTime
     };
+    
     $('.labelColor').text('0');
     $('#userOnlineChart').html('');
     
     request(obj, function (json) {
         if (json.result && json.result.data) {
             var data = addUpdateDataRequest(keySql, json.result.data);
-            //console.log(data);
+            
+            var d = new Date(json.result.date);
+            formaters.timeLine = intervalsTypes.Daily.getInterval(parseInt(d.getHours()), 24);
+            
             loadChartOnlineUser($('#userOnlineChart'), data, formaters);
         }
     });
@@ -79,7 +76,7 @@ var countUpDashboardNumbers = function (params, callback) {
     //var url = 'https://api.myjson.com/bins/dqrv9';
     var keySql = 'DASHBOARD_CONNECTION_DATA';
     
-    var query = params ? params : gQuery;
+    var query = buildQuery('dashbord');
     var obj = {
         url: url,
         type: "GET",
@@ -119,23 +116,26 @@ var getSimultUserChart = function (params, callback) {
     var url = wifimaxApp.url.DASHBOARD_SIMULT_USERS_CHART;
     //var url = 'https://api.myjson.com/bins/1he11h';
     var keySql = 'DASHBOARD_SIMULT_USERS_CHART';
-    var query = params ? params : gQuery;
+    var query = buildQuery('dashbord');
     var obj = {
         url: url,
         type: "GET",
         noLoader: true,
         query: query
     };
-
+    
     var formaters = {
-        name: 'Usuários',
-        timeLine: intervalsTypes.realTime
+        name: 'Usuários'
     };
 
     $('#userOnlineChart').html('');
 
     request(obj, function (json) {
         var data = addUpdateDataRequest(keySql, json.result);
+        formaters.timeLine = json.result.date;
+        //var d = new Date(json.result.date);
+        //formaters.timeLine = intervalsTypes.Daily.getInterval(parseInt(d.getHours()), 24);
+        //alert(formaters.timeLine)
         loadChartSimultUser($('#simultUserChart'), data, formaters);
     });
 };
@@ -152,10 +152,10 @@ var loadChartSimultUser = function (containner, data, formaters) {
                     x:0,
                     y:0
                 },
-                relativeTo:'plot',
+                //relativeTo:'plot',
                 theme: {
-                    opacity: 0.4,
-                    html:'kkk'
+                    opacity: 0.4
+                    //html:'kkk'
                 }
             }
         },
@@ -173,8 +173,8 @@ var loadChartSimultUser = function (containner, data, formaters) {
             text: ''
         },
         xAxis:{
-            categories: formaters.realTime,
             type: 'datetime'
+            //categories: formaters.timeLine
         },
         yAxis: {
             title: {
@@ -197,8 +197,8 @@ return pointFormatted;
        },
         plotOptions: {
             series:{
-              pointStart:1516120620652,
-              pointEnd:1516207312473
+              pointStart:formaters.timeLine,
+              pointEnd:formaters.timeLine + 3600*1000
             },
             area: {
                 fillColor: {
@@ -230,7 +230,7 @@ return pointFormatted;
         series: [{
             type: 'area',
             name: '',
-            pointInterval: 60*1000,
+            pointInterval: 60*500,
             data: data.data
         }]    
         
@@ -257,7 +257,7 @@ var loadChartOnlineUser = function (containner, data, formaters) {
             text: ''
         },
         xAxis:{
-            categories: formaters.realTime
+            categories: formaters.timeLine
         },
         yAxis: {
             title: {

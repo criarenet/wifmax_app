@@ -4,9 +4,9 @@
 wifimaxApp.url.LOGIN_USER = "https://api.wifimax.com.br/v2/j/app/login";
 
 /*Dashboard*/
-wifimaxApp.url.DASHBOARD_ONLINE_USERS = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getOnlineUsersDashBoard&userSearchPeriod=Daily";
+wifimaxApp.url.DASHBOARD_ONLINE_USERS = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getOnlineUsersDashBoard";
 
-wifimaxApp.url.DASHBOARD_CONNECTION_DATA = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getUserConnectionDatasDashBoard&userSearchPeriod=Daily";
+wifimaxApp.url.DASHBOARD_CONNECTION_DATA = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getUserConnectionDatasDashBoard";
 
 wifimaxApp.url.DASHBOARD_SIMULT_USERS_CHART = "https://manager.wifimax.com.br/admin/user.do?action=searchOnlineUsersDashBoard";
 
@@ -17,9 +17,9 @@ wifimaxApp.url.GET_ROUTERS_BY_COMPANIES = "https://manager.wifimax.com.br/admin/
 /*statistics*/
 wifimaxApp.url.GET_USER_DATA_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getUserConnectionDatasStatistic";
 
-wifimaxApp.url.GET_USERS_ONLINE_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getOnlineUsersStatistics&userSearchPeriod=Daily";
+wifimaxApp.url.GET_USERS_ONLINE_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getOnlineUsersStatistics";
 
-wifimaxApp.url.GET_NEW_REGISTERS_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getRegisteredUsers&userSearchPeriod=Daily";
+wifimaxApp.url.GET_NEW_REGISTERS_STATISTIC = "https://manager.wifimax.com.br/admin/userlibrary.do?action=getRegisteredUsers";
 
 wifimaxApp.url.GET_BROWSERS_STATISTICS = "https://manager.wifimax.com.br/admin/graphic.do?action=getBrowserPizzaGraphic";
 

@@ -99,6 +99,22 @@
 .dropdown-menu.datepicker.datepicker-dropdown tbody td
 {
     text-align: center;
+    position: relative;
+}
+
+.dropdown-menu.datepicker.datepicker-dropdown tbody td.today:before
+{
+    content: '';
+    border-radius: 50px;
+    border: 2px solid #DCEDC8;
+    display: block;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: calc(50% - 14px);
+    left: calc(50% - 14px);
 }
 
 .dropdown-menu.datepicker.datepicker-dropdown tbody td span
@@ -111,6 +127,21 @@
     margin: 1%;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.dropdown-menu.datepicker.datepicker-dropdown tbody td.active:before
+{
+    content: '';
+    border-radius: 50px;
+    border: 3px solid #0f9d58;
+    display: block;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
 }
 
 .datepicker table tr td.highlighted {
@@ -128,4 +159,9 @@
 .datepicker table tr td.cw
 {
     font-size: 14px;
+}
+
+.datepicker.datepicker-dropdown.dropdown-menu.fadeInUp
+{
+    animation-duration: .1s;
 }
