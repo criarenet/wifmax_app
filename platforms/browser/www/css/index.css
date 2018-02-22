@@ -463,6 +463,11 @@ select.cboOrigin option
     text-indent: -99999px;
 }
 
+#pieChartsAnalitics .chartBox
+{
+    background: url(../img/loaderchart-app.gif) center center no-repeat #fff;
+}
+
 .labelText
 {
     margin-top: -4px;
@@ -733,4 +738,38 @@ i.btViewMore
 {
     max-height: 0;
     padding: 0;
+}
+
+span.dateInChart
+{
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+    font-size: 12px;
+}
+
+span.dateInChartPort
+{
+    position: absolute;
+    right: 15px;
+    top: 27px;
+    font-size: 12px;
+}
+
+.portraitTitle
+{
+    margin: 13px 0 0 0;
+    text-align: right;
+    color: #777;
+    font-size: 18px;
+}
+
+.portraitTitle.wDate
+{
+    margin-top: 7px;
+}
+
+#pieChartsAnalitics .item.chartBox
+{
+    min-height: 270px;
 }

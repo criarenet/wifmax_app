@@ -1,12 +1,14 @@
 var loginHash;
 function onLoad() {
+    //StatusBar.hide();
 //    setTimeout(function () {
 //        verifyPrintLogin();
-//        //StatusBar.hide();
+//        StatusBar.hide();
 //    }, 2000);
     document.addEventListener("deviceready", onDeviceReady, false);
 }
 function onDeviceReady() {
+    
     //document.addEventListener("pause", onPause, false);
     //document.addEventListener("resume", onResume, false);
     //document.addEventListener("menubutton", onMenuKeyDown, false);
@@ -20,13 +22,16 @@ function onDeviceReady() {
     $('#frmLogin input').focusout(function(){
         $('#logoLoginArea').removeClass('floating');
     });
+    
     $('#frmLogin input').focus(function(){
         $('#logoLoginArea').addClass('floating');
     });
+    
     StatusBar.hide();
     setScreenOrientation('portrait');
     verifyPrintLogin();
 }
+
 var setScreenOrientation = function (position, callback) {
     screen.orientation.lock(position);
     if (callback) {

@@ -11,7 +11,9 @@ var initButtonsAnalytics = function(){
             setTimeout(function(){
                 $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
                 //$('.chartBoxLandscape h3').addClass('viewing');
-                $('#titlelandscapeChart h3').text('Usuários por sexo e por faixa etária');
+                //var chartTitle ='Usuários por sexo e por faixa etária <span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>';
+                $('#titlelandscapeChart h3').html('Usuários por sexo e por faixa etária');
+                $('#wrapperLandscapeCharts').append('<span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>');
                 getChartGenderAge();
             },250);
         });
@@ -22,7 +24,9 @@ var initButtonsAnalytics = function(){
             setTimeout(function(){
                 $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
                 //$('.chartBoxLandscape h3').addClass('viewing');
-                $('#titlelandscapeChart h3').text('Conversão de visualizações da splash-page em logins');
+                //var chartTitle ='Conversão de visualizações da splash-page em logins <span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>';
+                $('#titlelandscapeChart h3').html('Conversão de visualizações da splash-page em logins');
+                $('#wrapperLandscapeCharts').append('<span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>');
                 getChartConversion();
             },250);
         });
@@ -35,7 +39,9 @@ var initButtonsAnalytics = function(){
                 //$('.chartBoxLandscape h3').addClass('viewing');
                 //wifimaxApp.url.GET_VOUCHERCONTROL_USERS
                 //alert('aqui')
-                $('#titlePortaitChart h3').text('Vouchers utilizados');
+                var chartTitle ='Vouchers utilizados <span class="dateInChartPort">'+$('#previewSelectedDate').html()+'</span>';
+                $('#titlePortaitChart h3').addClass('wDate');
+                $('#titlePortaitChart h3').html(chartTitle);
                 buildDetailsVouchers();
             }, 250);
         });

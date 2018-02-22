@@ -9,6 +9,7 @@ var initMenuLeft = function(){
         $('#newRegistersStatisticChart').html('');
         $('#genderAgeChart').html('');
         $('#conversionChart').html('');
+        $('.dateInChart').remove();
         $('#headerLandscapeCharts .nav-wrapper').removeClass('viewing');
         //$('.chartBoxLandscape h3').removeClass('viewing');
         setTimeout(function () {
@@ -23,6 +24,7 @@ var initMenuLeft = function(){
         
         $('#wrapperVouchersControl').removeClass('viewing');
         setTimeout(function(){
+            $('#titlePortaitChart h3').removeClass('wDate');
             $('#wrapperVouchersControl').hide();
             $('#detailsVouchers ul').html('');
             $('#voucherChart').html('');

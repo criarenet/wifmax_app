@@ -4,6 +4,7 @@
 
     var keySql = 'GET_GENDER_CHART';
     $('#pieChartGender').html('');
+    $('.genderHide').hide();
     var query = actualQuery ? actualQuery : gQuery;
     var obj = {
         url: url,
@@ -13,7 +14,7 @@
     };
     request(obj, function (json) {
         if (json.result) {
-            
+            $('.genderHide').show();
             var data = addUpdateDataRequest(keySql, json.result);
             var genderData = {};
             
@@ -101,7 +102,7 @@ var loadChartGender = function (containner, data, formaters) {
     $(containner).highcharts({
         chart: {
             type: 'solidgauge',
-            height: '260px',
+            height: '220px',
             events: {
                 render: renderIcons
             }
@@ -124,13 +125,13 @@ var loadChartGender = function (containner, data, formaters) {
             backgroundColor: 'none',
             shadow: false,
             style: {
-                fontSize: '12px'
+                fontSize: '10px'
             },
             pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
             positioner: function (labelWidth) {
                 return {
                     x: (this.chart.chartWidth - labelWidth) / 2,
-                    y: (this.chart.plotHeight / 4)+40
+                    y: (this.chart.plotHeight / 4)+30
                 };
             }
         },

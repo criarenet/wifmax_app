@@ -142,6 +142,8 @@
             todayHighlight: true
         }).on('changeDate', function (ev) {
             periodQuery = 'Weekly';
+            $('#weekDate').css('text-indent', '-99999px');
+            setTimeout(function(){setDatePeriod();},300);
         });
 
         $('#monthlyDate').datepicker({
@@ -155,10 +157,32 @@
             forceParse: false
         }).on('changeDate', function (ev) {
             periodQuery = 'Monthly';
+            $('#previewSelectedDate').html($('#monthlyDate').val());
         });
         var startdate = moment();
         startdate = startdate.subtract(1, "days");
         startdate = startdate.format("DD/MM/YYYY");
-        $('#referenceDate').datepicker('setDate', startdate).datepicker('fill')
+        $('#referenceDate').datepicker('setDate', startdate).datepicker('fill');
+        $('#previewSelectedDate').html($('#referenceDate').val());
     });
+    
+    var setDatePeriod = function(){
+        var date = moment($('#weekDate').val(), ['DD/MM/YYYY']);
+        
+        //console.log($('#weekDate').val());
+        console.log(date);
+        date = date.add(6, "days");
+        console.log(date);
+        date = date.format("DD/MM/YYYY");
+        console.log(date);
+        
+        var dateField = $('#weekDate').val() + ' a ' + date;
+
+        setTimeout(function(){
+            //$('#weekDate').datepicker('setDate', dateField).datepicker('fill');
+            $('#weekDate').val(dateField);
+            $('#weekDate').css('text-indent', '0');
+            $('#previewSelectedDate').html($('#weekDate').val());
+        },100);
+    };
 </script>

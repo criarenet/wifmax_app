@@ -2,13 +2,36 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="owl-carousel owl-theme">
             <div class="item chartBox">
-                <h4 style="color: #E91E63;"><i class="material-icons">wc</i> Gênero</h4>
-                <div id="pieChartGender"></div>
+                <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="color: #E91E63;"><i class="material-icons">wc</i> Gênero</h4>
+                
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 genderHide">
+                    <div id="pieChartGender"></div>
+                </div>
+                <div style="padding-left: 5px; margin-top: 15px;" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 genderHide">
+
+                    <span data-count="femaleUsers" style="color: #e91e63; padding-left: 0; font-size: 26px;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 analyticsLabel">
+                        0
+                    </span>
+                    <span style="padding-left: 0; margin-bottom: 10px;" class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        Femininos
+                    </span>
+                    <span data-count="maleUsers" style="color: #3f51b5; padding-left: 0; font-size: 26px;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 analyticsLabel">
+                        0
+                    </span>
+                    <span style="padding-left: 0; margin-bottom: 10px;" class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        Masculino
+                    </span>
+                    <span data-count="nonGenderUsers" style="color: #22bd9a; padding-left: 0; font-size: 26px;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 analyticsLabel">
+                        0
+                    </span>
+                    <span style="padding-left: 0;" class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        Indefinidos
+                    </span>
+
+
+                </div>
+            
             </div>
-<!--            <div class="item chartBox">
-                <h4 style="color: #673AB7;"><i class="material-icons" style="font-size: 32px; margin-left: 3px; color: #673AB7; margin-right: 5px;">important_devices</i> Sistemas operacionais</h4>
-                <div id="pieChartOSs"></div>
-            </div>-->
         </div>
     </div>
 </div>
@@ -60,7 +83,7 @@
                     0
                 </span>
                 <span class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    Visualizações em logins
+                    Conversão de splash em autenticação
                 </span>
                 <i id="detailConversion" data-details="totUser" style="color: #11487f;" class="material-icons btViewMore waves-effect waves-grey">insert_chart</i>
             </div>
@@ -75,7 +98,7 @@
                 <i class="material-icons" style="color: #34bfe0; font-size: 44px;">confirmation_number</i>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                <span data-count="userVolume" data-complement="" style="color: #34bfe0;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 vouchersLabel">
+                <span data-count="usersVolume" data-complement="" style="color: #34bfe0;" class="labelColor col-xs-12 col-sm-12 col-md-12 col-lg-12 vouchersLabel">
                     0
                 </span>
                 <span class="labelText col-xs-12 col-sm-12 col-md-12 col-lg-12">

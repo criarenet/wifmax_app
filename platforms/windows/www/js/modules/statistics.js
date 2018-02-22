@@ -18,7 +18,10 @@ var initButtonsStatistics = function(){
             setTimeout(function(){
                 $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
                 //$('.chartBoxLandscape h3').addClass('viewing');
-                $('#titlelandscapeChart h3').text('Usuários online');
+                //var chartTitle ='Usuários online <span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>';
+                $('#titlelandscapeChart h3').html('Usuários online');
+                $('#wrapperLandscapeCharts').append('<span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>');
+                //$('#titlelandscapeChart h3').text('Usuários online');
                 getUserOnlineStatistic(buildQuery());
             },250);
         });
@@ -30,7 +33,10 @@ var initButtonsStatistics = function(){
             setTimeout(function(){
                 $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
                 //$('.chartBoxLandscape h3').addClass('viewing');
-                $('#titlelandscapeChart h3').text('Usuários Cadastrados');
+                
+                //var chartTitle ='Usuários Cadastrados <span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>';
+                $('#titlelandscapeChart h3').html('Usuários Cadastrados');
+                $('#wrapperLandscapeCharts').append('<span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>');
                 getNewRegistersStatistic(buildQuery());
             },250);
         });
@@ -40,8 +46,9 @@ var initButtonsStatistics = function(){
         openPortratCharts('', function () {
             setTimeout(function () {
                 $('#headerPortraitCharts .nav-wrapper').addClass('viewing');
-
-                $('#titlePortaitChart h3').text('Redirecionamentos');
+                var chartTitle ='Redirecionamentos <span class="dateInChartPort">'+$('#previewSelectedDate').html()+'</span>';
+                $('#titlePortaitChart h3').addClass('wDate');
+                $('#titlePortaitChart h3').html(chartTitle);
                 buildDetailsRedirects();
                 //["#8ed083", "#82cecd", "#82a7ce", "#8682ce", "#ad82cf", "#d183bc", "#dc8a90", "#e0a78c", "#e0cc8c", "#cad988"];
             }, 250);
