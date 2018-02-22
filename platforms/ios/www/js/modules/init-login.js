@@ -27,9 +27,9 @@ function onDeviceReady() {
         $('#logoLoginArea').addClass('floating');
     });
     
-    StatusBar.hide();
     setScreenOrientation('portrait');
     verifyPrintLogin();
+    StatusBar.hide();
 }
 
 var setScreenOrientation = function (position, callback) {
