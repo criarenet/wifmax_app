@@ -477,7 +477,7 @@ select.cboOrigin option
 #userOnlineChart, #simultUserChart, #pieChartBrowsers, #pieChartOSs, #pieChartGender
 {
     background: url(../img/loaderchart-app.gif) center center no-repeat;
-    min-height: 250px;
+    min-height: 220px;
 }
 
 #menuBottom
@@ -771,5 +771,6 @@ span.dateInChartPort
 
 #pieChartsAnalitics .item.chartBox
 {
-    min-height: 270px;
+    min-height: 265px;
+    overflow: hidden;
 }

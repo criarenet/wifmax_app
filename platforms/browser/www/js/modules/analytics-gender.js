@@ -14,7 +14,8 @@ var getDataGender = function (actualQuery) {
     };
     request(obj, function (json) {
         if (json.result) {
-            $('.genderHide').show();
+            $('.genderHide').fadeIn(100);
+            setTimeout(function(){
             var data = addUpdateDataRequest(keySql, json.result);
             var genderData = {};
             
@@ -22,80 +23,15 @@ var getDataGender = function (actualQuery) {
             genderData.percentageMale = data.percentageMale;
             genderData.percentageNoGender = data.percentageNoGender;
             
-            if(!genderData.percentageFemale && !genderData.percentageMale){
+            if(!genderData.percentageFemale && !genderData.percentageMale && !genderData.percentageNoGender){
                 $('#pieChartGender').html(emptyChartInfo);
             }else{
                 loadChartGender($('#pieChartGender'), genderData);
             }
+            },100);
         }
     });
 };
-
-
-
-/**
- * In the chart render event, add icons on top of the circular shapes
- */
-function renderIcons() {
-
-    // Move icon
-    if (!this.series[0].icon) {
-        this.series[0].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
-                .attr({
-                    'stroke': '#ffffff',
-                    'stroke-linecap': 'round',
-                    'stroke-linejoin': 'round',
-                    'stroke-width': 2,
-                    'zIndex': 10
-                })
-                .add(this.series[2].group);
-    }
-    this.series[0].icon.translate(
-            this.chartWidth / 2 - 10,
-            this.plotHeight / 2 - this.series[0].points[0].shapeArgs.innerR -
-            (this.series[0].points[0].shapeArgs.r - this.series[0].points[0].shapeArgs.innerR) / 2
-            );
-
-    // Exercise icon
-    if (!this.series[1].icon) {
-        this.series[1].icon = this.renderer.path(
-                ['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8,
-                    'M', 8, -8, 'L', 16, 0, 8, 8]
-                )
-                .attr({
-                    'stroke': '#ffffff',
-                    'stroke-linecap': 'round',
-                    'stroke-linejoin': 'round',
-                    'stroke-width': 2,
-                    'zIndex': 10
-                })
-                .add(this.series[2].group);
-    }
-    this.series[1].icon.translate(
-            this.chartWidth / 2 - 10,
-            this.plotHeight / 2 - this.series[1].points[0].shapeArgs.innerR -
-            (this.series[1].points[0].shapeArgs.r - this.series[1].points[0].shapeArgs.innerR) / 2
-            );
-
-    // Stand icon
-    if (!this.series[2].icon) {
-        this.series[2].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
-                .attr({
-                    'stroke': '#ffffff',
-                    'stroke-linecap': 'round',
-                    'stroke-linejoin': 'round',
-                    'stroke-width': 2,
-                    'zIndex': 10
-                })
-                .add(this.series[2].group);
-    }
-
-    this.series[2].icon.translate(
-            this.chartWidth / 2 - 10,
-            this.plotHeight / 2 - this.series[2].points[0].shapeArgs.innerR -
-            (this.series[2].points[0].shapeArgs.r - this.series[2].points[0].shapeArgs.innerR) / 2
-            );
-}
 
 var loadChartGender = function (containner, data, formaters) {
 
@@ -104,7 +40,7 @@ var loadChartGender = function (containner, data, formaters) {
             type: 'solidgauge',
             height: '220px',
             events: {
-                render: renderIcons
+                render: ''//renderIcons
             }
         },
         exporting:{
@@ -125,7 +61,7 @@ var loadChartGender = function (containner, data, formaters) {
             backgroundColor: 'none',
             shadow: false,
             style: {
-                fontSize: '10px'
+                fontSize: '9px'
             },
             pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
             positioner: function (labelWidth) {

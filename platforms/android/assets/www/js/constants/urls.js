@@ -40,6 +40,10 @@ wifimaxApp.url.GET_VOUCHERCONTROL_USERS = "https://manager.wifimax.com.br/admin/
 
 wifimaxApp.url.GET_GENDER_CHART = "https://manager.wifimax.com.br/admin/user.do?action=searchUsersProfilesDatas";
 
+wifimaxApp.url.GET_MIGRATION_DATA = "https://api.wifimax.com.br/v1.0/reports/public/migrations/detalhado/app";
+
+//https://api.wifimax.com.br/v1.0/reports/public/migrations/detalhado/?jsoncallback=Request.JSONP.request_map.request_0&idCompany=11&userSearchPeriod=DAILY&hotspotList[0]=57&referenceDate=22%2F02%2F2018";
+
 /*config*/
 wifimaxApp.url.GET_COMPANIES = "https://manager.wifimax.com.br/admin/company.do?action=getCompaniesCombo";
 

@@ -1,10 +1,11 @@
 var loginHash;
+
 function onLoad() {
     //StatusBar.hide();
-//    setTimeout(function () {
-//        verifyPrintLogin();
-//        StatusBar.hide();
-//    }, 2000);
+    setTimeout(function () {
+        verifyPrintLogin();
+        //StatusBar.hide();
+    }, 2000);
     document.addEventListener("deviceready", onDeviceReady, false);
 }
 function onDeviceReady() {

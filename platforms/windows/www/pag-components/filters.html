@@ -62,6 +62,9 @@
                                 <li data-tabselected="#tabDateInd3">
                                     <a>Mês</a>
                                 </li>
+                                <li data-tabselected="#tabDateInd4">
+                                    <a>Ano</a>
+                                </li>
                             </ul>
 
                             <div class="tab-content">
@@ -86,6 +89,14 @@
                                     <div class="form-group" style="margin-top: 10px;">
                                         <div class="form-line">
                                             <input readonly="true" type="text" id="monthlyDate" class="form-control datepicker" placeholder="Selecione uma data">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane animated flipInX" id="tabDateInd4">
+                                    <h5>Período anual</h5>
+                                    <div class="form-group" style="margin-top: 10px;">
+                                        <div class="form-line">
+                                            <input readonly="true" type="text" id="yearDate" class="form-control datepicker" placeholder="Selecione uma data">
                                         </div>
                                     </div>
                                 </div>
@@ -128,6 +139,7 @@
             autoclose: true
         }).on('changeDate', function (ev) {
             periodQuery = 'Daily';
+            $('#previewSelectedDate').html($('#referenceDate').val());
         });
 
         $('#weekDate').datepicker({
@@ -144,6 +156,17 @@
             periodQuery = 'Weekly';
             $('#weekDate').css('text-indent', '-99999px');
             setTimeout(function(){setDatePeriod();},300);
+        });
+        
+        $('#yearDate').datepicker({
+            format: "yyyy",
+            autoclose: true,
+            minViewMode: 2
+        }).on('changeDate', function (ev) {
+            periodQuery = 'Yearly';
+            setTimeout(function(){
+                $('#previewSelectedDate').html($('#yearDate').val());
+            },100);
         });
 
         $('#monthlyDate').datepicker({

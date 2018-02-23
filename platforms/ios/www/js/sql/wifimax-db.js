@@ -2,9 +2,9 @@ var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
 db.transaction(populateDB, errorCB, successCB);
 
 function populateDB(tx) {
-    tx.executeSql('DROP TABLE IF EXISTS USERS');
-    tx.executeSql('DROP TABLE IF EXISTS LASTREQUESTS');
-    tx.executeSql('DROP TABLE IF EXISTS LASTFILTER');
+//    tx.executeSql('DROP TABLE IF EXISTS USERS');
+//    tx.executeSql('DROP TABLE IF EXISTS LASTREQUESTS');
+//    tx.executeSql('DROP TABLE IF EXISTS LASTFILTER');
     
     tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (name, hash64, idCompany)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS LASTREQUESTS (request, data)');
