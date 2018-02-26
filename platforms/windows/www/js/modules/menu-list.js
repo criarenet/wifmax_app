@@ -13,6 +13,9 @@ var initMenuLeft = function(){
         $('.dateInChart').remove();
         $('#headerLandscapeCharts .nav-wrapper').removeClass('viewing');
         //$('.chartBoxLandscape h3').removeClass('viewing');
+        
+        clearMrtgTags();
+        
         setTimeout(function () {
             setScreenOrientation('portrait', function () {
                 openLandscapeCharts('');

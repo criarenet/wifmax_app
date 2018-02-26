@@ -1,5 +1,21 @@
 ﻿$(document).ready(function () {
     $('#detailMigration').on('click', function () {
+        
+        var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
+        if (!idRouter) {
+            var txt = 'É necessário selecionar um roteador para visualizar as migrações.'
+            $.notify('<strong>Ops!</strong><br>' + txt, {
+                allow_dismiss: true,
+                timer: 4000,
+                animate: {
+                    enter: 'animated bounceInUp',
+                    exit: 'animated bounceOutDown'
+                }
+            });
+            return;
+        }
+        
+        
         openLandscapeCharts('', function () {
             setScreenOrientation('landscape');
             setTimeout(function () {
@@ -41,7 +57,7 @@ var buildDataMigrationChart = function () {
             break;
         
         case 'Weekly':
-            date = $('#weekDate').val();
+            date = $('#weekDate').val().split(' ')[0];
             break;
         
         case 'Monthly':
@@ -51,10 +67,6 @@ var buildDataMigrationChart = function () {
     
     var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
     
-    if(!idRouter){
-        return;
-    }
-    
     var query = '?idCompany=' + gIdCompany + '&userSearchPeriod=' + (periodQuery.toUpperCase()) + '&hotspotList[0]='+parseInt(idRouter)+'&referenceDate='+encodeURIComponent(date);
     url = url + query;
     var obj = {
@@ -62,6 +74,12 @@ var buildDataMigrationChart = function () {
     };
     getMigrationData(obj, function (json) {
         var dataChart = [];
+        
+        if(!json.result || !json.result.links){
+            $('#migrationChart').html(emptyChartInfo);
+            return;
+        }
+        
         $.each(json.result.links, function(i, v){
             var migArr = [];
             
@@ -77,13 +95,12 @@ var buildDataMigrationChart = function () {
             dataChart.push(migArr);
         });
         //console.log(dataChart);
-        
         loadRouterMigrationChart($('#migrationChart'),dataChart, '');
     });
 };
 
 //theme para migration Chart
-Highcharts.theme = {
+Highcharts.myTheme = {
    colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066',
       '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
    chart: {
@@ -280,9 +297,9 @@ Highcharts.theme = {
 
 
 var loadRouterMigrationChart = function (containner, data, formaters) {
-    Highcharts.setOptions(Highcharts.theme);
-
-    $(containner).highcharts({
+    //Highcharts.setOptions(Highcharts.theme);
+    //$('#container').highcharts(Highcharts.merge(options, theme1));
+    $(containner).highcharts(Highcharts.merge({
 
         chart: {
             height: '260px'
@@ -307,5 +324,5 @@ var loadRouterMigrationChart = function (containner, data, formaters) {
                 type: 'sankey',
                 name: 'Sankey demo series'
             }]
-    });
+    }, Highcharts.myTheme));
 };

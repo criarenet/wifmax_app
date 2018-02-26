@@ -89,3 +89,87 @@
     transition:all .1s linear;
     opacity: 0;
 }
+
+.navInfo div
+{
+    text-align: center;
+    font-weight: 700;
+    color: #777;
+}
+
+.navInfo div.back
+{
+    text-align: left;
+    font-weight: 200;
+    color: #008eab;
+}
+
+.navInfo div.going
+{
+    text-align: right;
+    font-weight: 200;
+    color: #008eab;
+}
+
+.navInfo div.back i
+{
+    font-size: 15px;
+    color: #008eab;
+}
+
+.navInfo div.going i
+{
+    color: #008eab;
+    font-size: 15px;
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+#dataAccessCharts .owl-stage-outer
+{
+    padding-top: 0;
+}
+
+.mrtgImgContainner
+{
+    min-height: 200px;
+    text-align: center;
+}
+
+.mrtgImgContainner.empty
+{
+    background: url(../img/loaderchart-app.gif) center center no-repeat;    
+}
+
+.mrtgImgContainner img
+{
+    max-width: 90%;
+    margin-left: 6%;
+    margin-top: 10px;
+}
+
+.mrtgLabel
+{
+    text-align: right;
+    padding-right: 55px;
+    margin-top: 5px;
+}
+
+.mrtgLabel em
+{
+    font-style: normal;
+}
+
+#dataAccessCharts .owl-theme .owl-nav.disabled + .owl-dots
+{
+    margin-top: -15px;
+}
+
+#dataAccessCharts
+{
+    transition:all .1s linear;
+    opacity: 0;
+}
