@@ -135,12 +135,17 @@ var setCompanySelected = function(conatiner, wrapp){
     upDateCompany(gIdCompany);
     $(conatiner).children('span').html('<div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></div>');
     gCompanyNameSeleceted = $(conatiner).html().split('<')[0];
-    showHideConfigArea();
-    
+    //showHideConfigArea();
+    $('#btApplyFilters').click();
+    setTimeout(function(){
+            showHideConfigArea();
+        },250);
     getRoutersByCompany(function () {
         getListSize();
-        $('#btApplyFilters').click();
-        startDashBoard();
+        
+        //startDashBoard();
+        
+        
     });
     var listSeleceted = 'Empresa - ';
     $('#chosenFilters h6').html('<span>'+ listSeleceted + $(conatiner).text().replace(' check_box', '') +'</span>');

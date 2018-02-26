@@ -252,13 +252,13 @@ a.headermenu:hover
     
 }
 
-#wrapperFiltersFields.slideInRight, #wrapperLandscapeCharts.slideInRight,
+#wrapperLandscapeCharts.slideInRight,
 #wrapperPortraitCharts.slideInRight
 {
     animation-duration: 0.4s;
 }
 
-#wrapperFiltersMenuLeft.slideInLeft
+#wrapperFiltersMenuLeft.slideInLeft, #wrapperFiltersFields.slideInRight
 {
     animation-duration: 0.2s;
 }

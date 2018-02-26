@@ -1,3 +1,19 @@
+$(document).ready(function () {
+    $('#detailMigration').on('click', function () {
+        openLandscapeCharts('', function () {
+            setScreenOrientation('landscape');
+            setTimeout(function () {
+                $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
+                //$('.chartBoxLandscape h3').addClass('viewing');
+                //var chartTitle ='Conversão de visualizações da splash-page em logins <span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>';
+                $('#titlelandscapeChart h3').html('Migração entre os roteadores');
+                $('#wrapperLandscapeCharts').append('<span class="dateInChart">' + $('#previewSelectedDate').html() + '</span>');
+                buildDataMigrationChart();
+                //getChartConversion();
+            }, 250);
+        });
+    });
+});
 
 var getMigrationData = function (obj, callback) {
 
@@ -39,7 +55,7 @@ var buildDataMigrationChart = function () {
         return;
     }
     
-    var query = '?idCompany=' + gIdCompany + '&userSearchPeriod=' + (periodQuery.toUpperCase()) + '&hotspotList[0]='+idRouter+'&referenceDate='+date;
+    var query = '?idCompany=' + gIdCompany + '&userSearchPeriod=' + (periodQuery.toUpperCase()) + '&hotspotList[0]='+parseInt(idRouter)+'&referenceDate='+encodeURIComponent(date);
     url = url + query;
     var obj = {
         url: url
@@ -61,6 +77,8 @@ var buildDataMigrationChart = function () {
             dataChart.push(migArr);
         });
         //console.log(dataChart);
+        
+        loadRouterMigrationChart($('#migrationChart'),dataChart, '');
     });
 };
 
@@ -259,12 +277,35 @@ Highcharts.theme = {
 };
 
 // Apply the theme
-Highcharts.setOptions(Highcharts.theme);
 
-var loadPieChartAnalytics = function (containner, data, formaters) {
+
+var loadRouterMigrationChart = function (containner, data, formaters) {
+    Highcharts.setOptions(Highcharts.theme);
 
     $(containner).highcharts({
-        
-    });
 
-}
+        chart: {
+            height: '260px'
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            enabled: false,
+            text: ''
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        
+        series: [{
+                keys: ['from', 'to', 'weight'],
+                data: data,
+                type: 'sankey',
+                name: 'Sankey demo series'
+            }]
+    });
+};

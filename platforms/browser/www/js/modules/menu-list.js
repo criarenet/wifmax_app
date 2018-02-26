@@ -9,6 +9,7 @@ var initMenuLeft = function(){
         $('#newRegistersStatisticChart').html('');
         $('#genderAgeChart').html('');
         $('#conversionChart').html('');
+        $('#migrationChart').html('');
         $('.dateInChart').remove();
         $('#headerLandscapeCharts .nav-wrapper').removeClass('viewing');
         //$('.chartBoxLandscape h3').removeClass('viewing');

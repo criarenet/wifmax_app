@@ -137,9 +137,7 @@ var showHideFilters = function (callback) {
     if (filters.hasClass('slideInRight')) {
         filters.addClass(classClose);
         setTimeout(function(){
-            
             $('#carouselFilter').css('opacity', '0');
-            
             filters.hide();
             filters.attr('class', 'row');
         },300);
@@ -153,7 +151,7 @@ var showHideFilters = function (callback) {
     if(callback){
         setTimeout(function(){
             callback();
-        },100);
+        },500);
     }
 };
 
