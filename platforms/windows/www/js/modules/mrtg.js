@@ -15,11 +15,10 @@ $(document).ready(function () {
             });
             return;
         }
-        
-        openLandscapeCharts('', function(){
-            setScreenOrientation('landscape');
+        setScreenOrientation('landscape', function(){
+            openLandscapeCharts('', function(){
+            //setScreenOrientation('landscape');
             setTimeout(function(){
-                
                 $('#wrapperLandscapeCharts').append('<span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>');
                 getTrafic(function(data){
                     $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
@@ -28,6 +27,8 @@ $(document).ready(function () {
                 $('#dataAccessCharts').addClass('viewing');
             },250);
         });
+        });
+        
     });
 });
 

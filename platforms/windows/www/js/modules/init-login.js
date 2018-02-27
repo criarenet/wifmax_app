@@ -38,7 +38,7 @@ var setScreenOrientation = function (position, callback) {
     if (callback) {
         setTimeout(function () {
             callback();
-        }, 400);
+        }, 600);
     }
 };
 

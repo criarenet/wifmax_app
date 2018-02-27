@@ -459,13 +459,13 @@ select.cboOrigin option
 
 .labelColor.loading
 {
-    /*background: url(../img/loaderchart-app.gif) 15px 10px no-repeat;*/
+    background: url(../img/loaderchart-app.gif) 15px 10px no-repeat;
     text-indent: -99999px;
 }
 
 #pieChartsAnalitics .chartBox
 {
-    /*background: url(../img/loaderchart-app.gif) center center no-repeat #fff;*/
+    background: url(../img/loaderchart-app.gif) center center no-repeat #fff;
 }
 
 .labelText
@@ -476,7 +476,7 @@ select.cboOrigin option
 
 #userOnlineChart, #simultUserChart, #pieChartBrowsers, #pieChartOSs, #pieChartGender
 {
-    /*background: url(../img/loaderchart-app.gif) center center no-repeat;*/
+    background: url(../img/loaderchart-app.gif) center center no-repeat;
     min-height: 220px;
 }
 
