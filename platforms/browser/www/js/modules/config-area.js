@@ -49,7 +49,7 @@ var showHideConfigArea = function (callback) {
 };
 
 var getCompaniesLsit = function (callback) {
-    StatusBar.hide();
+    //StatusBar.hide();
     var url = wifimaxApp.url.GET_COMPANIES;
     //var url = 'https://api.myjson.com/bins/1he11h';
     var query = '';

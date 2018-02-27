@@ -1,9 +1,9 @@
 $(document).ready(function () {
     $('#detailMigration').on('click', function () {
         
-        var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
-        if (!idRouter) {
-            var txt = 'É necessário selecionar um roteador para visualizar as migrações.'
+        var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
+        if (!idHotspot) {
+            var txt = 'É necessário selecionar um hotspot para visualizar as migrações.';
             $.notify('<strong>Ops!</strong><br>' + txt, {
                 allow_dismiss: true,
                 timer: 4000,
@@ -65,9 +65,10 @@ var buildDataMigrationChart = function () {
             break;
     }
     
-    var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
+    //var idRouter = $('#routersList ul li i').parent().parent().parent().attr('data-idRouter');
+    var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
     
-    var query = '?idCompany=' + gIdCompany + '&userSearchPeriod=' + (periodQuery.toUpperCase()) + '&hotspotList[0]='+parseInt(idRouter)+'&referenceDate='+encodeURIComponent(date);
+    var query = '?idCompany=' + gIdCompany + '&userSearchPeriod=' + (periodQuery.toUpperCase()) + '&hotspotList[0]='+parseInt(idHotspot)+'&referenceDate='+encodeURIComponent(date);
     url = url + query;
     var obj = {
         url: url
@@ -322,7 +323,7 @@ var loadRouterMigrationChart = function (containner, data, formaters) {
                 keys: ['from', 'to', 'weight'],
                 data: data,
                 type: 'sankey',
-                name: 'Sankey demo series'
+                name: 'Migração'
             }]
     }, Highcharts.myTheme));
 };

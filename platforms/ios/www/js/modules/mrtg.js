@@ -15,19 +15,23 @@ $(document).ready(function () {
             });
             return;
         }
-        
-        openLandscapeCharts('', function(){
-            setScreenOrientation('landscape');
-            setTimeout(function(){
-                
-                $('#wrapperLandscapeCharts').append('<span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>');
-                getTrafic(function(data){
-                    $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
-                    $('#titlelandscapeChart h3').html(data);
-                });
-                $('#dataAccessCharts').addClass('viewing');
-            },250);
+        //funcionamento diferente do android
+        setScreenOrientation('landscape', function () {
+           
+            openLandscapeCharts('', function () {
+
+                setTimeout(function () {
+
+                    $('#wrapperLandscapeCharts').append('<span class="dateInChart">' + $('#previewSelectedDate').html() + '</span>');
+                    getTrafic(function (data) {
+                        $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
+                        $('#titlelandscapeChart h3').html(data);
+                    });
+                    $('#dataAccessCharts').addClass('viewing');
+                }, 550);
+            });
         });
+        
     });
 });
 

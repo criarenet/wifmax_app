@@ -103,6 +103,7 @@ var getDataStatistics = function (actualQuery) {
     };
     request(obj, function (json) {
         var dataInd1 = addUpdateDataRequest(keySqlStatisticInd1, json.result);
+        //console.log(dataInd1)
         setterListValues(dataInd1, 'ind1');
     });
     var url = wifimaxApp.url.GET_USERS_ONLINE_STATISTIC;
@@ -119,6 +120,7 @@ var getDataStatistics = function (actualQuery) {
     };
     request(objOnlineUsers, function (json) {
         var dataInd2 = addUpdateDataRequest(keySqlStatisticInd2, json.result);
+        //console.log(dataInd2)
         setterListValues(dataInd2, 'ind2');
     });
 
@@ -134,8 +136,9 @@ var getDataStatistics = function (actualQuery) {
         noLoader: true,
         query: query
     };
-    request(objNewRegister, function (json) {
+    request(objNewRegister, function (json) {      
         var dataInd3 = addUpdateDataRequest(keySqlStatisticInd3, json.result);
+        //console.log(dataInd3)
         setterListValues(dataInd3, 'ind3');
     });
     getBrowsersStatistic(actualQuery);
@@ -584,6 +587,7 @@ var getLandingPagesControl = function (actualQuery, callback) {
             tot.redirectPages = allAccess;
             gRedirects = json.result;
             //window.sumAllVouchers = volume;
+            //console.log(json.result)
             setterListValues(tot, 'landPg');
         }
     });
