@@ -15,19 +15,19 @@ $(document).ready(function () {
             });
             return;
         }
-        setScreenOrientation('landscape', function(){
-            openLandscapeCharts('', function(){
-            //setScreenOrientation('landscape');
-            setTimeout(function(){
-                $('#wrapperLandscapeCharts').append('<span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>');
-                getTrafic(function(data){
+        
+        openLandscapeCharts('', function () {
+            setScreenOrientation('landscape');
+            setTimeout(function () {
+                $('#wrapperLandscapeCharts').append('<span class="dateInChart">' + $('#previewSelectedDate').html() + '</span>');
+                getTrafic(function (data) {
                     $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
                     $('#titlelandscapeChart h3').html(data);
                 });
                 $('#dataAccessCharts').addClass('viewing');
-            },250);
+            }, 250);
         });
-        });
+        
         
     });
 });
@@ -90,10 +90,15 @@ var getTrafic = function (callback) {
             query: query
         };
         request(obj, function (json) {
+           
             var d = new Date();
             var actualTime = d.getTime();
-            if(!json.result[0].chartSrc){
+            if(!json.result.length){
                 $(types[i].tag).html(emptyChartInfo);
+                if (callback) {
+                    callback('Roteador não identificado');
+                }
+                return;
             }else{
                 var srcImage = json.result[0].chartSrc+ types[i].type + '-' + periodQuery.toLowerCase() +'.gif?'+actualTime;
                 var img = '<img src="'+srcImage+'">';

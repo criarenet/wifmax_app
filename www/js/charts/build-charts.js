@@ -19,7 +19,7 @@ var openLandscapeCharts = function (chart, callback) {
     if(callback){
         setTimeout(function(){
             callback();
-        },100);
+        },400);
     }
 };
 

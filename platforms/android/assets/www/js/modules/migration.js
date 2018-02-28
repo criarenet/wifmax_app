@@ -2,8 +2,13 @@ $(document).ready(function () {
     $('#detailMigration').on('click', function () {
         
         var idHotspot = $('#hotspotList ul li i').parent().parent().parent().attr('data-idhotspot');
-        if (!idHotspot) {
-            var txt = 'É necessário selecionar um hotspot para visualizar as migrações.';
+        if (!idHotspot || periodQuery !== 'Daily') {
+            var txt;
+            if(idHotspot){
+                txt = 'É necessário selecionar o período diário para visualizar as migrações.';
+            }else{
+                txt = 'É necessário selecionar um hotspot para visualizar as migrações.';
+            }
             $.notify('<strong>Ops!</strong><br>' + txt, {
                 allow_dismiss: true,
                 timer: 4000,
@@ -22,7 +27,7 @@ $(document).ready(function () {
                 $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
                 //$('.chartBoxLandscape h3').addClass('viewing');
                 //var chartTitle ='Conversão de visualizações da splash-page em logins <span class="dateInChart">'+$('#previewSelectedDate').html()+'</span>';
-                $('#titlelandscapeChart h3').html('Migração entre os roteadores');
+                $('#titlelandscapeChart h3').html('Migração entre os hotspots');
                 $('#wrapperLandscapeCharts').append('<span class="dateInChart">' + $('#previewSelectedDate').html() + '</span>');
                 buildDataMigrationChart();
                 //getChartConversion();

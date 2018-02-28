@@ -8,32 +8,19 @@ $(document).ready(function () {
         var containner = $(this).attr('data-tabselected');
         $(containner).addClass('animated flipInX active');
     });
-    
-    //getRoutersByCompany(getListSize);
-    
-//    $('#changeDatePeriod').on('change', function(){
-//        $('.panelTab').removeClass('selected');
-//        var date = $('.panelTab')[0];
-//        var period = $('.panelTab')[1];
-//        if($('#changeDatePeriod:checked').length){
-//            $(period).addClass('selected');
-//        }else{
-//            $(date).addClass('selected');
-//        }
-//    });
-    
 });
 
 var getListSize = function () {
     var allHeight = $(window).height();
     var top = 55;
-    
+
     var bottom = 45;
     var listSize = (allHeight - top) - bottom;
     $('#carouselFilter').height(listSize);
     $('#routersList, #hotspotList, #filterDate').height(listSize);
     $('.btBackRouters').on('click', function(){
-        $('#hotspotList').removeClass('showFilter');
+        showRouterHotspots();
+        //$('#hotspotList').removeClass('showFilter');
     });
 };
 
@@ -57,13 +44,13 @@ var getRoutersByCompany = function (callback) {
 var buildRoutersList = function (id, data, callback) {
     $(id).html('');
     
-    var selectAll = '<li data-idrouterCompany="'+gIdCompany+'" data-type="allRouters" onclick="showHotspots(this)" class="list-group-item\n\
+    var selectAll = '<li data-idrouterCompany="'+gIdCompany+'" data-type="allRouters" onclick="showHotspots(this, showRouterHotspots)" class="list-group-item\n\
                      waves-light-blue">Selecionar todos<span>\n\
                      <div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></li>';
     $(id).append(selectAll);
     $.each(data, function (i, v) {
         //console.log(v);
-        var item = '<li data-idrouter="'+v.groupAttributes.idRouter+'" onclick="showHotspots(this)" class="list-group-item\n\
+        var item = '<li data-idrouter="'+v.groupAttributes.idRouter+'" onclick="showHotspots(this, showRouterHotspots)" class="list-group-item\n\
                      waves-light-blue">'+v.groupAttributes.routerAlias+'<span>></span></li>';
         $(id).append(item);
     });
@@ -71,6 +58,37 @@ var buildRoutersList = function (id, data, callback) {
         callback();
     }
 };
+
+
+var showRouterHotspots = function (callback) {
+    var filters = $('#hotspotList');
+    var classOpen = 'slideInLeft animated';
+    var classClose = 'slideOutLeft animated';
+
+    if (filters.hasClass('slideInLeft')) {
+        filters.addClass(classClose);
+        setTimeout(function(){
+            $('#hotspotList ul').css('opacity', '0');
+            filters.hide();
+            filters.attr('class', 'filterList');
+        },500);
+    }else{
+        
+        filters.addClass(classOpen);
+        setTimeout(function(){
+            filters.show();
+        },1);
+        setTimeout(function(){
+            $('#hotspotList ul').css('opacity', '1');
+        },500);
+    }
+    if(callback){
+        setTimeout(function(){
+            callback();
+        },500);
+    }
+};
+
 
 var setItemFilterSelected = function(conatiner, wrapp){
     $('#'+wrapp+' ul li span').html('>');
@@ -91,7 +109,7 @@ var setItemFilterSelected = function(conatiner, wrapp){
     $('#chosenFilters h6').html('<span>'+ listSeleceted + $(conatiner).text().replace(' check_box', '') +'</span>');
 };
 
-var showHotspots = function (router) {
+var showHotspots = function (router, callback) {
     var container = $('#hotspotList ul');
     var idRouter = $(router).attr('data-idRouter');
     
@@ -102,7 +120,9 @@ var showHotspots = function (router) {
     
     var selected = $(router).children('span').html().indexOf('check_box');
     if (selected > 0) {
-        $('#hotspotList').addClass('showFilter');
+        if (callback) {
+            callback();
+        }
         return;
     }
 
@@ -117,14 +137,20 @@ var showHotspots = function (router) {
                      waves-light-blue">' + v.ssid + '<span>></span></li>';
         $(container).append(hotspot);
     });
-    $('#hotspotList').addClass('showFilter');
+    
+    if(callback){
+        callback();
+    }
+    
+    //$('#hotspotList').addClass('showFilter');
     setTimeout(function () {
         setItemFilterSelected(router, 'routersList');
     }, 100);
 };
 
 var backToRouters = function (hotspot) {
-    $('#hotspotList').removeClass('showFilter');
+    //$('#hotspotList').removeClass('showFilter');
+    showRouterHotspots();
     setTimeout(function () {
         setItemFilterSelected(hotspot, 'hotspotList');
     }, 100);

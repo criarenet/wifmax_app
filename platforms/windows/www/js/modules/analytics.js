@@ -169,7 +169,8 @@ var getVouchersControl = function (actualQuery, callback) {
     };
     request(obj, function (json) {
         if (json.result) {
-            var data = addUpdateDataRequest(keySql, json.result);
+            //var data = addUpdateDataRequest(keySql, json.result);
+            var data = json.result;
             var tot = {};
             var volume = 0
             $.each(data, function(i, v){
@@ -201,7 +202,8 @@ var getDataAnalytics = function (actualQuery, callback) {
     
     request(obj, function (json) {
         if (json.result) {
-            var data = addUpdateDataRequest(keySql, json.result);
+            //var data = addUpdateDataRequest(keySql, json.result);
+            var data = json.result;
             setterListAnalytics(data, 'analyticsLabel');
         }
     });
@@ -225,7 +227,8 @@ var getConversionData = function (actualQuery, callback) {
     //$(_this).addClass('loading');
     request(obj, function (json) {
         if (json.result) {
-            var data = addUpdateDataRequest(keySql, json.result);
+            //var data = addUpdateDataRequest(keySql, json.result);
+            var data = json.result;
             setterListAnalytics(data, 'conversionLabel');
         }
     });
@@ -252,11 +255,16 @@ var getChartGenderAge = function (actualQuery, callback) {
 
 
     $('#genderAgeChart').html('');
-    
+    setTimeout(function(){
+        $('#landscapeChartArea').addClass('runLoader');
+    },350);
     
     request(obj, function (json) {
+        $('#landscapeChartArea').removeClass('runLoader');
         if (json.result) {
-            var data = addUpdateDataRequest(keySql, json.result);
+            
+            //var data = addUpdateDataRequest(keySql, json.result);
+            var data = json.result;
             
             formaters.categories = data.categories;
             var dataComplet = [];

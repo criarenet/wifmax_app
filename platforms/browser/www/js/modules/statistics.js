@@ -102,7 +102,8 @@ var getDataStatistics = function (actualQuery) {
         query: query
     };
     request(obj, function (json) {
-        var dataInd1 = addUpdateDataRequest(keySqlStatisticInd1, json.result);
+        //var dataInd1 = addUpdateDataRequest(keySqlStatisticInd1, json.result);
+        var dataInd1 = json.result;
         //console.log(dataInd1)
         setterListValues(dataInd1, 'ind1');
     });
@@ -119,7 +120,8 @@ var getDataStatistics = function (actualQuery) {
         query: query
     };
     request(objOnlineUsers, function (json) {
-        var dataInd2 = addUpdateDataRequest(keySqlStatisticInd2, json.result);
+        //var dataInd2 = addUpdateDataRequest(keySqlStatisticInd2, json.result);
+        var dataInd2 = json.result;
         //console.log(dataInd2)
         setterListValues(dataInd2, 'ind2');
     });
@@ -137,7 +139,8 @@ var getDataStatistics = function (actualQuery) {
         query: query
     };
     request(objNewRegister, function (json) {      
-        var dataInd3 = addUpdateDataRequest(keySqlStatisticInd3, json.result);
+        //var dataInd3 = addUpdateDataRequest(keySqlStatisticInd3, json.result);
+        var dataInd3 = json.result;
         //console.log(dataInd3)
         setterListValues(dataInd3, 'ind3');
     });
@@ -169,7 +172,8 @@ var getNewRegistersStatistic = function (actualQuery, callback) {
     
     request(obj, function (json) {
         if (json.result && json.result.data) {
-            var data = addUpdateDataRequest(keySql, json.result.data);
+            //var data = addUpdateDataRequest(keySql, json.result.data);
+            var data = json.result.data;
             loadChartNewRegistersStatistic($('#newRegistersStatisticChart'), data, formaters);
         }
     });
@@ -201,7 +205,8 @@ var getUserOnlineStatistic = function (actualQuery, callback) {
     
     request(obj, function (json) {
         if (json.result && json.result.data) {
-            var data = addUpdateDataRequest(keySql, json.result.data);
+            //var data = addUpdateDataRequest(keySql, json.result.data);
+            var data = json.result.data;
             loadChartOnlineUserStatistic($('#userOnlineStatisticChart'), json.result.data, formaters);
         }
     });

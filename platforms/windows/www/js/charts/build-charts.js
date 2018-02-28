@@ -19,7 +19,7 @@
     if(callback){
         setTimeout(function(){
             callback();
-        },100);
+        },400);
     }
 };
 

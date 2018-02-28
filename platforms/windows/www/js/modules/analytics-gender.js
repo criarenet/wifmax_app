@@ -16,7 +16,8 @@
         if (json.result) {
             $('.genderHide').fadeIn(100);
             setTimeout(function(){
-            var data = addUpdateDataRequest(keySql, json.result);
+            //var data = addUpdateDataRequest(keySql, json.result);
+            var data = json.result;
             var genderData = {};
             
             genderData.percentageFemale = data.percentageFemale;

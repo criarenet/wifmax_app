@@ -9,7 +9,9 @@ var startComponents = function(){
     $('#btApplyFilters').on('click', function () {
         showHideFilters(function () {
             var query = buildQuery();
-            addUpdateDataFIlter(query);
+            
+            //addUpdateDataFIlter(query);
+            
             switch (reporstSelecteds) {
                 case 'dashboard':
                     buildDashBoard(query);
@@ -146,7 +148,7 @@ var showHideFilters = function (callback) {
         filters.addClass(classOpen);
         setTimeout(function(){
             $('#carouselFilter').css('opacity', '1');
-        },500);
+        },550);
     }
     if(callback){
         setTimeout(function(){

@@ -2,14 +2,16 @@
 
 function onLoad() {
     //StatusBar.hide();
-//    setTimeout(function () {
-//        verifyPrintLogin();
-//        //StatusBar.hide();
-//    }, 2000);
+    setTimeout(function () {
+        verifyPrintLogin();
+        //StatusBar.hide();
+    }, 2000);
     document.addEventListener("deviceready", onDeviceReady, false);
 }
+
 function onDeviceReady() {
-    
+    var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
+    db.transaction(createDB, errorCB, successCB);
     //document.addEventListener("pause", onPause, false);
     //document.addEventListener("resume", onResume, false);
     //document.addEventListener("menubutton", onMenuKeyDown, false);
@@ -44,17 +46,19 @@ var setScreenOrientation = function (position, callback) {
 
 var verifyPrintLogin = function () {
 
-    var userTrue = function (data) {
-        if (!data.length) {
+    var userTrue = function (tx, data) {
+        //alert(data.rows.item(0).idCompany + data.rows.item(0).hash64);
+        if (!data.rows.length) {
             $('.loaderLine').fadeOut(10, function () {
+                
                 setTimeout(function () {
                     $('#logoLoginArea').addClass('loaded');
                 }, 50);
             });
         } else {
-            //alert(data[0].idCompany +'eeeeeee'+ data[0].hash64)
-            gIdCompany = data[0].idCompany;
-            loginHash = data[0].hash64;
+            //alert(data.rows.item(0).idCompany + data.rows.item(0).hash64);
+            gIdCompany = data.rows.item(0).idCompany;
+            loginHash = data.rows.item(0).hash64;
             
             getCompaniesLsit(function(){
                 $('#wrappLogin').fadeOut(100, function () {

@@ -2,7 +2,18 @@
 var gCompanyNameSeleceted;
 $(document).ready(function () {
     //StatusBar.hide();
+//    document.body.addEventListener('touchmove', function(e){
+//        //console.log(e)
+//        console.log(e.changedTouches[0].pageY)
+//        //console.log(e.changedTouches[0].pageX) // alert pageX coordinate of touch point
+//    }, false);
+//    document.body.addEventListener('touchend', function(e){
+//        //console.log(e)
+//        //console.log(e.changedTouches[0].pageY)
+//        //console.log(e.changedTouches[0].pageX) // alert pageX coordinate of touch point
+//    }, false);
 });
+
 
 
 Array.prototype.getInterval = function (start, len) {
@@ -62,7 +73,8 @@ var getUserOnlineChart = function (params, callback) {
     
     request(obj, function (json) {
         if (json.result && json.result.data) {
-            var data = addUpdateDataRequest(keySql, json.result.data);
+            //var data = addUpdateDataRequest(keySql, json.result.data);
+            var data = json.result.data;
             
             var d = new Date(json.result.date);
             formaters.timeLine = intervalsTypes.Daily.getInterval(parseInt(d.getHours()), 24);
@@ -88,7 +100,8 @@ var countUpDashboardNumbers = function (params, callback) {
     $('#dashBoardContainer .labelColor').text('0');
     $('#dashBoardContainer .labelColor').addClass('loading');
     request(obj, function (json) {
-        var data = addUpdateDataRequest(keySql, json.result);
+        //var data = addUpdateDataRequest(keySql, json.result);
+        var data = json.result;
         $('#dashBoardContainer .labelColor').removeClass('loading');
         $('#dashBoardContainer .labelColor').each(function () {
             var $this = $(this);
@@ -132,7 +145,8 @@ var getSimultUserChart = function (params, callback) {
     $('#userOnlineChart').html('');
 
     request(obj, function (json) {
-        var data = addUpdateDataRequest(keySql, json.result);
+        //var data = addUpdateDataRequest(keySql, json.result);
+        var data = json.result;
         formaters.timeLine = json.result.date;
         //var d = new Date(json.result.date);
         //formaters.timeLine = intervalsTypes.Daily.getInterval(parseInt(d.getHours()), 24);

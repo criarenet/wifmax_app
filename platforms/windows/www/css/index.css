@@ -139,7 +139,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
 /*    height: 380px;*/
     position: absolute;
     width: 100%;
-    transition:all .1s linear;
+    /*transition:all .1s linear;*/
 }
 
 #routersList{
@@ -153,7 +153,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
 
 #hotspotList
 {
-    left: -100%;
+    /*left: -100%;*/
     z-index: 99;
     background: #eee;
 }
@@ -258,7 +258,8 @@ a.headermenu:hover
     animation-duration: 0.4s;
 }
 
-#wrapperFiltersMenuLeft.slideInLeft, #wrapperFiltersFields.slideInRight
+#wrapperFiltersMenuLeft.slideInLeft, #wrapperFiltersFields.slideInRight,
+#hotspotList.slideInLeft
 {
     animation-duration: 0.2s;
 }
@@ -542,7 +543,8 @@ select.cboOrigin option
 
 #hotspotList
 {
-    position: absolute;
+/*    position: absolute;*/
+overflow: auto;
 }
 
 .wrappIptOnOff
@@ -773,4 +775,38 @@ span.dateInChartPort
 {
     min-height: 265px;
     overflow: hidden;
+}
+
+#landscapeChartArea.runLoader
+{
+    background: url(../img/loaderchart-app.gif) center center no-repeat #ffffff;
+}
+
+.ball-clip-rotate>div {
+    border-radius: 100%;
+    margin: 2px;
+    border: 2px solid #ccc;
+    border-bottom-color: transparent;
+    height: 26px;
+    width: 26px;
+    background: 0 0!important;
+    display: inline-block;
+    -webkit-animation: rotate .75s 0s linear infinite;
+    animation: rotate .75s 0s linear infinite;
+}
+
+.filterList
+{
+    display: none;
+}
+
+#routersList.filterList
+{
+    display: block;
+}
+
+#hotspotList ul
+{
+    opacity: 0;
+    transition:all .1s linear;
 }
