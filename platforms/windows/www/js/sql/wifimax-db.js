@@ -2,10 +2,12 @@
 //    tx.executeSql('DROP TABLE IF EXISTS USERS');
 //    tx.executeSql('DROP TABLE IF EXISTS LASTREQUESTS');
 //    tx.executeSql('DROP TABLE IF EXISTS LASTFILTER');
+//    tx.executeSql('DROP TABLE IF EXISTS APPDATABASE');
 
-    tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (name, hash64, idCompany)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS LASTREQUESTS (request, data)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS LASTFILTER (query)');
+
+    tx.executeSql('CREATE TABLE IF NOT EXISTS APPDATABASE (name, hash64, idRouter, idHotspot, idCompany)');
+    //tx.executeSql('CREATE TABLE IF NOT EXISTS LASTREQUESTS (request, data)');
+    //tx.executeSql('CREATE TABLE IF NOT EXISTS LASTFILTER (query)');
 }
 
 function errorCB(tx) {
@@ -27,45 +29,67 @@ function successCB(tx) {
 var addUser = function (name, hash, idCompany) {
     var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
     db.transaction(function (tx) {
-        tx.executeSql('INSERT INTO USERS (name, hash64, idCompany) VALUES ("' + name + '", "' + hash + '", "' + idCompany + '")');
+        tx.executeSql('INSERT INTO APPDATABASE (name, hash64, idCompany) VALUES ("' + name + '", "' + hash + '", "' + idCompany + '")');
     }, errorCB, successCB);
 };
-
-function queryDB(tx) {
-    
-}
-
-function querySuccess(tx, results) {
-    var len = results.rows.length;
-    alert("DEMO table: " + len + " rows found.");
-    for (var i = 0; i < len; i++) {
-        alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-    }
-}
 
 var getUser = function (success) {
     var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
     db.transaction(function(tx){
-        tx.executeSql('SELECT * FROM USERS', [], success, errorCB);
+        tx.executeSql('SELECT * FROM APPDATABASE', [], success, errorCB);
     }, errorCB);
-//    db.transaction(function (tx) {
-//        tx.executeSql('SELECT * FROM USERS', [], function (tx, res) {
-//            
-////            success(res.rows);
-////            if (success) {
-////                success(res.rows);
-////            }
-//        });
-//    }, errorCB, successCB);
 };
 
-var upDateCompany = function(idCompany){
+var upDateCompany = function (idCompany) {
     var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
     db.transaction(function (tx) {
-        tx.executeSql('SELECT idCompany FROM USERS', [], function (tx, res) {
+        tx.executeSql('SELECT idCompany FROM APPDATABASE', [], function (tx, res) {
             if (res.rows.length) {
-                tx.executeSql('UPDATE USERS SET idCompany = ?', [idCompany]);
+                var updateChild;
+                if (res.rows.item(0).idCompany == idCompany) {
+                    updateChild = false;
+                } else {
+                    updateChild = true;
+                }
+                if (updateChild) {
+                    upDateRouter(0);
+                    upDateHotspot(0);
+                }
+                tx.executeSql('UPDATE APPDATABASE SET idCompany = ?', [idCompany]);
+            }
+        });
+    }, errorCB);
+};
+
+var upDateRouter = function(idRouter){
+    var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
+    db.transaction(function (tx) {
+        tx.executeSql('SELECT idRouter FROM APPDATABASE', [], function (tx, res) {
+            if (res.rows.length) {
+                
+                if (res.rows.item(0).idRouter == idRouter) {
+                    var updateChild;
+                    updateChild = false;
+                } else {
+                    updateChild = true;
+                }
+                if (updateChild) {
+                    upDateHotspot(0);
+                }
+                
+                tx.executeSql('UPDATE APPDATABASE SET idRouter = ?', [idRouter]);
             } 
         });
     }, errorCB);
-}
+};
+
+var upDateHotspot = function(idHotspot){
+    var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
+    db.transaction(function (tx) {
+        tx.executeSql('SELECT idHotspot FROM APPDATABASE', [], function (tx, res) {
+            if (res.rows.length) {
+                tx.executeSql('UPDATE APPDATABASE SET idHotspot = ?', [idHotspot]);
+            } 
+        });
+    }, errorCB);
+};

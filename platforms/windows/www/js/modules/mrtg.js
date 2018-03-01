@@ -20,11 +20,16 @@ $(document).ready(function () {
             setScreenOrientation('landscape');
             setTimeout(function () {
                 $('#wrapperLandscapeCharts').append('<span class="dateInChart">' + $('#previewSelectedDate').html() + '</span>');
-                getTrafic(function (data) {
-                    $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
-                    $('#titlelandscapeChart h3').html(data);
-                });
-                $('#dataAccessCharts').addClass('viewing');
+                
+                
+                    getTrafic(function (data) {
+                        $('#headerLandscapeCharts .nav-wrapper').addClass('viewing');
+                        $('#titlelandscapeChart h3').html(data);
+                    });
+                    setTimeout(function () {
+                        $('#dataAccessCharts').show();
+                        $('#dataAccessCharts').addClass('viewing');
+                    }, 300);
             }, 250);
         });
         
@@ -43,6 +48,11 @@ var clearMrtgTags = function(){
     $('#cpuArea').next().html('');
     
     $('#dataAccessCharts').removeClass('viewing');
+    
+    setTimeout(function(){
+        $('#dataAccessCharts').hide();
+    },200);
+    
     $('.mrtgImgContainner').addClass('empty');
 };
 

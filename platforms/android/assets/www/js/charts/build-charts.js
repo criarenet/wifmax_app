@@ -2,7 +2,7 @@ var openLandscapeCharts = function (chart, callback) {
     var filters = $('#wrapperLandscapeCharts');
     var classOpen = 'slideInRight animated';
     var classClose = 'slideOutRight animated';
-
+    
     if (filters.hasClass('slideInRight')) {
         filters.addClass(classClose);
         setTimeout(function(){
@@ -12,9 +12,9 @@ var openLandscapeCharts = function (chart, callback) {
     }else{
         filters.show();
         filters.addClass(classOpen);
-        setTimeout(function(){
-            //$('#carouselFilter').css('opacity', '1');
-        },300);
+//        setTimeout(function(){
+//
+//        },300);
     }
     if(callback){
         setTimeout(function(){

@@ -24,7 +24,7 @@ var getListSize = function () {
     });
 };
 
-var getRoutersByCompany = function (callback) {
+var getRoutersByCompany = function (callback, ids, extCallback) {
     var url = wifimaxApp.url.GET_ROUTERS_BY_COMPANIES;
     //var url = 'https://api.myjson.com/bins/1he11h';
     var query = 'idCompany='+gIdCompany;
@@ -36,27 +36,59 @@ var getRoutersByCompany = function (callback) {
     };
     
     request(obj, function (json) {
+        var selected = '';
+        if(ids && ids[0]){
+            selected = ids[0];
+        }
         window.actualRoutersList = json.result;
-        buildRoutersList('#routersList ul', json.result, callback);
+        buildRoutersList('#routersList ul', json.result, callback, ids, selected, extCallback);
     });
 };
 
-var buildRoutersList = function (id, data, callback) {
+var buildRoutersList = function (id, data, callback, ids, selected, extCallback) {
     $(id).html('');
-    
+    getListSize();
     var selectAll = '<li data-idrouterCompany="'+gIdCompany+'" data-type="allRouters" onclick="showHotspots(this, showRouterHotspots)" class="list-group-item\n\
-                     waves-light-blue">Selecionar todos<span>\n\
-                     <div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></li>';
+                     waves-light-blue">Selecionar todos <span>></span></li>';
+//                     <div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></li>';
     $(id).append(selectAll);
+    
     $.each(data, function (i, v) {
-        //console.log(v);
-        var item = '<li data-idrouter="'+v.groupAttributes.idRouter+'" onclick="showHotspots(this, showRouterHotspots)" class="list-group-item\n\
-                     waves-light-blue">'+v.groupAttributes.routerAlias+'<span>></span></li>';
+        var checked;
+        
+        if (selected == v.groupAttributes.idRouter) {
+            checked = '<span><div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></div></span>';
+            //$('#chosenFilters h6').html('<span>Empresa - ' + v.name + '</span>');
+            //gCompanyNameSeleceted = v.name;
+        } else {
+            checked = '<span>></span>';
+        }
+        
+        var item = '<li data-idrouter="'+ v.groupAttributes.idRouter +'" onclick="showHotspots(this, showRouterHotspots)" class="list-group-item\n\
+                     waves-light-blue">'+ v.groupAttributes.routerAlias + checked + '</li>';
         $(id).append(item);
     });
+    
+    var selRouter = $('#routersList ul li i').parent().parent().parent();
+    
+    if(ids && ids[1]){
+        showHotspots(selRouter, showRouterHotspots, extCallback, ids[1]);
+    }else{
+        //showHotspots(selRouter, showRouterHotspots, extCallback, '');
+        if (extCallback) {
+            extCallback();
+        }
+    }
+//    if(parseInt(ids[0])){
+//        var firstRouterSelected = $('#routersList ul li').attr('data-idRouter', ids[0]);
+//        console.log(firstRouterSelected)
+//        showHotspots(firstRouterSelected, showRouterHotspots);
+//    }
+    
     if (callback) {
         callback();
     }
+    
 };
 
 
@@ -109,7 +141,7 @@ var setItemFilterSelected = function(conatiner, wrapp){
     $('#chosenFilters h6').html('<span>'+ listSeleceted + $(conatiner).text().replace(' check_box', '') +'</span>');
 };
 
-var showHotspots = function (router, callback) {
+var showHotspots = function (router, callback, extCallback, idHot) {
     var container = $('#hotspotList ul');
     var idRouter = $(router).attr('data-idRouter');
     
@@ -118,10 +150,16 @@ var showHotspots = function (router, callback) {
         return;
     }
     
+    upDateRouter(idRouter);
+    
     var selected = $(router).children('span').html().indexOf('check_box');
-    if (selected > 0) {
+    //console.log(selected, idHot)
+    if (selected > 0 && $('#hotspotList ul li').length) {
         if (callback) {
             callback();
+        }
+        if (extCallback) {
+            extCallback();
         }
         return;
     }
@@ -129,19 +167,30 @@ var showHotspots = function (router, callback) {
     var hotspots = getHotspotsByRouter(idRouter);
     $(container).html('');
     var selectAll = '<li data-idrouter="' + idRouter + '" data-type="allRouters" onclick="backToRouters(this)" class="list-group-item\n\
-                     waves-light-blue">Selecionar todos<span>\n\
-                     <div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></li>';
+                     waves-light-blue">Selecionar todos<span>></span></li>';
     $(container).append(selectAll);
     $.each(hotspots.groupRows, function (i, v) {
+        var checked;
+        if (idHot && idHot == v.idHotspot) {
+            checked = '<span><div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></div></span>';
+            //$('#chosenFilters h6').html('<span>Empresa - ' + v.name + '</span>');
+            //gCompanyNameSeleceted = v.name;
+        } else {
+            checked = '<span>></span>';
+        }
+        
+        
         var hotspot = '<li data-idhotspot="' + v.idHotspot + '" onclick="backToRouters(this)" class="list-group-item\n\
-                     waves-light-blue">' + v.ssid + '<span>></span></li>';
+                     waves-light-blue">' + v.ssid + checked + '</li>';
         $(container).append(hotspot);
     });
     
     if(callback){
         callback();
     }
-    
+    if(extCallback){
+        extCallback();
+    }
     //$('#hotspotList').addClass('showFilter');
     setTimeout(function () {
         setItemFilterSelected(router, 'routersList');
@@ -151,6 +200,12 @@ var showHotspots = function (router, callback) {
 var backToRouters = function (hotspot) {
     //$('#hotspotList').removeClass('showFilter');
     showRouterHotspots();
+    var idHotspot = $(hotspot).attr('data-idhotspot');
+    //alert(idHotspot);
+    if(idHotspot){
+        upDateHotspot(idHotspot);
+    }
+    
     setTimeout(function () {
         setItemFilterSelected(hotspot, 'hotspotList');
     }, 100);

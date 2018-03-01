@@ -2,10 +2,11 @@
 
 function onLoad() {
     //StatusBar.hide();
-    setTimeout(function () {
-        verifyPrintLogin();
-        //StatusBar.hide();
-    }, 2000);
+//    setTimeout(function () {
+//        verifyPrintLogin();
+//        var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
+//    db.transaction(createDB, errorCB, successCB);
+//    }, 2000);
     document.addEventListener("deviceready", onDeviceReady, false);
 }
 
@@ -50,7 +51,6 @@ var verifyPrintLogin = function () {
         //alert(data.rows.item(0).idCompany + data.rows.item(0).hash64);
         if (!data.rows.length) {
             $('.loaderLine').fadeOut(10, function () {
-                
                 setTimeout(function () {
                     $('#logoLoginArea').addClass('loaded');
                 }, 50);
@@ -59,6 +59,10 @@ var verifyPrintLogin = function () {
             //alert(data.rows.item(0).idCompany + data.rows.item(0).hash64);
             gIdCompany = data.rows.item(0).idCompany;
             loginHash = data.rows.item(0).hash64;
+            var initRouter = data.rows.item(0).idRouter;
+            var initHotspot = data.rows.item(0).idHotspot;
+            
+            var ids = [initRouter, initHotspot];
             
             getCompaniesLsit(function(){
                 $('#wrappLogin').fadeOut(100, function () {
@@ -66,7 +70,7 @@ var verifyPrintLogin = function () {
                         startDashBoard();
                     }, 100);
                 });
-            });
+            }, ids);
             
         }
     };
@@ -119,7 +123,7 @@ var doLogin = function () {
                     startDashBoard();
                 }, 100);
             });
-        });
+        }, '', true);
 
 
 //        $('#wrappLogin').fadeOut(100, function () {

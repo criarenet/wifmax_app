@@ -15,11 +15,10 @@
     
     
     $('#btLogout').on('click', function(){
-        
+        var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
         db.transaction(function (tx) {
-            tx.executeSql('DROP TABLE IF EXISTS USERS');
+            tx.executeSql('DROP TABLE IF EXISTS APPDATABASE');
         });
-        
         location.reload();
     });
     
@@ -48,7 +47,7 @@ var showHideConfigArea = function (callback) {
     }
 };
 
-var getCompaniesLsit = function (callback) {
+var getCompaniesLsit = function (callback, ids, login) {
     //StatusBar.hide();
     var url = wifimaxApp.url.GET_COMPANIES;
     //var url = 'https://api.myjson.com/bins/1he11h';
@@ -61,68 +60,71 @@ var getCompaniesLsit = function (callback) {
     };
 
     request(obj, function (json) {
-        var cback;
-        if(json.result.length > 1){
-            cback = function(){
-                if(!gIdCompany || gIdCompany == 1){
-                    //alert(gIdCompany)
-                    $('#btConfigArea').click();
-                }else{
-                    getRoutersByCompany(function () {
-                        getListSize();
-                        //$('#btApplyFilters').click();
-                        //startDashBoard();
-                    });
-                }
-                setTimeout(function(){
+        var cback = '', selected = '';
+
+
+        if (json.result.length > 1) {
+            if (gIdCompany == 1) {
+                
+                listCompany('#companies', json.result, '', '', function(){
                     callback();
-                },1000);
-            };
-        }else{
-            cback = function(){
-                getRoutersByCompany(function () {
-                    getListSize();
-                    //$('#btApplyFilters').click();
-                    startDashBoard();
+                    setTimeout(function () {
+                        $('#btConfigArea').click();
+                    }, 100);
                 });
-                callback();
-            };
+                return;
+            }
+            
+            if(login){
+                listCompany('#companies', json.result, '', '', callback);
+                return;
+            }
+            selected = gIdCompany;
+            cback = callback;
+        } else {
+            if(login){
+                listCompany('#companies', json.result, '', '', callback);
+                return;
+            }
+            selected = gIdCompany;
+            cback = callback;
         }
-        listCompany('#companies', json.result, cback);
+        listCompany('#companies', json.result, selected, ids, cback);
     });
 };
 
-var listCompany = function (id, data, callback) {
-
+var listCompany = function (id, data, selected, ids, callback) {
     $(id).html('');
-//    var mainCompany = '<li data-idCompany="' + gIdCompany + '" data-type="allRouters" onclick="showHotspots(this)" class="list-group-item\n\
-//                     waves-light-blue">'+gCompanyNameSeleceted+'<span>\n\
-//                     <div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></li>';
-//    $(id).append(mainCompany);
-
-    $.each(data, function (i, v) {
-        //console.log(v);
-        var onClickFunc;
-        if (data.length != 1) {
-            onClickFunc = 'setCompanySelected(this)';
-        }else{
-            onClickFunc = '';
-        }
-        var item = '<li data-idcompany="' + v.idCompany + '" onclick="'+onClickFunc+'" class="list-group-item\n\
-                     waves-light-blue">' + v.name + '<span>></span></li>';
-        $(id).append(item);
-        if (data.length === 1) {
-            $('#companies li span').html('<div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></div>')
-            gCompanyNameSeleceted = v.name
-            $('#chosenFilters h6').html('<span>Empresa - ' + v.name +'</span>');
-            $('#companies li').off('click', setCompanySelected);
-        }
-    });
-    
-    
-
-    if (callback) {
-        callback();
+    //alert(data.length)
+    if (data.length === 1) {
+        
+        $('#companies').html('<li data-idcompany="' + data[0].idCompany + '" onclick="" class="list-group-item\n\
+                    waves-light-blue">' + data[0].name + '<span><div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">\n\
+                    check_box</i></div></span></li>');
+        gCompanyNameSeleceted = data[0].name;
+        $('#chosenFilters h6').html('<span>Empresa - ' + data[0].name + '</span>');
+    } else {
+        $.each(data, function (i, v) {
+            var checked;
+            if (selected === v.idCompany) {
+                checked = '<div class="demo-google-material-icon"> <i style="color:#8BC34A;" class="material-icons">check_box</i></div>';
+                $('#chosenFilters h6').html('<span>Empresa - ' + v.name + '</span>');
+                gCompanyNameSeleceted = v.name;
+            } else {
+                checked = '<span>></span>';
+            }
+            var item = '<li data-idcompany="' + v.idCompany + '" onclick="setCompanySelected(this)" class="list-group-item\n\
+                    waves-light-blue">' + v.name + checked + '</li>';
+            $(id).append(item);
+        });
+    }
+    if (ids[0]) {
+        getRoutersByCompany(getListSize, ids, callback);
+    }else{
+        getRoutersByCompany(getListSize, '', callback);
+//        if(callback){
+//            callback();
+//        }
     }
 };
 
