@@ -52,6 +52,7 @@ var verifyPrintLogin = function () {
         if (!data.rows.length) {
             $('.loaderLine').fadeOut(10, function () {
                 setTimeout(function () {
+                    StatusBar.hide();
                     $('#logoLoginArea').addClass('loaded');
                 }, 50);
             });
@@ -67,6 +68,7 @@ var verifyPrintLogin = function () {
             getCompaniesLsit(function(){
                 $('#wrappLogin').fadeOut(100, function () {
                     setTimeout(function () {
+                        StatusBar.hide();
                         startDashBoard();
                     }, 100);
                 });
