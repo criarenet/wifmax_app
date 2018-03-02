@@ -257,7 +257,7 @@ var getChartGenderAge = function (actualQuery, callback) {
     $('#genderAgeChart').html('');
     setTimeout(function(){
         $('#landscapeChartArea').addClass('runLoader');
-    },350);
+    },150);
     
     request(obj, function (json) {
         $('#landscapeChartArea').removeClass('runLoader');
@@ -368,7 +368,11 @@ var getChartConversion = function (actualQuery, callback) {
         timeLine: intervalsTypes[periodQuery]
     };
     $('#conversionChart').html('');
+    setTimeout(function(){
+        $('#landscapeChartArea').addClass('runLoader');
+    },150);
     request(obj, function (json) {
+        $('#landscapeChartArea').removeClass('runLoader');
         if (json.result) {
 //            var data = addUpdateDataRequest(keySql, json.result);
             //formaters.categories = data.categories;

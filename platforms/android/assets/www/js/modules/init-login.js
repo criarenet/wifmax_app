@@ -2,14 +2,14 @@ var loginHash;
 
 function onLoad() {
     //StatusBar.hide();
-//    setTimeout(function () {
+//    Timeout(function () {
 //        verifyPrintLogin();
 //        var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
 //    db.transaction(createDB, errorCB, successCB);
 //    }, 2000);
-    document.addEventListener("deviceready", onDeviceReady, false);
+    
 }
-
+document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
     db.transaction(createDB, errorCB, successCB);
@@ -52,6 +52,7 @@ var verifyPrintLogin = function () {
         if (!data.rows.length) {
             $('.loaderLine').fadeOut(10, function () {
                 setTimeout(function () {
+                    //StatusBar.hide();
                     $('#logoLoginArea').addClass('loaded');
                 }, 50);
             });
@@ -67,6 +68,7 @@ var verifyPrintLogin = function () {
             getCompaniesLsit(function(){
                 $('#wrappLogin').fadeOut(100, function () {
                     setTimeout(function () {
+                        //StatusBar.hide();
                         startDashBoard();
                     }, 100);
                 });

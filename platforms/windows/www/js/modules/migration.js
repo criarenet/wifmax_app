@@ -78,10 +78,14 @@ var buildDataMigrationChart = function () {
     var obj = {
         url: url
     };
+    setTimeout(function(){
+        $('#landscapeChartArea').addClass('runLoader');
+    },150);
     getMigrationData(obj, function (json) {
         var dataChart = [];
         
         if(!json.result || !json.result.links){
+            $('#landscapeChartArea').removeClass('runLoader');
             $('#migrationChart').html(emptyChartInfo);
             return;
         }
@@ -305,6 +309,8 @@ Highcharts.myTheme = {
 var loadRouterMigrationChart = function (containner, data, formaters) {
     //Highcharts.setOptions(Highcharts.theme);
     //$('#container').highcharts(Highcharts.merge(options, theme1));
+    
+    $('#landscapeChartArea').removeClass('runLoader');
     $(containner).highcharts(Highcharts.merge({
 
         chart: {

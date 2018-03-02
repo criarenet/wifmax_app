@@ -169,8 +169,11 @@ var getNewRegistersStatistic = function (actualQuery, callback) {
     };
     //$('.labelColor').text('0');
     $('#userOnlineStatisticChart').html('');
-    
+    setTimeout(function(){
+        $('#landscapeChartArea').addClass('runLoader');
+    },150);
     request(obj, function (json) {
+        $('#landscapeChartArea').removeClass('runLoader');
         if (json.result && json.result.data) {
             //var data = addUpdateDataRequest(keySql, json.result.data);
             var data = json.result.data;
@@ -202,8 +205,11 @@ var getUserOnlineStatistic = function (actualQuery, callback) {
     //alert(intervalsTypes[periodQuery])
     //$('.labelColor').text('0');
     $('#userOnlineStatisticChart').html('');
-    
+    setTimeout(function(){
+        $('#landscapeChartArea').addClass('runLoader');
+    },150);
     request(obj, function (json) {
+        $('#landscapeChartArea').removeClass('runLoader');
         if (json.result && json.result.data) {
             //var data = addUpdateDataRequest(keySql, json.result.data);
             var data = json.result.data;
