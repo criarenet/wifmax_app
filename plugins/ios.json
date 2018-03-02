@@ -1,85 +1,91 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
     },
-    "installed_plugins": {
-        "cordova-plugin-battery-status": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-device-motion": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-device-orientation": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-local-notifications-npm": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-media": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-vibration": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-x-toast": {
-            "PACKAGE_NAME": "br.com.teste"
-        }
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "br.com.teste"
-        },
-        "cordova-common-registerusernotificationsettings-npm": {
-            "PACKAGE_NAME": "br.com.teste"
-        }
+    "cordova-plugin-contacts": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-device-motion": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-device-orientation": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-local-notifications-npm": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
     }
+  },
+  "dependent_plugins": {
+    "cordova-common-registerusernotificationsettings-npm": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "br.com.wifimax.app"
+    }
+  }
 }
