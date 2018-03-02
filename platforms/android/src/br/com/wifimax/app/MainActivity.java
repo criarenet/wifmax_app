@@ -17,7 +17,7 @@
        under the License.
  */
 
-package br.com.teste;
+package br.com.wifimax.app;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
