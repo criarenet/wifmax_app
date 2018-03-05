@@ -102,27 +102,13 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <engine name="ios" spec="~4.5.1" />
-    <plugin name="cordova-plugin-battery-status" />
-    <plugin name="cordova-plugin-camera" />
-    <plugin name="cordova-plugin-media-capture" />
-    <plugin name="cordova-plugin-console" />
-    <plugin name="cordova-plugin-contacts" />
+    
     <plugin name="cordova-plugin-device" />
-    <plugin name="cordova-plugin-device-motion" />
-    <plugin name="cordova-plugin-device-orientation" />
-    <plugin name="cordova-plugin-dialogs" />
-    <plugin name="cordova-plugin-file" />
-    <plugin name="cordova-plugin-file-transfer" />
-    <plugin name="cordova-plugin-geolocation" />
-    <plugin name="cordova-plugin-globalization" />
-    <plugin name="cordova-plugin-inappbrowser" />
-    <plugin name="cordova-plugin-media" />
-    <plugin name="cordova-plugin-network-information" />
+    
     <plugin name="cordova-plugin-splashscreen" />
-    <plugin name="cordova-plugin-vibration" />
-    <plugin name="cordova-plugin-whitelist" />
+    
     <plugin name="cordova-plugin-screen-orientation" />
     <plugin name="cordova-plugin-local-notifications-npm" />
-    <plugin name="cordova-plugin-x-toast" />
+    
     <plugin name="cordova-plugin-statusbar" />
 </widget>
