@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.wifimax.app" version="1.0.16" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="br.com.wifimax.app" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Wifimax</name>
     <description>
         application for wifimax data analysis
@@ -34,5 +34,4 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="deployment-target" value="7.1.2" />
     <preference name="fullscreen" value="true" />
-    <preference name="phonegap-version" value="cli-7.1.0" />
 </widget>

@@ -12,6 +12,9 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="deployment-target" value="7.1.2" />
     <preference name="fullscreen" value="true" />
+    
+    <preference name="phonegap-version" value="cli-8.0.0" />
+    
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
@@ -101,10 +104,7 @@
     </platform>
     <engine name="ios" spec="~4.5.1" />
    
-    <plugin name="cordova-plugin-device"/>
-    <plugin name="cordova-plugin-inappbrowser"/>
-    <plugin name="cordova-plugin-splashscreen"/>
+    
     <plugin name="cordova-plugin-screen-orientation"/>
-    <plugin name="cordova-plugin-local-notifications-npm"/>
     <plugin name="cordova-plugin-statusbar"/>
 </widget>
