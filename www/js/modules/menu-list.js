@@ -112,6 +112,20 @@ var initMenuLeft = function(){
         typeFilterDate = 'noDate';
     });
     
+    $('#menuLeftNotifications').on('click', function(){
+        $('.pag').removeClass('viewing');
+        $('#pagSelectedTitle').text('Minhas notificações').css('color', '#607D8B');
+        reporstSelecteds = 'notifications';
+        openPage('#notificationsContainer', function(){
+            setTimeout(function(){
+                $('#notificationsContainer').addClass('viewing');
+
+            },200);
+            //buildDashBoard(gQuery);
+        });
+        typeFilterDate = 'noDate';
+    });
+    
 };
 
 var openPage = function (pag, callback) {
