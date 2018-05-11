@@ -1,12 +1,12 @@
 var loginHash;
 
 function onLoad() {
-    //StatusBar.hide();
-//    Timeout(function () {
-//        verifyPrintLogin();
-//        var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
-//    db.transaction(createDB, errorCB, successCB);
-//    }, 2000);
+//    StatusBar.hide();
+    setTimeout(function () {
+        verifyPrintLogin();
+        var db = window.openDatabase("dbAppWifimax", "1.0", "Wifimax app DB", 200000);
+    db.transaction(createDB, errorCB, successCB);
+    }, 2000);
     
 }
 document.addEventListener("deviceready", onDeviceReady, false);
